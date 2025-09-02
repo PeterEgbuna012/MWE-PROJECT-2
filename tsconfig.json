@@ -1,0 +1,27 @@
+{
+  
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "checkJs": false,
+    "resolveJsonModule": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "noEmit": true,                      // Don't emit files; only type-check
+    "types": ["node", "@wdio/globals/types"]
+  },
+  "include": [
+    "features/**/*",
+    "pageobjects/**/*",
+    "helpers/**/*",
+    "utils/**/*",
+    "tests/**/*",
+    "*.ts",
+    "*.js"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
