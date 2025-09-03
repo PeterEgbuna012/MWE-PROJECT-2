@@ -27,12 +27,6 @@ class WorkOrderPage extends BasePage {
         await this.clickElement(this.addManualTimeEntryBtnAllCaps);
     }
 
-    /**
-     * Verifies the work order status matches expected
-     * @param expectedStatus - string to compare
-     */
-
-
   
   /**
      * Returns the status element assumed to be at the bottom-left side of the screen.

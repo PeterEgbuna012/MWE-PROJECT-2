@@ -16,7 +16,7 @@ Feature: Return WO
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then I click on "START ICON" button
+   Then I click on "START ICON" button
    Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I click on "PAUSE ICON" button

@@ -332,9 +332,9 @@ Then("I choose {string} button if WO is {string}", async (bottomcircle: string, 
 });
 
 // -------------------- TEXT ENTRY --------------------
-// Then("I enter value in {string}", async (desc: string) => {
-  // await basePage.clickElement(`//XCUIElementTypeTextView[@value="${desc}"]`);
-// });
+ Then("I enter value in {string}", async (desc: string) => {
+   await basePage.clickElement(`//XCUIElementTypeTextView[@value="${desc}"]`);
+ });
 
 Then("I enter text {string} in comments textbox", async (comment: string) => {
   const textbox = await $('//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeTextView[2]');
@@ -415,22 +415,5 @@ Then('I compare the {string} values', async (expectedValue: string) => {
     await WorkOrderPage.compareTimeLogValue(expectedValue);
 });
 
-
-// -------------------- RETURN WORK ORDER MEMO NOTE FIELD --------------------
-Then(/^I enter "([^"]+)" in textfield "([^"]+)"$/, async (input: string, placeholder: string) => {
-  // Target the XCUIElementTypeTextView with the given placeholder in the @value attribute
-  const textFieldSelector = `//XCUIElementTypeTextView[@value="${placeholder}"]`;
-
-  const field = await $(textFieldSelector);
-  await field.waitForDisplayed({ timeout: 20000 });
-
-  // Tap into the field to focus it
-  await field.click();
-
-  // Enter the text
-  await field.setValue(input);
-
-  console.log(`📝 Entered "${input}" in the textview with placeholder "${placeholder}"`);
-});
 
 

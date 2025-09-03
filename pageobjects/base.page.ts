@@ -95,17 +95,26 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="START WORK"]';
             break;
 
-        case 'PAUSE':
-            xpath = '//XCUIElementTypeButton[@name="Pause"]';
+        case 'PAUSE WORK ORDER':
+            xpath = '//XCUIElementTypeButton[@name="PAUSE WORK ORDER"]';
             break;
 
         case 'DONE':
             xpath = '//XCUIElementTypeButton[@name="Done"]';
             break;
 
+           case 'PAUSE':
+            xpath = '//XCUIElementTypeButton[@name="Pause"]';
+            break; 
+
+           case 'RETURN ICON':
+            xpath = '//XCUIElementTypeStaticText[@name=""]';
+            break; 
+
         case 'RETURN':
             xpath = '//XCUIElementTypeButton[@name="Return"]';
             break;
+
 
         case 'RETURN WORK ORDER':
             xpath = '//XCUIElementTypeButton[@name="RETURN WORK ORDER"]';
@@ -113,6 +122,10 @@ get PAUSEButton(): ChainablePromiseElement {
 
         case 'SIGN OUT':
             xpath = '//XCUIElementTypeButton[@name="Sign Out"]';
+            break;
+
+         case 'BACK':
+            xpath = '//XCUIElementTypeButton[@name=""]';
             break;
 
         default:
