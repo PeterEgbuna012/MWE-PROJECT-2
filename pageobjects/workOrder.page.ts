@@ -2,6 +2,8 @@
 type FieldName = 'summary' | 'details';
 import basePage from './base.page';
 import BasePage from './base.page';
+import type { ChainablePromiseElement } from 'webdriverio';
+type ElementPromise = ChainablePromiseElement;
 
 class WorkOrderPage extends BasePage {
    // Selector for "Add Manual Time Entry" (small case)
@@ -73,6 +75,8 @@ class WorkOrderPage extends BasePage {
       case 'comment':
       case 'comments':
         return '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeTextView[2]';
+        case 'description':
+        return '//XCUIElementTypeTextView[@value="Please Enter Description"]';
       default:
         throw new Error(`Field "${normalizedField}" is not supported.`);
     }
@@ -173,25 +177,76 @@ class WorkOrderPage extends BasePage {
             }
         }
     }
+    
  /**
-     * XPath selector to match any comment that starts with "comment:"
-     */
-    private get commentElement() {
-        return $('//XCUIElementTypeStaticText[starts-with(@name, "comment:")]');
+   /**
+ * Selector to click on the comment (opens comment info).
+ */
+private get commentClickElement() {
+    return $('//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[4]');
+}
+
+/**
+ * Selector to get the comment info text after clicking.
+ */
+private get commentInfoElement() {
+    return $('//XCUIElementTypeStaticText[@name="Comment Info"]');
+}
+
+/**
+ * Clicks the comment element.
+ */
+async clickComment(): Promise<void> {
+    await this.commentClickElement.waitForDisplayed({
+        timeout: 5000,
+        timeoutMsg: '❌ Comment click element not visible.',
+    });
+    await this.commentClickElement.click();
+}
+
+/**
+ * Gets the comment info text after clicking.
+ */
+async getCommentInfoText(): Promise<string> {
+    await this.commentInfoElement.waitForDisplayed({
+        timeout: 5000,
+        timeoutMsg: '❌ Comment info not visible after clicking comment.',
+    });
+    return this.commentInfoElement.getText();
+}
+
+/**
+ * Waits until a comment element (starting with "comment:") is visible.
+ */
+async waitForCommentToBeShown(timeout = 5000): Promise<void> {
+    await this.commentInfoElement.waitForDisplayed({
+        timeout,
+        timeoutMsg: '❌ Expected comment to be shown, but it was not found.',
+    });
+}
+public get assetField() {
+    return $('(//XCUIElementTypeTextField)[2]');
+}
+async isAssetFieldPopulated(): Promise<boolean> {
+        return this.isFieldPopulated(this.assetField);
     }
 
-    /**
-     * Waits until a comment element is visible on the page.
+ /**
+     * Returns true if the given input or text element has a non-empty value.
      */
-    async waitForCommentToBeShown(timeout = 5000): Promise<void> {
-        await this.commentElement.waitForDisplayed({
-            timeout,
-            timeoutMsg: '❌ Expected comment to be shown, but it was not found.',
-        });
+    async isFieldPopulated(element: ChainablePromiseElement): Promise<boolean> {
+        const isDisplayed = await element.isDisplayed();
+        if (!isDisplayed) return false;
+
+        const value = await element.getValue();
+        return value.trim().length > 0;
     }
-    /**
-     * Utility to get formatted date components for picker.
-     */
+    
+
+    
+/**
+ * Utility to get formatted date components for picker.
+ */
     private getFormattedDateOffset(offsetDays: number): { month: string; day: string; year: string } {
         const date = new Date();
         date.setDate(date.getDate() + offsetDays);
@@ -203,7 +258,28 @@ class WorkOrderPage extends BasePage {
         };
     }
 
-/**
+      // Locator for the search text field
+  get locationSearchField() {
+        return $('//XCUIElementTypeTextField[@value="Search Locations"]');
+    }
+
+    getLocationResultByName(name: string) {
+        const fullName = `${name}`;
+        return $(`//XCUIElementTypeOther[@name="${fullName}"]`);
+    }
+
+    // Example: assume the selected location is shown in a static label
+    get selectedLocationLabel() {
+        return $('//XCUIElementTypeStaticText[@name="SelectedLocationLabel"]');
+    }
+
+    async getSelectedLocationText(): Promise<string> {
+        await this.selectedLocationLabel.waitForDisplayed({ timeout: 5000 });
+        return await this.selectedLocationLabel.getText();
+    }
+
+
+    /**
      * Returns the selector for a time log static text element matching the exact time string.
      * @param timeValue string like "1d 0h" or "0h 55m"
      */

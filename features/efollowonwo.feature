@@ -1,4 +1,4 @@
-Feature: Create Follow-On Work Orders (Add to backlog, FIFI, Assign to me)
+Feature: CREATE FOLLOW-ON WORK ORDERs (Add to backlog, FIFI, Assign to me)
 
   Scenario Outline: create a follow on wo
     Given I am on the Init page
@@ -15,72 +15,78 @@ Feature: Create Follow-On Work Orders (Add to backlog, FIFI, Assign to me)
     And I see allow button
     When I click on "Reject" button
     Then The Worklist page is open
-    When I click at "first" WO
+    Then I click on "first" WO
     Then WO page is "Shown"
     Then I click on "START ICON" button
     Then I click on "START WORK" button
+    Then The status of the work Order is in "In Progress"
     Then I click on "MORE ACTION ICON" button
-    Then I click on "Create Follow-On Work Order" button
-    When I click at "Add to backlog" option
-    Then I click on "Add to backlog" button
+    Then I click on "CREATE FOLLOW-ON WORK ORDER" button
+    When I click on "Add to backlog" option
+    Then I click on "ADD TO BACKLOG" option
     Then I verify location field is populated
-    Then I enter value in "Please Enter Description"
-    When I click at "Select a Template" option
+    Then I verify asset field is populated
+    Then I click on "SELECT A TEMPLATE " button 
     Then I click on "377 Auxillaries" button
+   # And I set "Description" value field to "TESTING"
     Then I click on "NEXT" button
-    Then I click at "Select Failure Class..." option
-    Then I click on "377:Auxillaries" button
-    Then I click at "Select Failure Problem..." option
-    Then I click on "CRACKED" button
-    Then I click at "Select Failure Cause..." option
-    Then I click on "BURNT" button
-    Then I click at "Select Failure Remedy..." option
-    Then I click on "REPAIRE CARRIED OUT" button
+   # Then I click on "377: AUXILIARIES" option
+    Then I click on "PROBLEM CLASS" option
+    Then I click on "ACTIVATED" option
+    Then I click on "CAUSE CLASS" option
+    Then I click on "BURNT" option
+    Then I click on "REMEDY CLASS" option
+    Then I click on "REPAIR CARRIED OUT" option
     Then I click on "CREATE FOLLOW-ON" button
     Then I navigate to "back"
     Then The Worklist page is open
-    When I click at "first" WO
+    When I click on "first" WO
     Then WO page is "Shown"
-    Then I choose "More Actions" button if WO is "In Progress"
-    Then I click on "Create Follow-On Work Order" button
-    When I click at "Add to backlog" option
-    Then I click on "Found It, Fixed It" button
+    Then I click on "MORE ACTION ICON" button
+    Then I click on "CREATE FOLLOW-ON WORK ORDER" button
+    When I click on "Add to backlog" option
+    Then I click on "FOUND IT, FIXED IT" option
     Then I verify location field is populated
-    Then I enter value in "Please Enter Description"
-    When I click at "Select a Template" option
+    Then I verify asset field is populated
+    Then I click on "SELECT A TEMPLATE " button 
     Then I click on "377 Auxillaries" button
     Then I click on "NEXT" button
-    Then I click at "Select Failure Class..." option
-    Then I click on "377:DOORS" button
-    Then I click at "Select Failure Problem..." option
-    Then I click on "WATER LEAK" button
-    Then I click at "Select Failure Cause..." option
-    Then I click on "LOOSE" button
-    Then I click at "Select Failure Remedy..." option
-    Then I click on "REPAIRE CARRIED OUT" button
+   # And I set "Description" value field to "TESTING"
+   # Then I click on "377: AUXILIARIES" option
+    Then I click on "PROBLEM CLASS" option
+    Then I click on "ACTIVATED" option
+    Then I click on "CAUSE CLASS" option
+    Then I click on "BURNT" option
+    Then I click on "REMEDY CLASS" option
+    Then I click on "REPAIR CARRIED OUT" option
     Then I click on "CREATE FOLLOW-ON" button
     Then I navigate to "back"
     Then The Worklist page is open
-    When I click at "first" WO
+    When I click on "first" WO
     Then WO page is "Shown"
-    Then I choose "More Actions" button if WO is "In Progress"
-    Then I click on "Create Follow-On Work Order" button
-    When I click at "Add to backlog" option
-    Then I click on "Assign to me" button
+    Then I click on "MORE ACTION ICON" button
+    Then I click on "CREATE FOLLOW-ON WORK ORDER" button
+     When I click on "Add to backlog" option
+    When I click on "ASSIGN TO ME" option
     Then I verify location field is populated
-    Then I enter value in "Please Enter Description"
-    When I click at "Select a Template" option
-    Then I click on "377 Auxillaries" button
+    Then I verify asset field is populated
+    Then I click on "SELECT A TEMPLATE " button 
+    Then I click on "ASSIGN TO ME WORK PRIORITY 1 - UNIT WITHDRAW FROM SERVICE" button
+    #And I set "Description" value field to "TESTING"
     Then I click on "NEXT" button
-    Then I click at "Select Failure Class..." option
-    Then I click on "377:DRA" button
-    Then I click at "Select Failure Problem..." option
-    Then I click on "FAULT INDICATION" button
-    Then I click at "Select Failure Cause..." option
-    Then I click on "LIFE EXPIRED" button
-    Then I click at "Select Failure Remedy..." option
-    Then I click on "REPLACED (LIKE FOR LIKE)" button
+    Then I click on "FAILURE CLASS" option
+    Then I click on "SEATING" option
+    Then I click on "PROBLEM CLASS" option
+    Then I click on "SEAT MISSING PRIORITY" option
+    Then I click on "CAUSE CLASS" option
+    Then I click on "SERVICE QUALITY FAULT REPORTED" option
+    Then I click on "REMEDY CLASS" option
+    Then I click on "SERVICE QUALITY FAULT RECTIFIED" option
     Then I click on "CREATE FOLLOW-ON" button
+    Then I click on "PAUSE" button
+    Then I click on "PAUSE WORK ORDER" button
+    Then I click on "HISTORY TAB" button
+    Then I take a screenshot
     Then I navigate to "back"
     Then The Worklist page is open
 

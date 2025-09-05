@@ -56,7 +56,7 @@ async waitAndClick(element: WebdriverIO.Element, timeout = 20000): Promise<void>
 
   
   /** Click element by XPath */
-  async clickElement(selector: string, timeout = 15000): Promise<void> {
+  async clickElement(selector: string, timeout = 20000): Promise<void> {
         const el = await $(selector);
 
         // Scroll into view if needed
@@ -87,7 +87,7 @@ get PAUSEButton(): ChainablePromiseElement {
    
 
     // Generic button clicker
- async clickButtonByName(name: string, timeout = 15000): Promise<void> {
+ async clickButtonByName(name: string, timeout = 20000): Promise<void> {
     let xpath: string;
 
     switch (name.toUpperCase()) {
@@ -123,6 +123,14 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="Return"]';
             break;
 
+            case 'CONFIRM':
+            xpath = '//XCUIElementTypeButton[@name="CONFIRM"]';
+            break;
+
+            case 'LOCATION EDIT':
+            xpath = '//XCUIElementTypeStaticText[@name=""]';
+            break;
+
              case 'ADD COMMENT BUTTON':
             xpath = '//XCUIElementTypeButton[@name="ADD COMMENT"]';
             break;
@@ -131,10 +139,19 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="Add Comment"]';
             break;
 
+             case 'CREATE FOLLOW-ON WORK ORDER':
+            xpath = '//XCUIElementTypeButton[@name="Create Follow-On Work Order"]';
+            break;
+
+              case 'CREATE FOLLOW-ON':
+            xpath = '//XCUIElementTypeButton[@name="CREATE FOLLOW-ON"]';
+            break;
+
              case 'HISTORY TAB':
             xpath = '//XCUIElementTypeStaticText[@name="History"]';
             break;
 
+          
              case 'WORK TAB':
             xpath = '//XCUIElementTypeStaticText[@name="Work"]';
             break;
@@ -148,7 +165,7 @@ get PAUSEButton(): ChainablePromiseElement {
             break;
 
             case 'FILTER OPTIONS':
-            xpath = '//XCUIElementTypeOther[@value="All Updates"]';
+            xpath = '(//XCUIElementTypeOther[@value="All Updates"])[2]';
             break;
 
             case 'COMMENTS OPTION':
@@ -167,6 +184,10 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="Workflow"]';
             break;
 
+            case 'SELECT A TEMPLATE ':
+            xpath = '//XCUIElementTypeOther[@value="Select a Template"]';
+            break;
+
             case 'TYPE FIELD':
             xpath = '//XCUIElementTypeOther[@value="Select type..."]';
             break;
@@ -183,6 +204,10 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="RETURN WORK ORDER"]';
             break;
 
+             case 'NEXT':
+            xpath = '//XCUIElementTypeButton[@name="NEXT"]';
+            break;
+
         case 'SIGN OUT':
             xpath = '//XCUIElementTypeButton[@name="Sign Out"]';
             break;
@@ -190,6 +215,23 @@ get PAUSEButton(): ChainablePromiseElement {
          case 'BACK':
             xpath = '//XCUIElementTypeButton[@name=""]';
             break;
+
+            case '377 Air':
+            xpath = '//XCUIElementTypeButton[@name="377 Air"]';
+            break;
+
+            case '377 Auxillaries':
+            xpath = '//XCUIElementTypeButton[@name="377 Auxillaries"]';
+            break;
+
+            case '377 Bogies':
+            xpath = '//XCUIElementTypeButton[@name="377 Bogies"]';
+            break;
+
+             case 'ASSIGN TO ME WORK PRIORITY 1 - UNIT WITHDRAW FROM SERVICE':
+                
+                xpath = `//XCUIElementTypeButton[@name="Assign To Me Work Priority 1 - Unit Withdrawn from Service"]`;
+                break;
 
         default:
             xpath = `//XCUIElementTypeButton[@name="${name}"]`; 
@@ -224,6 +266,7 @@ get PAUSEButton(): ChainablePromiseElement {
         throw new Error(`❌ Failed to click button "${name}": ${error}`);
     }
 }
+
   /** Click Work Order by index (first/second) */
   async clickWorkOrder(workorder: 'first' | 'second'): Promise<void> {
     const xpath = workorder === 'first'
@@ -251,7 +294,186 @@ get PAUSEButton(): ChainablePromiseElement {
     }
     await this.clickElement(xpath);
   }
+    // Description field: XCUIElementTypeTextView
+    get descriptionField() {
+        return $('//XCUIElementTypeTextView[@value="Please Enter Description"]');
+    }
 
+    async setDescription(text: string): Promise<void> {
+    const field = await this.descriptionField;
+    await field.waitForDisplayed({ timeout: 5000 });
+
+    await field.click();            
+    await field.clearValue();       
+    await field.addValue(text);     
+}
+
+/**
+     * Clicks any option by its visible name (supports buttons, cells, static texts)
+     */
+    async clickOptionByName(name: string, timeout = 20000): Promise<void> {
+        let xpath: string;
+
+        switch (name.toUpperCase()) {
+            case 'FIRST RECORD':
+                xpath = '(//XCUIElementTypeButton[contains(@name, ":")])[1]';
+                break;
+
+                  case 'SECOND RECORD':
+                xpath = '(//XCUIElementTypeButton[contains(@name, ":")])[2]';
+                break;
+
+                case 'THIRD RECORD':
+                xpath = '(//XCUIElementTypeButton[contains(@name, ":")])[3]';
+                break;
+
+            case 'FOURTH RECORD':
+                xpath = '(//XCUIElementTypeButton[contains(@name, ":")])[4]';
+                break;
+
+            case 'FIFTH RECORD':
+                xpath = '(//XCUIElementTypeButton[contains(@name, ":")])[5]';
+                break;
+
+            case 'FAILURE CLASS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeOther[@value="Select Failure Class..."]`;
+                break;
+
+                case 'PROBLEM CLASS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeOther[@value="Select Failure Problem..."]`;
+                break;
+
+                 case 'CAUSE CLASS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeOther[@value="Select Failure Cause..."]`;
+                break;
+
+                  case 'REMEDY CLASS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeOther[@value="Select Failure Remedy..."]`;
+                break;
+
+              case 'ADD TO BACKLOG OPTIONS':
+            xpath = '//XCUIElementTypeOther[@value="Add to backlog"]';
+            break;
+
+            case 'ADD TO BACKLOG':
+            xpath = '//XCUIElementTypeOther[@value="Add to backlog"]';
+            break;
+
+            case 'FOUND IT, FIXED IT':
+            xpath = '//XCUIElementTypeButton[@name="Found It, Fixed It"]';
+            break;
+
+            case 'ASSIGN TO ME':
+            xpath = '//XCUIElementTypeButton[@name="Assign to me"]';
+            break;
+
+            case '377: AUXILIARIES':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeOther[@value="377: AUXILIARIES"]`;
+                break;
+
+              case 'CRACKED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CRACKED"]`;
+                break;
+
+                case 'ACTIVATED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="ACTIVATED"]`;
+                break;
+
+                case 'CONTACTOR FAULT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CONTACTOR FAULT"]`;
+                break;
+
+                case 'FAILS EXAM TASK':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="FAILS EXAM TASK"]`;
+                break;
+
+                case 'FAULT INDICATION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="FAULT INDICATION"]`;
+                break;
+
+              case 'SEATING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="171-SQR-023: SEATING"]`;
+                break;
+
+                case 'HEATING & LIGHTING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="171-SQR-022: HEATING & LIGHTING"]`;
+                break;
+
+                case 'VEHICLE INTERIOR CONDITION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="171-SQR-024: VEHICLE INTERIOR CONDITION"]`;
+                break;
+
+                 case 'SEAT MISSING PRIORITY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="SQR 23(a)(i) - Seat - missing - priority"]`;
+                break;
+
+                 case 'SEAT MISSING OTHER':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="SQR 23(a)(ii) - Seat - missing - other"]`;
+                break;
+
+                case 'SERVICE QUALITY FAULT REPORTED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Service Quality Fault Reported"]`;
+                break; 
+
+                case 'SERVICE QUALITY FAULT RECTIFIED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Service Quality Fault Rectified"]`;
+                break; 
+
+              case 'BURNT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="BURNT"]`;
+                break; 
+
+                case 'REPAIR CARRIED OUT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="REPAIR CARRIED OUT"]`;
+                break;
+
+
+            default:
+                // default to common option types (Other, StaticText, Button)
+                xpath = `//XCUIElementTypeOther[@name="${name}"] | //XCUIElementTypeStaticText[@name="${name}"] | //XCUIElementTypeButton[@name="${name}"]`;
+                break;
+        }
+
+        const element = await $(xpath);
+        await element.waitForDisplayed({ timeout });
+        await element.click();
+    }
+
+    async clickNthRecord(n: number = 1, timeout = 20000): Promise<void> {
+    const xpath = `(//XCUIElementTypeButton[contains(@name, ":")])[${n}]`;
+    const element = await $(xpath);
+    await element.waitForDisplayed({ timeout });
+    await element.click();
+}
+
+ /**
+     * Selects an option from the outcome dropdown by visible text.
+     * Example optionText: "Assign to me"
+     */
+    /**
+     * Clicks an option from an open dropdown by visible name.
+     * Assumes the dropdown is already open.
+     */
+ 
   /** Select dropdown option */
   async selectDropdownOption(dropdownXpath: string, optionText: string): Promise<void> {
     await this.performStep(`Select ${optionText} from dropdown`, async () => {
@@ -405,7 +627,17 @@ async handleActionButton(actionButton: string): Promise<void> {
 
         console.log(`📸 Screenshot saved: ${fullPath}`);
     }
-  
+  /**
+     * Returns true if the given input or text element has a non-empty value.
+     */
+    async isFieldPopulated(element: ChainablePromiseElement): Promise<boolean> {
+        const isDisplayed = await element.isDisplayed();
+        if (!isDisplayed) return false;
+
+        const value = await element.getValue();
+        return value.trim().length > 0;
+    }
+    
   /** Verify WO page visibility */
   async verifyWOPage(flag: 'Shown' | 'Hidden'): Promise<void> {
     const element = await $('//XCUIElementTypeStaticText[@name="Work"]');

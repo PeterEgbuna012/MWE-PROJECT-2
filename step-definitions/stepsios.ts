@@ -5,8 +5,8 @@ import BasePage, { clickButtonByName } from '../pageobjects/base.page';
 import PhotoPage from '../pageobjects/photo.page';
 import InitPage from '../pageobjects/init.page';
 import WorkOrderPage from '../pageobjects/workOrder.page';
+import workOrderPage from '../pageobjects/workOrder.page';
 type FieldName = 'summary' | 'details';
-
 
 // Instantiate page objects
 const loginPage = new LoginPage();
@@ -126,6 +126,10 @@ Then('I enter on notifications', async () => {
 
 // -------------------- WORK ORDER --------------------
 When("I click at {string} WO", async (workorder: 'first' | 'second') => {
+  await basePage.clickWorkOrder(workorder);
+});
+
+Then("I click on {string} WO", async (workorder: 'first' | 'second') => {
   await basePage.clickWorkOrder(workorder);
 });
 
@@ -379,9 +383,27 @@ Then("Photo is Visible", async () => {
 });
 
 // -------------------- LOCATION --------------------
-Then("I select the Location", async () => {
-  await basePage.clickElement('//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[18]');
+
+When(/^I select the location result with name "(.*)"$/, async (locationName: string) => {
+    // Add the  checkmark to the name, since it's always present
+    const fullName = `${locationName}`;
+
+    const locationResultSelector = `//XCUIElementTypeOther[@name="${fullName}"]`;
+    const locationResultElement = await $(locationResultSelector);
+
+    await locationResultElement.waitForDisplayed({ timeout: 5000 });
+    await locationResultElement.click();
 });
+
+Then('the location should be selected successfully', async () => {
+    const selectedLocationText = await WorkOrderPage.getSelectedLocationText();
+
+    // Ensure the location is not empty and does not contain the  checkmark
+    expect(selectedLocationText).to.not.be.empty;
+    expect(selectedLocationText).to.not.include('');
+});
+
+
 
 // Mock function for YAML reading
 type MaterialYaml = { material: string[]; [key: string]: any };
@@ -417,3 +439,24 @@ Then(/^I take a screenshot$/, async () => {
     await WorkOrderPage.takeScreenshot();
 });
 
+// -------------------- DESCRIPTION FIELD  --------------------
+Then(/^I set Description field to "(.*)"$/, async (text: string) => {
+   await WorkOrderPage.setValueInField('description', text);
+});
+
+// -------------------- CLICK OPTION BY NAME --------------------
+When(/^I click on "([^"]+)" option$/, async (optionName: string) => {
+    await basePage.clickOptionByName(optionName);
+});
+
+// -------------------- VERIFY ASSET FIELD IS POPULATED --------------------
+Then(/^I verify asset field is populated$/, async () => {
+    const isPopulated = await workOrderPage.isAssetFieldPopulated();
+    expect(isPopulated).toBe(true, '❌ Expected asset field to be populated, but it was empty.');
+});
+
+
+// -------------------- CLICK OUTCOME DROPDOWN OPTION --------------------
+When("I click on {string} option", async (option: string) => {
+  await basePage.selectDropdownOption('//XCUIElementTypeOther[@name="Add to backlog"]', option);
+});

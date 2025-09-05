@@ -58,9 +58,9 @@ Feature: Play and Pause the Work Order and add comments
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
     Then I click on "HISTORY TAB" button
-   # Then I click on "FILTER OPTIONS" button
-   # Then I click on "COMMENTS OPTION" button
-   # Then comment is "Shown"
+    Then I click on "FILTER OPTIONS" button
+    Then I click on "COMMENTS OPTION" button
+    Then comment is "Shown"
    Then I take a screenshot
 
     
