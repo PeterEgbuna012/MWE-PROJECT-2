@@ -58,13 +58,13 @@ export const config: WebdriverIO.Config = {
     capabilities: [({
     'appium:platformName': 'iOS',
     'appium:automationName': 'XCUITest',
-    'appium:platformVersion': '18.3',
+    'appium:platformVersion': '18.6',
     'appium:deviceName': 'iPad 9th generation',
     'appium:udid': '00008030-000621A90AD0202E',
     'appium:xcodeOrgId': 'D6FH4T6NCD',
     'appium:xcodeSigningId': 'Apple Development',
     'appium:app': '/Users/MWE-PROJECT/mobile-work-execution.ipa',
-    'appium:appname': 'MWE', // custom capability
+    'appium:appname': 'MWE', 
     'appium:safariAllowPopups': true,
     'appium:unexpectedAlertBehaviour': 'accept',
     'appium:maxTypingFrequency': 20,

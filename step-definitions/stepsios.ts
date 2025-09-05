@@ -5,6 +5,7 @@ import BasePage, { clickButtonByName } from '../pageobjects/base.page';
 import PhotoPage from '../pageobjects/photo.page';
 import InitPage from '../pageobjects/init.page';
 import WorkOrderPage from '../pageobjects/workOrder.page';
+type FieldName = 'summary' | 'details';
 
 
 // Instantiate page objects
@@ -332,17 +333,8 @@ Then("I choose {string} button if WO is {string}", async (bottomcircle: string, 
 });
 
 // -------------------- TEXT ENTRY --------------------
- Then("I enter value in {string}", async (desc: string) => {
-   await basePage.clickElement(`//XCUIElementTypeTextView[@value="${desc}"]`);
- });
-
-Then("I enter text {string} in comments textbox", async (comment: string) => {
-  const textbox = await $('//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeTextView[2]');
-  await textbox.waitForDisplayed();
-  await textbox.clearValue();
-  await basePage.delay(3000);
-  await textbox.setValue(comment);
-  await basePage.delay(3000);
+When(/^I set "(.*)" value field to "(.*)"$/, async (fieldName: string, value: string) => {
+  await WorkOrderPage.setValueInField(fieldName, value);
 });
 
 // -------------------- LOCATION FIELD --------------------
@@ -415,5 +407,13 @@ Then('I compare the {string} values', async (expectedValue: string) => {
     await WorkOrderPage.compareTimeLogValue(expectedValue);
 });
 
+// -------------------- COMMENT SECTION --------------------
+Then(/^comment is "Shown"$/, async () => {
+    await WorkOrderPage.waitForCommentToBeShown();
+});
 
+// -------------------- TAKE A SCREEN SHOOT --------------------
+Then(/^I take a screenshot$/, async () => {
+    await WorkOrderPage.takeScreenshot();
+});
 

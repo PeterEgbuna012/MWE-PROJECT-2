@@ -47,14 +47,23 @@ Feature: Play and Pause the Work Order and add comments
     Then WO page is "Shown"
     Then I click on "START ICON" button
     Then I click on "START WORK" button
-    Then I choose "More Actions" button if WO is "In Progress"
-    Then I click on "Add Comment" button
-    Then I click at "Select type..." option
-    Then I click on "UPDATE" button
-    Then I enter value in "Enter summary..."
-    Then I enter value in "Enter details..."
+    Then I click on "MORE ACTION ICON" button
     Then I click on "ADD COMMENT" button
-    Then I click at button next to "In Progress"
+    Then I click on "TYPE FIELD" button
+    Then I click on "UPDATE" button
+    And I set "Summary" value field to "TEST"
+    And I set "Details" value field to "TEST"
+    Then I click on "ADD COMMENT BUTTON" button
+    Then I click on "PAUSE ICON" button
+    Then I click on "PAUSE" button
+    Then I click on "PAUSE WORK ORDER" button
+    Then I click on "HISTORY TAB" button
+   # Then I click on "FILTER OPTIONS" button
+   # Then I click on "COMMENTS OPTION" button
+   # Then comment is "Shown"
+   Then I take a screenshot
+
+    
 
     Examples:
       | country | EnvCode        | username       | password   |

@@ -17,9 +17,9 @@ Feature: Create Follow-On Work Orders (Add to backlog, FIFI, Assign to me)
     Then The Worklist page is open
     When I click at "first" WO
     Then WO page is "Shown"
-    Then I click at button next to "On Hold"
+    Then I click on "START ICON" button
     Then I click on "START WORK" button
-    Then I choose "More Actions" button if WO is "In Progress"
+    Then I click on "MORE ACTION ICON" button
     Then I click on "Create Follow-On Work Order" button
     When I click at "Add to backlog" option
     Then I click on "Add to backlog" button

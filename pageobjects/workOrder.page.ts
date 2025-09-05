@@ -1,5 +1,6 @@
 // pages/workOrder.page.ts
-
+type FieldName = 'summary' | 'details';
+import basePage from './base.page';
 import BasePage from './base.page';
 
 class WorkOrderPage extends BasePage {
@@ -27,6 +28,55 @@ class WorkOrderPage extends BasePage {
         await this.clickElement(this.addManualTimeEntryBtnAllCaps);
     }
 
+    /**
+  /**
+   * Sets a value in the specified field by name (case-insensitive).
+   * @param fieldName - e.g. 'summary', 'details', 'comment'
+   * @param value - The value to enter
+   */
+  async setValueInField(fieldName: string, value: string): Promise<void> {
+    const normalizedField = fieldName.trim().toLowerCase();
+    const selector = this.getSelectorForField(normalizedField);
+
+    const inputField = await $(selector);
+    await inputField.waitForDisplayed({ timeout: 20000 });
+
+    await inputField.click(); 
+    await inputField.clearValue();
+    await browser.pause(3000); 
+    await inputField.setValue(value);
+    await browser.pause(3000);
+  }
+
+  /**
+   * Gets the current value of a field by name.
+   * @param fieldName - e.g. 'summary', 'details', 'comment'
+   */
+  async getValueFromField(fieldName: string): Promise<string> {
+    const normalizedField = fieldName.trim().toLowerCase();
+    const selector = this.getSelectorForField(normalizedField);
+
+    const inputField = await $(selector);
+    await inputField.waitForDisplayed({ timeout: 20000 });
+    return inputField.getText();
+  }
+
+  /**
+   * Internal: Maps normalized field name to XPath selector.
+   */
+  private getSelectorForField(normalizedField: string): string {
+    switch (normalizedField) {
+      case 'summary':
+        return '//XCUIElementTypeTextView[@value="Enter summary..."]';
+      case 'details':
+        return '//XCUIElementTypeTextView[@value="Enter details..."]';
+      case 'comment':
+      case 'comments':
+        return '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeTextView[2]';
+      default:
+        throw new Error(`Field "${normalizedField}" is not supported.`);
+    }
+  }
   
   /**
      * Returns the status element assumed to be at the bottom-left side of the screen.
@@ -123,7 +173,22 @@ class WorkOrderPage extends BasePage {
             }
         }
     }
+ /**
+     * XPath selector to match any comment that starts with "comment:"
+     */
+    private get commentElement() {
+        return $('//XCUIElementTypeStaticText[starts-with(@name, "comment:")]');
+    }
 
+    /**
+     * Waits until a comment element is visible on the page.
+     */
+    async waitForCommentToBeShown(timeout = 5000): Promise<void> {
+        await this.commentElement.waitForDisplayed({
+            timeout,
+            timeoutMsg: '❌ Expected comment to be shown, but it was not found.',
+        });
+    }
     /**
      * Utility to get formatted date components for picker.
      */

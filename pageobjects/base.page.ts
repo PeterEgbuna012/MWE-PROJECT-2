@@ -1,7 +1,15 @@
 import { $ , $$ } from '@wdio/globals';
 import allure from '@wdio/allure-reporter';
 import type { ChainablePromiseElement } from 'webdriverio';
+import path from 'path/win32';
+import * as fs from 'fs';
+
+
+
 export default class BasePage {
+    static delay(arg0: number) {
+        throw new Error('Method not implemented.');
+    }
 
   /** Perform a step with Allure reporting + screenshot on failure */
   protected async performStep<T>(stepDescription: string, action: () => Promise<T>): Promise<T> {
@@ -115,6 +123,61 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="Return"]';
             break;
 
+             case 'ADD COMMENT BUTTON':
+            xpath = '//XCUIElementTypeButton[@name="ADD COMMENT"]';
+            break;
+
+            case 'ADD COMMENT':
+            xpath = '//XCUIElementTypeButton[@name="Add Comment"]';
+            break;
+
+             case 'HISTORY TAB':
+            xpath = '//XCUIElementTypeStaticText[@name="History"]';
+            break;
+
+             case 'WORK TAB':
+            xpath = '//XCUIElementTypeStaticText[@name="Work"]';
+            break;
+
+             case 'DETAILS TAB':
+            xpath = '//XCUIElementTypeStaticText[@name="Details"]';
+            break;
+
+             case 'FILES TAB':
+            xpath = '//XCUIElementTypeStaticText[@name="Files"]';
+            break;
+
+            case 'FILTER OPTIONS':
+            xpath = '//XCUIElementTypeOther[@value="All Updates"]';
+            break;
+
+            case 'COMMENTS OPTION':
+            xpath = '//XCUIElementTypeButton[@name="Comments"]';
+            break;
+
+            case 'FOLLOW-ONS OPTION':
+            xpath = '//XCUIElementTypeButton[@name="Follow-Ons"]';
+            break;
+
+            case 'ALL UPDATES OPTION':
+            xpath = '//XCUIElementTypeButton[@name="All Updates"]';
+            break;
+
+            case 'WORKFLOW OPTION':
+            xpath = '//XCUIElementTypeButton[@name="Workflow"]';
+            break;
+
+            case 'TYPE FIELD':
+            xpath = '//XCUIElementTypeOther[@value="Select type..."]';
+            break;
+
+            case 'UPDATE':
+            xpath = '//XCUIElementTypeButton[@name="UPDATE"]';
+            break;
+
+            case 'MORE ACTION ICON':
+            xpath = '//XCUIElementTypeButton[@name=""]';
+            break;
 
         case 'RETURN WORK ORDER':
             xpath = '//XCUIElementTypeButton[@name="RETURN WORK ORDER"]';
@@ -324,8 +387,24 @@ async handleActionButton(actionButton: string): Promise<void> {
         }
     });
 }
+/**
+     * Takes a screenshot and saves it to the ./screenshots folder.
+     * Automatically generates a timestamped filename unless one is provided.
+     */
+    async takeScreenshot(filename?: string): Promise<void> {
+        const screenshotDir = path.resolve('./screenshots');
+        if (!fs.existsSync(screenshotDir)) {
+            fs.mkdirSync(screenshotDir, { recursive: true });
+        }
 
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const finalFilename = filename || `screenshot-${timestamp}.png`;
 
+        const fullPath = path.join(screenshotDir, finalFilename);
+        await driver.saveScreenshot(fullPath);
+
+        console.log(`📸 Screenshot saved: ${fullPath}`);
+    }
   
   /** Verify WO page visibility */
   async verifyWOPage(flag: 'Shown' | 'Hidden'): Promise<void> {
