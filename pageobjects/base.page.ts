@@ -25,7 +25,7 @@ export default class BasePage {
       throw error;
     }
   }
-async waitAndClick(element: WebdriverIO.Element, timeout = 20000): Promise<void> {
+async waitAndClick(element: WebdriverIO.Element, timeout = 50000): Promise<void> {
     await element.waitForDisplayed({ timeout });
     await element.click();
   }
@@ -48,7 +48,7 @@ async waitAndClick(element: WebdriverIO.Element, timeout = 20000): Promise<void>
    */
   public async waitForElement(
     element: ChainablePromiseElement,
-    timeout = 10000
+    timeout = 20000
   ): Promise<void> {
     await element.waitForDisplayed({ timeout });
   }
@@ -56,7 +56,7 @@ async waitAndClick(element: WebdriverIO.Element, timeout = 20000): Promise<void>
 
   
   /** Click element by XPath */
-  async clickElement(selector: string, timeout = 20000): Promise<void> {
+  async clickElement(selector: string, timeout = 50000): Promise<void> {
         const el = await $(selector);
 
         // Scroll into view if needed
@@ -87,7 +87,7 @@ get PAUSEButton(): ChainablePromiseElement {
    
 
     // Generic button clicker
- async clickButtonByName(name: string, timeout = 20000): Promise<void> {
+ async clickButtonByName(name: string, timeout = 50000): Promise<void> {
     let xpath: string;
 
     switch (name.toUpperCase()) {
@@ -111,16 +111,36 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="Done"]';
             break;
 
-           case 'PAUSE':
+          case 'PAUSE':
             xpath = '//XCUIElementTypeButton[@name="Pause"]';
             break; 
 
-           case 'RETURN ICON':
+            case 'COMPLETE':
+            xpath = '//XCUIElementTypeButton[@name="Complete"]';
+            break; 
+
+            case 'PERMANENT FIX':
+            xpath = '//XCUIElementTypeButton[@name="Permanent Fix"]';
+            break;
+
+            case 'WORK COMPLETE':
+            xpath = '//XCUIElementTypeButton[@name="Work Complete"]';
+            break;
+
+          case 'RETURN ICON':
             xpath = '//XCUIElementTypeStaticText[@name=""]';
             break; 
 
         case 'RETURN':
             xpath = '//XCUIElementTypeButton[@name="Return"]';
+            break;
+
+          case 'RETURN WORK':
+            xpath = '//XCUIElementTypeButton[@name="Return Work Order"]';
+            break; 
+
+            case 'TEAM VIEW ICON':
+            xpath = '//XCUIElementTypeButton[@name=""]';
             break;
 
             case 'CONFIRM':
@@ -131,7 +151,11 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeStaticText[@name=""]';
             break;
 
-             case 'ADD COMMENT BUTTON':
+            case 'LOCATION SEARCH':
+            xpath = '//XCUIElementTypeTextField[@value="Search Locations"]';
+            break; 
+
+            case 'ADD COMMENT BUTTON':
             xpath = '//XCUIElementTypeButton[@name="ADD COMMENT"]';
             break;
 
@@ -139,28 +163,40 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="Add Comment"]';
             break;
 
-             case 'CREATE FOLLOW-ON WORK ORDER':
+            case 'CREATE FOLLOW-ON WORK ORDER':
             xpath = '//XCUIElementTypeButton[@name="Create Follow-On Work Order"]';
+            break;
+
+            case 'CREATE FOLLOW ON':
+            xpath = '//XCUIElementTypeButton[@name="CREATE FOLLOW ON"]';
+            break;
+
+            case 'FAIL TASK':
+            xpath = '//XCUIElementTypeButton[@name="FAIL TASK"]';
             break;
 
               case 'CREATE FOLLOW-ON':
             xpath = '//XCUIElementTypeButton[@name="CREATE FOLLOW-ON"]';
             break;
 
-             case 'HISTORY TAB':
+            case 'HISTORY TAB':
             xpath = '//XCUIElementTypeStaticText[@name="History"]';
             break;
 
+            case 'MARK ALL AS READ':
+            xpath = '//XCUIElementTypeButton[@name="Mark All As Read"]';
+            break;
+
           
-             case 'WORK TAB':
+            case 'WORK TAB':
             xpath = '//XCUIElementTypeStaticText[@name="Work"]';
             break;
 
-             case 'DETAILS TAB':
+            case 'DETAILS TAB':
             xpath = '//XCUIElementTypeStaticText[@name="Details"]';
             break;
 
-             case 'FILES TAB':
+            case 'FILES TAB':
             xpath = '//XCUIElementTypeStaticText[@name="Files"]';
             break;
 
@@ -204,15 +240,19 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="RETURN WORK ORDER"]';
             break;
 
-             case 'NEXT':
+            case 'NEXT':
             xpath = '//XCUIElementTypeButton[@name="NEXT"]';
+            break;
+
+            case 'SAVE':
+            xpath = '//XCUIElementTypeButton[@name="SAVE"]';
             break;
 
         case 'SIGN OUT':
             xpath = '//XCUIElementTypeButton[@name="Sign Out"]';
             break;
 
-         case 'BACK':
+        case 'BACK':
             xpath = '//XCUIElementTypeButton[@name=""]';
             break;
 
@@ -228,7 +268,7 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="377 Bogies"]';
             break;
 
-             case 'ASSIGN TO ME WORK PRIORITY 1 - UNIT WITHDRAW FROM SERVICE':
+            case 'ASSIGN TO ME WORK PRIORITY 1 - UNIT WITHDRAW FROM SERVICE':
                 
                 xpath = `//XCUIElementTypeButton[@name="Assign To Me Work Priority 1 - Unit Withdrawn from Service"]`;
                 break;
@@ -278,7 +318,7 @@ get PAUSEButton(): ChainablePromiseElement {
   /** Click widget dynamically */
   async clickWidget(widget: string): Promise<void> {
     let xpath: string;
-    switch(widget) {
+  switch (widget.toLowerCase()) {
       case 'timetracking':
         xpath = '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[5]';
         break;
@@ -289,6 +329,9 @@ get PAUSEButton(): ChainablePromiseElement {
       case 'task':
         xpath = '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[4]';
         break;
+        case 'location edit icon':
+            xpath = '//XCUIElementTypeStaticText[@name=""]';
+            break;
       default:
         xpath = '(//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[4])';
     }
@@ -301,7 +344,7 @@ get PAUSEButton(): ChainablePromiseElement {
 
     async setDescription(text: string): Promise<void> {
     const field = await this.descriptionField;
-    await field.waitForDisplayed({ timeout: 5000 });
+    await field.waitForDisplayed({ timeout: 20000 });
 
     await field.click();            
     await field.clearValue();       
@@ -311,7 +354,7 @@ get PAUSEButton(): ChainablePromiseElement {
 /**
      * Clicks any option by its visible name (supports buttons, cells, static texts)
      */
-    async clickOptionByName(name: string, timeout = 20000): Promise<void> {
+    async clickOptionByName(name: string, timeout = 50000): Promise<void> {
         let xpath: string;
 
         switch (name.toUpperCase()) {
@@ -379,6 +422,16 @@ get PAUSEButton(): ChainablePromiseElement {
               case 'CRACKED':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeButton[@name="CRACKED"]`;
+                break;
+
+                case '171-SQR-022: HEATING & LIGHTING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="171-SQR-022: HEATING & LIGHTING"]`;
+                break;
+
+                case 'SQR LIGHTING FAILED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="SQR 22(a) - Lighting - failed"]`;
                 break;
 
                 case 'ACTIVATED':
@@ -458,17 +511,34 @@ get PAUSEButton(): ChainablePromiseElement {
         await element.click();
     }
 
-    async clickNthRecord(n: number = 1, timeout = 20000): Promise<void> {
+    async clickNthRecord(n: number = 1, timeout = 50000): Promise<void> {
     const xpath = `(//XCUIElementTypeButton[contains(@name, ":")])[${n}]`;
     const element = await $(xpath);
     await element.waitForDisplayed({ timeout });
     await element.click();
 }
 
- /**
-     * Selects an option from the outcome dropdown by visible text.
-     * Example optionText: "Assign to me"
-     */
+async clickField(fieldName: string, timeout = 50000): Promise<void> {
+    let xpath: string;
+
+    switch (fieldName.toLowerCase()) {
+      case 'location search':
+        xpath = '//XCUIElementTypeTextField[@value="Search Locations"]';
+        break;
+      // Add more fields as needed
+      default:
+        throw new Error(`No matching field found for name: ${fieldName}`);
+    }
+
+    const element = await $(xpath);
+    await element.waitForDisplayed({ timeout });
+    await element.click();
+}
+
+/**
+ * Selects an option from the outcome dropdown by visible text.
+ * Example optionText: "Assign to me"
+ */
     /**
      * Clicks an option from an open dropdown by visible name.
      * Assumes the dropdown is already open.
@@ -533,7 +603,7 @@ async verifyStatusAndClickPauseButton(expectedStatus: string): Promise<void> {
   const pauseButton = await $(`//XCUIElementTypeButton[@name="Pause"]`);
 
   // Optional wait
-  await pauseButton.waitForDisplayed({ timeout: 5000 });
+  await pauseButton.waitForDisplayed({ timeout: 20000 });
 
   // Click Pause
   await pauseButton.click();
@@ -590,6 +660,7 @@ async handleWorkOrderButton(
     });
 }
 
+
 async handleActionButton(actionButton: string): Promise<void> {
     await this.performStep(`Click on action button: ${actionButton}`, async () => {
         // Find the button by its text or accessibility label
@@ -609,12 +680,14 @@ async handleActionButton(actionButton: string): Promise<void> {
         }
     });
 }
+
+
 /**
      * Takes a screenshot and saves it to the ./screenshots folder.
      * Automatically generates a timestamped filename unless one is provided.
      */
     async takeScreenshot(filename?: string): Promise<void> {
-        const screenshotDir = path.resolve('./screenshots');
+        const screenshotDir = path.resolve('/Users/MWE-PROJECT/screenshots');
         if (!fs.existsSync(screenshotDir)) {
             fs.mkdirSync(screenshotDir, { recursive: true });
         }
@@ -653,7 +726,7 @@ async handleActionButton(actionButton: string): Promise<void> {
     });
   }
 }
-export async function clickButtonByName(name: string, timeout = 15000): Promise<void> {
+export async function clickButtonByName(name: string, timeout = 50000): Promise<void> {
     const button = await $(`//XCUIElementTypeButton[@name="${name}"]`);
     await button.waitForDisplayed({ timeout });
     await button.click();

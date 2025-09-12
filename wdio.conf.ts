@@ -58,7 +58,7 @@ export const config: WebdriverIO.Config = {
     capabilities: [({
     'appium:platformName': 'iOS',
     'appium:automationName': 'XCUITest',
-    'appium:platformVersion': '18.6',
+    'appium:platformVersion': "18.3",
     'appium:deviceName': 'iPad 9th generation',
     'appium:udid': '00008030-000621A90AD0202E',
     'appium:xcodeOrgId': 'D6FH4T6NCD',
@@ -68,6 +68,8 @@ export const config: WebdriverIO.Config = {
     'appium:safariAllowPopups': true,
     'appium:unexpectedAlertBehaviour': 'accept',
     'appium:maxTypingFrequency': 20,
+    "appium:includeSafariInWebviews": true,
+    "appium:waitForQuiescence": false
 } as any)],
     //
     // ===================

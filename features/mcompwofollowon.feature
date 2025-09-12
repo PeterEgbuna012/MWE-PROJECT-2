@@ -16,10 +16,45 @@ Feature: Complete a CM Followon WO
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then I click at button next to "Ready"
-     Then I click on "START WORK" button
+    Then I click on "START ICON" button
+    Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
-    # Then I navigate "Work" tab
+     Then I navigate "Work" tab
+     Then "FAILURE INFORMATION" widget is clicked
+    Then I click on "FAILURE CLASS" option
+    Then I click on "171-SQR-022: HEATING & LIGHTING" button
+    Then I click on "PROBLEM CLASS" option
+    Then I click on "SQR 22(a) - Lighting - failed" button
+    Then I click on "CAUSE CLASS" option
+    Then I click on "Service Quality Fault Reported" button
+    Then I click on "REMEDY CLASS" option
+    Then I click on "Service Quality Fault Rectified" button
+    Then I click on "SAVE" button
+    Then I click on "MORE ACTION ICON" button
+    Then I click on "ADD COMMENT" button
+    Then I click on "TYPE FIELD" button
+    Then I click on "UPDATE" button
+    And I set "Summary" value field to "TEST"
+    And I set "Details" value field to "TEST"
+    Then I click on "ADD COMMENT BUTTON" button
+    When I press "task" widget
+    When I tap on task with number "10."
+    Then "10" page appears
+    And I set "comments" value field to "TEST"
+    Then I click on "" button
+    When I click on "SIGN & COMPLETE" button
+    Then I take a screenshot
+    When I navigate to "back"
+    When I tap on task with number "20."
+    Then "20" page appears
+    And I set "measurement input" value field to "1500"
+    And I set "comments" value field to "TEST"
+    Then I click on "" button
+    When I click on "SIGN & COMPLETE" button
+    Then I take a screenshot
+    When I navigate to "back"
+    When I navigate to "back" 
+    Then I click on "PAUSE ICON" button
     # Then I navigate "Details" tab
     #Then I choose "More Actions" button if WO is "In Progress"
     #Then I click on "Add Comment" button
@@ -31,18 +66,13 @@ Feature: Complete a CM Followon WO
     #Then I navigate to "back"
     #Then The Worklist page is open
     #When I click at "first" WO
-    Then I navigate "Work" tab
-    Then "FAILURE INFORMATION" widget is clicked
-    Then I click on "SAVE FAILURE CODES" button
-    Then I navigate to "back"
-    Then The Worklist page is open
-    When I click at "first" WO
-    #Then WO page is "Shown"
-    Then I click at button next to "In Progress"
     When I click on "Complete" button
+   # Then I click on "Select outcome..." option
+  #  Then I click on "PERMANENT FIX" button
     Then I click on "COMPLETE WORK ORDER" button
+    Then I take a screenshot
     Then I navigate to "back"
-    Then WO page is "Not Shown"
+  
 
     Examples:
       | country | EnvCode        | username        | password        |

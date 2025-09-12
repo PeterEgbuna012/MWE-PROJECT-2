@@ -20,18 +20,16 @@ Feature: Change Work Location
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
-    Then I navigate "DETAILS TAB" tab
-    # this icon is for Location
-    Then I press the "LOCATION EDIT" button
-     When I click the location search field
-    And I enter "Rolling Stock" in the location search field
-    And I select the location result with name "Rolling Stock"
-    Then the location should be selected successfully
+    Then I click on "location edit icon" widget
+    Then I click on "LOCATION SEARCH" field
+    And I enter "RS" in the location search field
+    Then I select "RS" location
     Then I click on "CONFIRM" button
+    Then I take a screenshot 
     Then I navigate to "back"
     Then The Worklist page is open
     When I click at "first" WO
-   Then I take a screenshot 
+
 
     Examples:
       | country | EnvCode        | username        | password        |

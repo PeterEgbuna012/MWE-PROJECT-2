@@ -29,7 +29,7 @@ export default class MobileActions {
     }
   }
 
-  static async swipeUp(duration = 500) {
+  static async swipeUp(duration = 1000) {
     const { height, width } = await driver.getWindowRect();
     const startX = width / 2;
     const startY = height * 0.8;

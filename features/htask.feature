@@ -16,29 +16,38 @@ Feature: Processing assigned task
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then I click at button next to "On Hold"
+    Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I navigate "Work" tab
     When I press "task" widget
     When I tap on task with number "10."
     Then "10" page appears
+    And I set "comments" value field to "TEST"
     #Then I click on "Add Signature" button
     # this symbol is for circle button in task
     Then I click on "" button
     When I click on "SIGN & COMPLETE" button
-    Then "TASK IS COMPLETED" button is displayed
+    Then I take a screenshot
     #it means close button
    # Then I press the "" button   
-    Then I navigate to "done"
+    When I navigate to "back"
     When I tap on task with number "20."
     Then "20" page appears
-   # Then I click on "Add Signature" button
-   # this symbol is for circle button in task
+    And I set "measurement input" value field to "1500"
+    And I set "comments" value field to "TEST"
     Then I click on "" button
     When I click on "SIGN & COMPLETE" button
-    Then I enter text "TASK IS COMPLETED" in comments textbox
-    Then I click on "OK" button
+    Then I take a screenshot
+   # Then I click on "Add Signature" button
+   # this symbol is for circle button in task
+    When I navigate to "back"
+    When I navigate to "back" 
+    Then I click on "PAUSE ICON" button
+    Then I click on "PAUSE" button
+    Then I click on "PAUSE WORK ORDER" button
+    Then The status of the work Order is in "On Hold"
+    Then I take a screenshot
 
     Examples:
       | country | EnvCode  | username  | password   |

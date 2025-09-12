@@ -14,6 +14,7 @@ const basePage = new BasePage();
 const photoPage = new PhotoPage();
 const initPage = new InitPage();
 
+
 // -------------------- INIT PAGE --------------------
 Given('I am on the Init page', async () => {
   await initPage.getPageTitle();
@@ -361,7 +362,7 @@ Then(/^I click on "Add Manual Time Entry" button$/, async () => {
 Then("{string} button is displayed", async (button: string) => {
   const element = await $(`//XCUIElementTypeButton[@name="${button}"]`);
   await element.isDisplayed();
-  await basePage.delay(5000);
+  await basePage.delay(10000);
 });
 
 // -------------------- TEXT DISPLAYED --------------------
@@ -441,7 +442,7 @@ Then(/^I take a screenshot$/, async () => {
 
 // -------------------- DESCRIPTION FIELD  --------------------
 Then(/^I set Description field to "(.*)"$/, async (text: string) => {
-   await WorkOrderPage.setValueInField('description', text);
+  await WorkOrderPage.setValueInField('description', text);
 });
 
 // -------------------- CLICK OPTION BY NAME --------------------
@@ -455,8 +456,40 @@ Then(/^I verify asset field is populated$/, async () => {
     expect(isPopulated).toBe(true, '❌ Expected asset field to be populated, but it was empty.');
 });
 
+// -------------------- LOCATION CLICK WIDGET -------------------
+Then('I click on {string} widget', async (widget: string) => {
+  await basePage.clickWidget(widget);
+});
 
-// -------------------- CLICK OUTCOME DROPDOWN OPTION --------------------
-When("I click on {string} option", async (option: string) => {
-  await basePage.selectDropdownOption('//XCUIElementTypeOther[@name="Add to backlog"]', option);
+// --------------------  LOCATION CLICK  --------------------
+When('I enter {string} in the location search field', async (locationName: string) => {
+  await workOrderPage.enterLocationSearch(locationName);
+});
+
+When('I select the location result with name {string}', async (locationName: string) => {
+  await workOrderPage.selectLocationFromResults(locationName);
+});
+
+When('I select no {int} record from location table', async (index: number) => {
+  await workOrderPage.selectLocationByIndex(index);
+});
+
+Then('I click on {string} field', async (fieldName: string) => {
+  await workOrderPage.clickField(fieldName);
+});
+
+Then('I select {string} location', async function (locationName: string) {
+  await workOrderPage.selectLocation(locationName);
+});
+
+
+// -------------------- FILTER SELECTION --------------
+When('I click on {string} filter and select {string}', async (mainFilter: string, subFilter: string) => {
+  await WorkOrderPage.selectFromFilter(mainFilter, subFilter);
+});
+
+
+// -------------------- GENERIC OUTCOME/FILTER SELECTION --------------------
+Then('I click on {string} outcome and select {string}', async (mainOption: string, subOption: string) => {
+  await WorkOrderPage.selectFromDropdown(mainOption, subOption);
 });

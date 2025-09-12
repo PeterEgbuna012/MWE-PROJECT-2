@@ -16,19 +16,21 @@ Feature: Complete a PM WO
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    #Then WO page is "Shown"
-    Then I click at button next to "Ready"
+    Then WO page is "Shown"
+    Then I click on "START ICON" button
     Then I click on "START WORK" button
-    Then I click at button next to "In Progress"
+    Then The status of the work Order is in "In Progress"
+    Then I click on "PAUSE ICON" button
     When I click on "Complete" button
-    When I select "Start" date field
-    Then I set date as "yesterdays" date
-    Then I click on "Done" button
-    When I select "End" date field
-    Then I click on "Done" button
-    Then I set date as "todays" date
     Then I click on "COMPLETE WORK ORDER" button
-    #Then I navigate to "back"
+   # When I select "Start" date field
+   # Then I set date as "yesterdays" date
+   # Then I click on "Done" button
+   # When I select "End" date field
+   # Then I click on "Done" button
+   # Then I set date as "todays" date
+    Then I take a screenshot
+    Then I navigate to "back"
     #Then WO page is "Not Shown"
 
     Examples:

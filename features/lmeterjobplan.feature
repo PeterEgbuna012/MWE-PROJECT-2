@@ -16,30 +16,39 @@ Feature: Processing assigned  meter task
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then I click at button next to "Ready"
+   Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I navigate "Work" tab
-    When I press "PM work order task" widget
+    When I press "task" widget
     When I tap on task with number "10."
     Then "10" page appears
-    Then I enter "2500" in textfield ""
+    And I set "measurement input" value field to "1500"
+    And I set "comments" value field to "TEST"
     # this symbol is for circle button in task
     Then I click on "" button
     When I click on "SIGN & COMPLETE" button
-    Then "TASK IS COMPLETED" button is displayed
-    Then I navigate to "done"
-    # its the back button
-    When I click on "" button
-    Then I click at button next to "In Progress"
+   # Then "TASK IS COMPLETED" button is displayed
+    Then I take a screenshot
+    When I navigate to "back"
+    When I navigate to "back" 
+   Then The status of the work Order is in "In Progress"
+    Then I click on "PAUSE ICON" button
     When I click on "Complete" button
-    When I select "Start" date field
-    Then I set date as "yesterdays" date
-    Then I click on "Done" button
-    When I select "End" date field
-    Then I click on "Done" button
-    Then I set date as "todays" date
     Then I click on "COMPLETE WORK ORDER" button
+    Then The status of the work Order is in "In Review"
+    Then I take a screenshot
+    # its the back button
+   # When I click on "" button
+   # Then I click at button next to "In Progress"
+   # When I click on "Complete" button
+   # When I select "Start" date field
+   # Then I set date as "yesterdays" date
+   # Then I click on "Done" button
+   # When I select "End" date field
+   # Then I click on "Done" button
+   # Then I set date as "todays" date
+  #  Then I click on "COMPLETE WORK ORDER" button
 
     Examples:
       | country | EnvCode        | username        | password        |

@@ -3,13 +3,13 @@ Feature: Login and check for notification
   Scenario Outline: Login and Logout
     Given I am on the Init page
     When I set Region select field
-    When I set Region as US
-    When I set "<password>" into Environment Code input field
+    When I set Region as "<country>"
+    When I set "<EnvCode>" into Environment Code input field
     Then I can connect to the Environment
     Then signIn option shows up
     When I switch to the web view context
     Then I enter username as "<username>"
-    And I enter password as "<key>"
+    And I enter password as "<password>"
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
@@ -18,17 +18,17 @@ Feature: Login and check for notification
     When I click at "first" WO
     Then WO page is "Shown"
     Then I navigate to "notifications"
-    Then I click at "All" option
-    Then I click on "Unread" button
-    Then I click at "Unread" option
-    Then I click on "Read" button 
-    Then I click on "Mark All As Read" button
-    Then I navigate to "back2"
+    When I click on "All" filter and select "Unread"
+    Then I click on "Unread" filter and select "Read"
+    Then I click on "MARK ALL AS READ" button
+    Then I take a screenshot
+    Then I navigate to "back"
     When I navigate to "back"
     Then I press the Hamburger icon
     Then I click on "Logout" button
     Then signIn option shows up
+    Then I take a screenshot
 
     Examples:
-      | country | password   | username  | key   |
+      | country | EnvCode  | username  | password   |
       | Europe  | lucky-liger-8 | CBRUNS | cbruns |

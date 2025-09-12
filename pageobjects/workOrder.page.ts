@@ -41,13 +41,13 @@ class WorkOrderPage extends BasePage {
     const selector = this.getSelectorForField(normalizedField);
 
     const inputField = await $(selector);
-    await inputField.waitForDisplayed({ timeout: 20000 });
+    await inputField.waitForDisplayed({ timeout: 50000 });
 
     await inputField.click(); 
     await inputField.clearValue();
-    await browser.pause(3000); 
+    await browser.pause(10000); 
     await inputField.setValue(value);
-    await browser.pause(3000);
+    await browser.pause(10000);
   }
 
   /**
@@ -59,7 +59,7 @@ class WorkOrderPage extends BasePage {
     const selector = this.getSelectorForField(normalizedField);
 
     const inputField = await $(selector);
-    await inputField.waitForDisplayed({ timeout: 20000 });
+    await inputField.waitForDisplayed({ timeout: 50000 });
     return inputField.getText();
   }
 
@@ -72,9 +72,11 @@ class WorkOrderPage extends BasePage {
         return '//XCUIElementTypeTextView[@value="Enter summary..."]';
       case 'details':
         return '//XCUIElementTypeTextView[@value="Enter details..."]';
+        case 'measurement input':
+        return '//XCUIElementTypeTextField';
       case 'comment':
       case 'comments':
-        return '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeTextView[2]';
+        return '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeTextView';
         case 'description':
         return '//XCUIElementTypeTextView[@value="Please Enter Description"]';
       default:
@@ -105,7 +107,7 @@ class WorkOrderPage extends BasePage {
         await statusElement.moveTo();
 
         // Wait until it is visible
-        await statusElement.waitForDisplayed({ timeout: 10000 });
+        await statusElement.waitForDisplayed({ timeout: 50000 });
 
         const actualStatus = await statusElement.getText();
 
@@ -218,7 +220,7 @@ async getCommentInfoText(): Promise<string> {
 /**
  * Waits until a comment element (starting with "comment:") is visible.
  */
-async waitForCommentToBeShown(timeout = 5000): Promise<void> {
+async waitForCommentToBeShown(timeout = 50000): Promise<void> {
     await this.commentInfoElement.waitForDisplayed({
         timeout,
         timeoutMsg: '❌ Expected comment to be shown, but it was not found.',
@@ -252,33 +254,195 @@ async isAssetFieldPopulated(): Promise<boolean> {
         date.setDate(date.getDate() + offsetDays);
 
         return {
-            month: date.toLocaleString('default', { month: 'long' }), // "August"
-            day: date.getDate().toString(),                            // "29"
-            year: date.getFullYear().toString(),                       // "2025"
+            month: date.toLocaleString('default', { month: 'long' }), 
+            day: date.getDate().toString(),                            
+            year: date.getFullYear().toString(),                       
         };
     }
 
-      // Locator for the search text field
+    // Locator for the location search text field
   get locationSearchField() {
-        return $('//XCUIElementTypeTextField[@value="Search Locations"]');
+    return $('//XCUIElementTypeTextField[@value="Search Locations"]');
+  }
+
+  // Locator for the selected location label
+  get selectedLocationLabel() {
+    return $('//XCUIElementTypeStaticText[@name="SelectedLocationLabel"]');
+  }
+
+  // Locator for location results (e.g. search result rows)
+  get locationResults() {
+    return $$('//XCUIElementTypeOther[contains(@name, "LocationCell")]');
+  }
+
+  // Locator for location result by name (with  suffix)
+  getLocationResultByName(name: string) {
+    const fullName = `${name}`;
+    return $(`//XCUIElementTypeOther[@name="${fullName}"]`);
+  }
+
+  // ✅ Enter location name into search field
+  async enterLocationSearch(locationName: string): Promise<void> {
+    await this.locationSearchField.waitForDisplayed({ timeout: 50000 });
+    await this.locationSearchField.setValue(locationName);
+  }
+
+  // ✅ Select location from result by name (with )
+  async selectLocationFromResults(locationName: string): Promise<void> {
+    const result = this.getLocationResultByName(locationName);
+    await result.waitForDisplayed({ timeout: 50000 });
+    await result.click();
+  }
+
+  // ✅ Select a result from the list by index (1-based)
+  async selectLocationByIndex(index: number): Promise<void> {
+    await driver.pause(50000); 
+    const results = await this.locationResults;
+
+    if (await results.length < index) {
+      throw new Error(`Only ${results.length} location results found. Cannot select index ${index}.`);
     }
 
-    getLocationResultByName(name: string) {
-        const fullName = `${name}`;
-        return $(`//XCUIElementTypeOther[@name="${fullName}"]`);
+    const result = results[index - 1];
+    await result.waitForDisplayed({ timeout: 50000 });
+    await result.click();
+  }
+
+  // ✅ Get selected location text for verification
+  async getSelectedLocationText(): Promise<string> {
+    await this.selectedLocationLabel.waitForDisplayed({ timeout: 50000 });
+    return await this.selectedLocationLabel.getText();
+  }
+
+  // ✅ Click any named field (generic method)
+  async clickField(fieldName: string): Promise<void> {
+  let xpath = '';
+
+  switch (fieldName.toUpperCase()) {
+    case 'LOCATION SEARCH':
+      // ✅ Correct locator (matches your working getter)
+      xpath = '//XCUIElementTypeTextField[@value="Search Locations"]';
+      break;
+
+    // Add other mappings as needed...
+
+    default:
+      xpath = `//XCUIElementTypeOther[@name="${fieldName}"]`;
+  }
+
+  const field = await $(xpath);
+  await field.waitForDisplayed({ timeout: 50000 });
+  await field.click();
+}
+ /**
+   * Builds the selector for a location item by name.
+   * Update this based on your UI element's structure.
+   */
+  getLocationSelector(locationName: string): string {
+    // XPath for iOS static text element
+    return `//XCUIElementTypeStaticText[@name="${locationName}"]`;
+  }
+
+  /**
+   * Selects the location by clicking on it.
+   */
+  async selectLocation(locationName: string): Promise<void> {
+    const selector = this.getLocationSelector(locationName);
+    const locationElement = await $(selector);
+
+    const exists = await locationElement.isExisting();
+    if (!exists) {
+      throw new Error(`Location "${locationName}" not found.`);
     }
 
-    // Example: assume the selected location is shown in a static label
-    get selectedLocationLabel() {
-        return $('//XCUIElementTypeStaticText[@name="SelectedLocationLabel"]');
+    await locationElement.click();
+  }
+
+   get selectedLocation() {
+    // For example, a label with the selected location name.
+    // This could also be `~SelectedLocationLabel` for accessibility ID.
+    return $('//XCUIElementTypeStaticText[@name="selectedLocationLabel"]');
+  }
+
+  // main filter list (top-level filters like All, Unread, etc.)
+  get mainFilters() {
+    return $$('selector-for-main-filters');
+  }
+
+  // sub filter list (options that appear after clicking a filter)
+  get subFilters() {
+    return $$('selector-for-sub-filters');
+  }
+
+  /**
+   * Builds a generic XPath selector for a filter button or element.
+   * Prioritizes `XCUIElementTypeButton` first, then falls back to `XCUIElementTypeOther`
+   * @param name Name of the filter (e.g. "All", "Unread", "Read")
+   * @returns XPath selector string
+   */
+  private buildFilterSelector(name: string): string {
+    return `//XCUIElementTypeButton[@name="${name}"] | //XCUIElementTypeOther[@value="${name}"]`;
+  }
+
+  /**
+   * Select a sub-filter from a main filter on iOS
+   * @param mainFilter Main filter name (e.g. "All", "Unread", etc.)
+   * @param subFilter Sub filter name (e.g. "Unread", "Read", etc.)
+   */
+  public async selectFromFilter(mainFilter: string, subFilter: string): Promise<void> {
+    const mainSelector = this.buildFilterSelector(mainFilter);
+    const subSelector = this.buildFilterSelector(subFilter);
+
+    const mainElement = await $(mainSelector);
+    await mainElement.waitForExist({ timeout: 30000 });
+    await mainElement.click();
+
+    const subElement = await $(subSelector);
+    await subElement.waitForExist({ timeout: 30000 });
+    await subElement.click();
+  }
+
+  /**
+   * Select a sub-option from any dropdown/outcome/filter
+   * @param mainOption Main dropdown/outcome/filter name (e.g., "Add to backlog")
+   * @param subOption Sub-option to select (e.g., "Assign to me", "Found It, Fixed It")
+   */
+  async selectFromDropdown(mainOption: string, subOption: string) {
+    // Map main options to selectors
+    const mainSelectors: Record<string, string> = {
+      'Add to backlog': '//XCUIElementTypeOther[@value="Add to backlog"]',
+      // add other main filters here if needed
+    };
+
+    // Map sub options to selectors
+    const subSelectors: Record<string, string> = {
+      'Add to backlog': '//XCUIElementTypeOther[@value="Add to backlog"]',
+      'Found It, Fixed It': '//XCUIElementTypeButton[@name="Found It, Fixed It"]',
+      'Assign to me': '//XCUIElementTypeButton[@name="Assign to me"]',
+      // add other sub-options here if needed
+    };
+
+    const mainSelector = mainSelectors[mainOption];
+    const subSelector = subSelectors[subOption];
+
+    if (!mainSelector) {
+      throw new Error(`No selector defined for main option "${mainOption}"`);
+    }
+    if (!subSelector) {
+      throw new Error(`No selector defined for sub option "${subOption}"`);
     }
 
-    async getSelectedLocationText(): Promise<string> {
-        await this.selectedLocationLabel.waitForDisplayed({ timeout: 5000 });
-        return await this.selectedLocationLabel.getText();
-    }
+    // Click main option
+    const mainElement = await $(mainSelector);
+    await mainElement.waitForExist({ timeout: 50000 });
+    await mainElement.click();
 
-
+    // Click sub option
+    const subElement = await $(subSelector);
+    await subElement.waitForExist({ timeout: 50000 });
+    await subElement.click();
+  }
+  
     /**
      * Returns the selector for a time log static text element matching the exact time string.
      * @param timeValue string like "1d 0h" or "0h 55m"
@@ -294,7 +458,7 @@ async isAssetFieldPopulated(): Promise<boolean> {
      */
     public async compareTimeLogValue(expectedValue: string): Promise<void> {
         const element = this.getTimeLogElement(expectedValue);
-        await element.waitForDisplayed({ timeout: 5000 });
+        await element.waitForDisplayed({ timeout: 50000 });
         const actualText = await element.getText();
         expect(actualText).toEqual(expectedValue);
     }

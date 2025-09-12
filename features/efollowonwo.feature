@@ -22,8 +22,7 @@ Feature: CREATE FOLLOW-ON WORK ORDERs (Add to backlog, FIFI, Assign to me)
     Then The status of the work Order is in "In Progress"
     Then I click on "MORE ACTION ICON" button
     Then I click on "CREATE FOLLOW-ON WORK ORDER" button
-    When I click on "Add to backlog" option
-    Then I click on "ADD TO BACKLOG" option
+    Then I click on "Add to backlog" outcome and select "Add to backlog"
     Then I verify location field is populated
     Then I verify asset field is populated
     Then I click on "SELECT A TEMPLATE " button 
@@ -44,8 +43,7 @@ Feature: CREATE FOLLOW-ON WORK ORDERs (Add to backlog, FIFI, Assign to me)
     Then WO page is "Shown"
     Then I click on "MORE ACTION ICON" button
     Then I click on "CREATE FOLLOW-ON WORK ORDER" button
-    When I click on "Add to backlog" option
-    Then I click on "FOUND IT, FIXED IT" option
+    Then I click on "Add to backlog" outcome and select "Found It, Fixed It"
     Then I verify location field is populated
     Then I verify asset field is populated
     Then I click on "SELECT A TEMPLATE " button 
@@ -66,8 +64,7 @@ Feature: CREATE FOLLOW-ON WORK ORDERs (Add to backlog, FIFI, Assign to me)
     Then WO page is "Shown"
     Then I click on "MORE ACTION ICON" button
     Then I click on "CREATE FOLLOW-ON WORK ORDER" button
-     When I click on "Add to backlog" option
-    When I click on "ASSIGN TO ME" option
+    Then I click on "Add to backlog" outcome and select "Assign to me"
     Then I verify location field is populated
     Then I verify asset field is populated
     Then I click on "SELECT A TEMPLATE " button 
@@ -83,6 +80,7 @@ Feature: CREATE FOLLOW-ON WORK ORDERs (Add to backlog, FIFI, Assign to me)
     Then I click on "REMEDY CLASS" option
     Then I click on "SERVICE QUALITY FAULT RECTIFIED" option
     Then I click on "CREATE FOLLOW-ON" button
+     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
     Then I click on "HISTORY TAB" button
