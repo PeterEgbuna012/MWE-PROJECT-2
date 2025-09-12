@@ -388,7 +388,7 @@ get PAUSEButton(): ChainablePromiseElement {
                 xpath = `//XCUIElementTypeOther[@value="Select Failure Problem..."]`;
                 break;
 
-                 case 'CAUSE CLASS':
+                case 'CAUSE CLASS':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeOther[@value="Select Failure Cause..."]`;
                 break;
@@ -469,12 +469,12 @@ get PAUSEButton(): ChainablePromiseElement {
                 xpath = `//XCUIElementTypeButton[@name="171-SQR-024: VEHICLE INTERIOR CONDITION"]`;
                 break;
 
-                 case 'SEAT MISSING PRIORITY':
+                case 'SEAT MISSING PRIORITY':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeButton[@name="SQR 23(a)(i) - Seat - missing - priority"]`;
                 break;
 
-                 case 'SEAT MISSING OTHER':
+                case 'SEAT MISSING OTHER':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeButton[@name="SQR 23(a)(ii) - Seat - missing - other"]`;
                 break;
