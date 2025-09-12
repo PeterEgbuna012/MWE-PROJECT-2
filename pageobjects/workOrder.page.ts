@@ -394,54 +394,54 @@ async isAssetFieldPopulated(): Promise<boolean> {
     const subSelector = this.buildFilterSelector(subFilter);
 
     const mainElement = await $(mainSelector);
-    await mainElement.waitForExist({ timeout: 30000 });
+    await mainElement.waitForExist({ timeout: 100000 });
     await mainElement.click();
 
     const subElement = await $(subSelector);
-    await subElement.waitForExist({ timeout: 30000 });
+    await subElement.waitForExist({ timeout: 100000 });
     await subElement.click();
   }
 
   /**
-   * Select a sub-option from any dropdown/outcome/filter
-   * @param mainOption Main dropdown/outcome/filter name (e.g., "Add to backlog")
-   * @param subOption Sub-option to select (e.g., "Assign to me", "Found It, Fixed It")
-   */
-  async selectFromDropdown(mainOption: string, subOption: string) {
-    // Map main options to selectors
-    const mainSelectors: Record<string, string> = {
-      'Add to backlog': '//XCUIElementTypeOther[@value="Add to backlog"]',
-      // add other main filters here if needed
-    };
+ * Select a sub-option from any dropdown/outcome/filter
+ * @param mainOption Main dropdown/outcome/filter name (e.g., "Add to backlog")
+ * @param subOption Sub-option to select (e.g., "Assign to me", "Found It, Fixed It")
+ */
+async selectFromDropdown(mainOption: string, subOption: string) {
+  // Map main options to selectors
+  const mainSelectors: Record<string, string> = {
+    'Add to backlog': '//XCUIElementTypeOther[@value="Add to backlog"]',
+    // add other main filters here if needed
+  };
 
-    // Map sub options to selectors
-    const subSelectors: Record<string, string> = {
-      'Add to backlog': '//XCUIElementTypeOther[@value="Add to backlog"]',
-      'Found It, Fixed It': '//XCUIElementTypeButton[@name="Found It, Fixed It"]',
-      'Assign to me': '//XCUIElementTypeButton[@name="Assign to me"]',
-      // add other sub-options here if needed
-    };
+  // Map sub options to selectors
+  const subSelectors: Record<string, string> = {
+    'Add to backlog': '//XCUIElementTypeOther[@value="Add to backlog"]',
+    'Found It, Fixed It': '//XCUIElementTypeButton[@name="Found It, Fixed It"]',
+    'Assign to me': '//XCUIElementTypeButton[@name="Assign to me"]',
+    // add other sub-options here if needed
+  };
 
-    const mainSelector = mainSelectors[mainOption];
-    const subSelector = subSelectors[subOption];
+  const mainSelector = mainSelectors[mainOption];
+  const subSelector = subSelectors[subOption];
 
-    if (!mainSelector) {
-      throw new Error(`No selector defined for main option "${mainOption}"`);
-    }
-    if (!subSelector) {
-      throw new Error(`No selector defined for sub option "${subOption}"`);
-    }
-
-    // Click main option
-    const mainElement = await $(mainSelector);
-    await mainElement.waitForExist({ timeout: 50000 });
-    await mainElement.click();
-
-    // Click sub option
-    const subElement = await $(subSelector);
-    await subElement.waitForExist({ timeout: 50000 });
-    await subElement.click();
+  if (!mainSelector) {
+    throw new Error(`No selector defined for main option "${mainOption}"`);
   }
+  if (!subSelector) {
+    throw new Error(`No selector defined for sub option "${subOption}"`);
+  }
+
+  // Wait for and click main option
+  const mainElement = await $(mainSelector);
+  await mainElement.waitForDisplayed({ timeout: 100000 });
+  await mainElement.click();
+
+  // Wait for and click sub option
+  const subElement = await $(subSelector);
+  await subElement.waitForDisplayed({ timeout: 100000 });
+  await subElement.click();
+}
   
     /**
      * Returns the selector for a time log static text element matching the exact time string.

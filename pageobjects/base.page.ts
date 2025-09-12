@@ -681,6 +681,30 @@ async handleActionButton(actionButton: string): Promise<void> {
     });
 }
 
+  /**
+   * Waits for a page to load by checking document.readyState
+   */
+  async waitForPageToLoad(timeout = 10000) {
+    await browser.waitUntil(
+      async () => {
+        const state = await browser.execute(() => document.readyState);
+        return state === 'complete';
+      },
+      {
+        timeout,
+        timeoutMsg: `Page did not load completely within ${timeout} ms`,
+      }
+    );
+  }
+
+  /**
+   * Optionally wait for a key element on the page
+   * This can be overridden in child page objects
+   */
+  async waitForPageReadyElement(selector: string, timeout = 10000) {
+    const element = await $(selector);
+    await element.waitForDisplayed({ timeout });
+  }
 
 /**
      * Takes a screenshot and saves it to the ./screenshots folder.

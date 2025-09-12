@@ -37,12 +37,14 @@ Feature: CREATE FOLLOW-ON WORK ORDERs (Add to backlog, FIFI, Assign to me)
     Then I click on "REMEDY CLASS" option
     Then I click on "REPAIR CARRIED OUT" option
     Then I click on "CREATE FOLLOW-ON" button
+    Then I take a screenshot
     Then I navigate to "back"
     Then The Worklist page is open
     When I click on "first" WO
     Then WO page is "Shown"
     Then I click on "MORE ACTION ICON" button
     Then I click on "CREATE FOLLOW-ON WORK ORDER" button
+    Then I wait for page to load
     Then I click on "Add to backlog" outcome and select "Found It, Fixed It"
     Then I verify location field is populated
     Then I verify asset field is populated
@@ -58,12 +60,14 @@ Feature: CREATE FOLLOW-ON WORK ORDERs (Add to backlog, FIFI, Assign to me)
     Then I click on "REMEDY CLASS" option
     Then I click on "REPAIR CARRIED OUT" option
     Then I click on "CREATE FOLLOW-ON" button
+    Then I take a screenshot
     Then I navigate to "back"
     Then The Worklist page is open
     When I click on "first" WO
     Then WO page is "Shown"
     Then I click on "MORE ACTION ICON" button
     Then I click on "CREATE FOLLOW-ON WORK ORDER" button
+    Then I wait for page to load
     Then I click on "Add to backlog" outcome and select "Assign to me"
     Then I verify location field is populated
     Then I verify asset field is populated
@@ -80,7 +84,8 @@ Feature: CREATE FOLLOW-ON WORK ORDERs (Add to backlog, FIFI, Assign to me)
     Then I click on "REMEDY CLASS" option
     Then I click on "SERVICE QUALITY FAULT RECTIFIED" option
     Then I click on "CREATE FOLLOW-ON" button
-     Then I click on "PAUSE ICON" button
+    Then I take a screenshot
+    Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
     Then I click on "HISTORY TAB" button

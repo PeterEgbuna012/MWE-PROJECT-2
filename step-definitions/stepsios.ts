@@ -493,3 +493,7 @@ When('I click on {string} filter and select {string}', async (mainFilter: string
 Then('I click on {string} outcome and select {string}', async (mainOption: string, subOption: string) => {
   await WorkOrderPage.selectFromDropdown(mainOption, subOption);
 });
+
+Then("I wait for page to load", async function () {
+  await basePage.waitForPageToLoad();
+});
