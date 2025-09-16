@@ -494,6 +494,76 @@ Then('I click on {string} outcome and select {string}', async (mainOption: strin
   await WorkOrderPage.selectFromDropdown(mainOption, subOption);
 });
 
-Then("I wait for page to load", async function () {
-  await basePage.waitForPageToLoad();
+// -------------------- CREATE FOLLOW-ON PAGE IS DISPLAY --------------------
+Then(
+  /^the Follow-On page should be "(Shown|Hidden)"$/,
+  async (flag: 'Shown' | 'Hidden') => {
+    await basePage.verifyFollowOnPage(flag);
+  }
+);
+
+// -------------------- INVENTORY SEARCH FIELD --------------------
+// Locator for the Inventory search field
+const searchField = $(`//XCUIElementTypeTextField[@value="Search by Part Code or Description"]`);
+
+When('I enter {string} in the Inventory search field', async (item: string) => {
+    await basePage.enterText(searchField, item);
+});
+
+// -------------------- INVENTORY ITEM SELECTIONS --------------------
+// Ordinals mapping
+const ordinals: Record<string, number> = {
+    first: 1,
+    second: 2,
+    third: 3,
+    fourth: 4,
+    fifth: 5
+};
+
+When('I select the {word} item {string} from the search results', async (position: string, itemName: string) => {
+    const index = ordinals[position.toLowerCase()];
+    if (!index) {
+        throw new Error(`❌ Invalid position: ${position}`);
+    }
+    await basePage.selectItemByIndex(itemName, index);
+});
+
+// Select the first inventory material with available balance
+Then('I select Inventory material with available balance', async () => {
+    await basePage.selectInventoryWithAvailableBalance(1);
+});
+
+// Select the second inventory material with available balance
+Then('I select second Inventory material with available balance', async () => {
+    await basePage.selectInventoryWithAvailableBalance(2);
+});
+
+// -------------------- SORT BY OPTION SELECTION --------------------
+Then(
+  'I click on {string} sort by option and select {string}',
+  async (mainOption: string, subOption: string) => {
+    await basePage.selectSortByOption(mainOption, subOption);
+  }
+);
+
+// -------------------- WORK ORDER BOOKMARK --------------------
+const workOrderOrdinals: Record<string, number> = {
+  first: 1,
+  second: 2,
+  third: 3,
+  fourth: 4,
+  fifth: 5
+};
+
+Then('I {string} {word} work order', async (action: string, positionWord: string) => {
+  const position = workOrderOrdinals[positionWord.toLowerCase()];
+  if (!position) {
+    throw new Error(`❌ Invalid work order position: "${positionWord}"`);
+  }
+
+  if (action.toLowerCase() === 'bookmark') {
+    await basePage.bookmarkWorkOrder(position);
+  } else {
+    throw new Error(`❌ Unsupported action: "${action}"`);
+  }
 });

@@ -20,7 +20,7 @@ Feature: Change Work Location
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
-    Then I click on "location edit icon" widget
+    Then I click on "locationediticon" widget
     Then I click on "LOCATION SEARCH" field
     And I enter "RS" in the location search field
     Then I select "RS" location

@@ -324,6 +324,11 @@ async isAssetFieldPopulated(): Promise<boolean> {
       xpath = '//XCUIElementTypeTextField[@value="Search Locations"]';
       break;
 
+      case 'SEARCH BY PART CODE OR DESCRIPTION':
+      // ✅ Correct locator (matches your working getter)
+      xpath = '//XCUIElementTypeTextField[@value="Search by Part Code or Description"]';
+      break;
+
     // Add other mappings as needed...
 
     default:
@@ -401,6 +406,7 @@ async isAssetFieldPopulated(): Promise<boolean> {
     await subElement.waitForExist({ timeout: 100000 });
     await subElement.click();
   }
+  
 
   /**
  * Select a sub-option from any dropdown/outcome/filter

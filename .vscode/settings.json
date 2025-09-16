@@ -24,5 +24,6 @@
         "Worklist",
         "workorder",
         "XCUI"
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }

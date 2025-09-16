@@ -114,7 +114,7 @@ get PAUSEButton(): ChainablePromiseElement {
           case 'PAUSE':
             xpath = '//XCUIElementTypeButton[@name="Pause"]';
             break; 
-
+          
             case 'COMPLETE':
             xpath = '//XCUIElementTypeButton[@name="Complete"]';
             break; 
@@ -200,6 +200,18 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeStaticText[@name="Files"]';
             break;
 
+            case 'BOOKMARK ICON':
+            xpath = '(//XCUIElementTypeStaticText[@name=""])[1]';
+            break;
+
+            case 'SEE MORE':
+            xpath = '//XCUIElementTypeStaticText[@name="See More"]';
+            break;
+
+            case 'SEE LESS':
+            xpath = '//XCUIElementTypeStaticText[@name="See Less"]';
+            break;
+
             case 'FILTER OPTIONS':
             xpath = '(//XCUIElementTypeOther[@value="All Updates"])[2]';
             break;
@@ -232,8 +244,20 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="UPDATE"]';
             break;
 
+            case 'ADD TO LIST':
+            xpath = '//XCUIElementTypeButton[@name="ADD TO LIST"]';
+            break;
+
+            case 'SEARCH':
+            xpath = '//XCUIElementTypeButton[@name="SEARCH"]';
+            break;
+
             case 'MORE ACTION ICON':
             xpath = '//XCUIElementTypeButton[@name=""]';
+            break;
+
+            case 'SEARCH ALL PARTS':
+            xpath = '//XCUIElementTypeButton[@name=" Search All Parts"]';
             break;
 
         case 'RETURN WORK ORDER':
@@ -242,6 +266,18 @@ get PAUSEButton(): ChainablePromiseElement {
 
             case 'NEXT':
             xpath = '//XCUIElementTypeButton[@name="NEXT"]';
+            break;
+
+            case 'RESERVE':
+            xpath = '(//XCUIElementTypeStaticText[@name=""])[1]';
+            break;
+
+            case 'PLUS':
+            xpath = '//XCUIElementTypeStaticText[@name=""]';
+            break;
+
+            case 'CONFIRM':
+            xpath = '//XCUIElementTypeButton[@name="CONFIRM"]';
             break;
 
             case 'SAVE':
@@ -317,30 +353,39 @@ get PAUSEButton(): ChainablePromiseElement {
 
   /** Click widget dynamically */
   async clickWidget(widget: string): Promise<void> {
-    let xpath: string;
-  switch (widget.toLowerCase()) {
-      case 'timetracking':
-        xpath = '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[5]';
-        break;
-      case 'material':
-        await this.delay(300000);
-        xpath = '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[6]';
-        break;
-      case 'task':
-        xpath = '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[4]';
-        break;
-        case 'location edit icon':
-            xpath = '//XCUIElementTypeStaticText[@name=""]';
-            break;
-      default:
-        xpath = '(//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[4])';
+    // normalize input for case-insensitivity
+    const normalizedWidget = widget.trim().toLowerCase();
+
+    // mapping of widget names to XPaths
+    const widgetMap: Record<string, string> = {
+      timetracking: '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[6]',
+      material: '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[7]',
+      task: '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[5]',
+      locationediticon: '//XCUIElementTypeStaticText[@name=""]',
+      default: '(//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[4])'
+    };
+
+    // special case: add delay for material widget
+    if (normalizedWidget === 'material') {
+      await this.delay(10000); // ensure page is ready
     }
-    await this.clickElement(xpath);
+
+    // resolve XPath (use default if not found)
+    const xpath = widgetMap[normalizedWidget] || widgetMap['default'];
+
+    // wait until element is displayed & enabled (iOS safe "clickable")
+    const element = await $(xpath);
+    await element.waitForDisplayed({ timeout: 80000 });
+    await element.waitForEnabled({ timeout: 80000 });
+
+    // perform the click
+    await element.click();
   }
-    // Description field: XCUIElementTypeTextView
-    get descriptionField() {
-        return $('//XCUIElementTypeTextView[@value="Please Enter Description"]');
-    }
+
+  // Description field: XCUIElementTypeTextView
+  get descriptionField() {
+      return $('//XCUIElementTypeTextView[@value="Please Enter Description"]');
+  }
 
     async setDescription(text: string): Promise<void> {
     const field = await this.descriptionField;
@@ -350,6 +395,73 @@ get PAUSEButton(): ChainablePromiseElement {
     await field.clearValue();       
     await field.addValue(text);     
 }
+
+/**
+ * Select a sort option from another sort option on iOS
+ * @param mainOption Main option name (e.g. "Start Date")
+ * @param subOption Sub option name (e.g. "Compliance Date")
+ */
+public async selectSortByOption(mainOption: string, subOption: string): Promise<void> {
+  const mainSelectors: Record<string, string> = {
+    'Start Date': '//XCUIElementTypeOther[@value="Start Date"]',
+    'Compliance Date': '//XCUIElementTypeOther[@value="Compliance Date"]',
+    'Status': '//XCUIElementTypeOther[@value="Status"]',
+    'Location': '//XCUIElementTypeOther[@value="Location"]',
+    'Priority': '//XCUIElementTypeOther[@value="Priority"]',
+  };
+
+  const subSelectors: Record<string, string> = {
+    'Start Date': '//XCUIElementTypeButton[@name="Start Date"]',
+    'Compliance Date': '//XCUIElementTypeButton[@name="Compliance Date"]',
+    'Status': '//XCUIElementTypeButton[@name="Status"]',
+    'Location': '//XCUIElementTypeButton[@name="Location"]',
+    'Priority': '//XCUIElementTypeButton[@name="Priority"]',
+  };
+
+  const mainSelector = mainSelectors[mainOption];
+  const subSelector = subSelectors[subOption];
+
+  if (!mainSelector) {
+    throw new Error(`❌ No selector defined for main option "${mainOption}"`);
+  }
+  if (!subSelector) {
+    throw new Error(`❌ No selector defined for sub option "${subOption}"`);
+  }
+
+  // ✅ Wait for and click main option
+  const mainElement = await $(mainSelector);
+  await mainElement.waitForDisplayed({ timeout: 100000 });
+  await mainElement.click();
+
+  // ✅ Wait for and click sub option
+  const subElement = await $(subSelector);
+  await subElement.waitForDisplayed({ timeout: 100000 });
+  await subElement.click();
+}
+
+ /**
+   * Bookmark a work order by its index
+   * @param position Position of the work order (1 = first, 2 = second, etc.)
+   */
+  public async bookmarkWorkOrder(position: number): Promise<void> {
+    // Map positions to selectors
+    const bookmarkSelectors: Record<number, string> = {
+      1: '(//XCUIElementTypeStaticText[@name=""])[2]',
+      2: '(//XCUIElementTypeStaticText[@name=""])[3]',
+      3: '(//XCUIElementTypeStaticText[@name=""])[4]',
+      4: '(//XCUIElementTypeStaticText[@name=""])[5]',
+      5: '(//XCUIElementTypeStaticText[@name=""])[6]',
+    };
+
+    const selector = bookmarkSelectors[position];
+    if (!selector) {
+      throw new Error(`❌ No bookmark selector defined for position ${position}`);
+    }
+
+    const element = await $(selector);
+    await element.waitForDisplayed({ timeout: 30000 });
+    await element.click();
+  }
 
 /**
      * Clicks any option by its visible name (supports buttons, cells, static texts)
@@ -525,6 +637,11 @@ async clickField(fieldName: string, timeout = 50000): Promise<void> {
       case 'location search':
         xpath = '//XCUIElementTypeTextField[@value="Search Locations"]';
         break;
+
+        case 'search by part code or description':
+      // ✅ Correct locator (matches your working getter)
+      xpath = '//XCUIElementTypeTextField[@value="Search by Part Code or Description"]';
+      break;
       // Add more fields as needed
       default:
         throw new Error(`No matching field found for name: ${fieldName}`);
@@ -624,6 +741,55 @@ protected async findLastDisplayed(
 }
 
 /**
+     * Generic method to type text into a field
+     */
+   async enterText(element: ChainablePromiseElement, text: string): Promise<void> {
+        await element.waitForDisplayed({ timeout: 5000 });
+        await element.clearValue();
+        await element.setValue(text);
+    }
+    async tapElementByXPath(xpath: string): Promise<void> {
+        const element = await $(xpath);
+        await element.waitForDisplayed({ timeout: 5000 });
+        await element.click();
+    }
+/**
+     * Selects an item from search results by index
+     * @param itemName text of the item (e.g., CLOTH)
+     * @param index which item (1-based index: 1=first, 2=second, etc.)
+     */
+    async selectItemByIndex(itemName: string, index: number): Promise<void> {
+        const itemXPath = `(//XCUIElementTypeStaticText[@name="${itemName}"])[${index}]`;
+        await this.tapElementByXPath(itemXPath);
+    }
+    /**
+     * Select Inventory material with available balance
+     * @param index 1-based index of material with positive balance (default = 1)
+     */
+    async selectInventoryWithAvailableBalance(index: number = 1): Promise<void> {
+        // Find all elements with "Units Available: X"
+        const elements = await $$(`//XCUIElementTypeStaticText[contains(@name,"Units Available: ")]`);
+
+        // Filter elements with balance > 0
+        const positiveBalanceElements = [];
+        for (const el of elements) {
+            const text = await el.getAttribute("name"); // e.g., "Units Available: 8"
+            const match = text?.match(/Units Available:\s*(\d+)/);
+
+            if (match && parseInt(match[1], 10) > 0) {
+                positiveBalanceElements.push(el);
+            }
+        }
+
+        if (positiveBalanceElements.length < index) {
+            throw new Error(`❌ Only ${positiveBalanceElements.length} items with available balance found, cannot select index ${index}`);
+        }
+
+        // Click the element at the requested index
+        await positiveBalanceElements[index - 1].click();
+    }
+
+/**
  * Utility: find the first visible element from an array
  */
 protected async findVisibleElement(
@@ -636,7 +802,8 @@ protected async findVisibleElement(
   }
   return null;
 }
-  /** Handle work order buttons: Start, Pause, Swap */
+
+/** Handle work order buttons: Start, Pause, Swap */
 async handleWorkOrderButton(
     status: 'Ready' | 'In Progress' | 'On Hold'
 ): Promise<void> {
@@ -680,50 +847,31 @@ async handleActionButton(actionButton: string): Promise<void> {
         }
     });
 }
-
-  /**
-   * Waits for a page to load by checking document.readyState
-   */
-  async waitForPageToLoad(timeout = 10000) {
-    await browser.waitUntil(
-      async () => {
-        const state = await browser.execute(() => document.readyState);
-        return state === 'complete';
-      },
-      {
-        timeout,
-        timeoutMsg: `Page did not load completely within ${timeout} ms`,
-      }
-    );
-  }
-
-  /**
-   * Optionally wait for a key element on the page
-   * This can be overridden in child page objects
-   */
-  async waitForPageReadyElement(selector: string, timeout = 10000) {
-    const element = await $(selector);
-    await element.waitForDisplayed({ timeout });
-  }
-
 /**
      * Takes a screenshot and saves it to the ./screenshots folder.
      * Automatically generates a timestamped filename unless one is provided.
      */
     async takeScreenshot(filename?: string): Promise<void> {
-        const screenshotDir = path.resolve('/Users/MWE-PROJECT/screenshots');
-        if (!fs.existsSync(screenshotDir)) {
-            fs.mkdirSync(screenshotDir, { recursive: true });
-        }
+    // Set your screenshot folder
+    const screenshotDir = "/Users/MWE-PROJECT/screenshots";
 
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        const finalFilename = filename || `screenshot-${timestamp}.png`;
-
-        const fullPath = path.join(screenshotDir, finalFilename);
-        await driver.saveScreenshot(fullPath);
-
-        console.log(`📸 Screenshot saved: ${fullPath}`);
+    // Ensure the folder exists
+    if (!fs.existsSync(screenshotDir)) {
+        fs.mkdirSync(screenshotDir, { recursive: true });
     }
+
+    // Generate filename with timestamp if not provided
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const finalFilename = filename || `screenshot-${timestamp}.png`;
+
+    // Full path for the screenshot
+    const fullPath = path.join(screenshotDir, finalFilename);
+
+    // Save the screenshot
+    await driver.saveScreenshot(fullPath);
+
+    console.log(`📸 Screenshot saved: ${fullPath}`);
+}
   /**
      * Returns true if the given input or text element has a non-empty value.
      */
@@ -734,7 +882,33 @@ async handleActionButton(actionButton: string): Promise<void> {
         const value = await element.getValue();
         return value.trim().length > 0;
     }
-    
+
+  /** Verify Follow-On page visibility */
+  async verifyFollowOnPage(flag: 'Shown' | 'Hidden'): Promise<void> {
+    const basePage = await $('//XCUIElementTypeOther[@name="Create Follow-On (1/2)"]'); 
+    const addToBacklog = await $('//XCUIElementTypeOther[@value="Add to backlog"]');
+
+    if (flag === 'Shown') {
+      // Wait for base page
+      await basePage.waitForDisplayed({ timeout: 80000 });
+      await basePage.waitForEnabled({ timeout: 80000 });
+      await expect(basePage).toBeDisplayed();
+
+      // Small buffer delay to handle slow loading (>40s in your case)
+      await browser.pause(5000);
+
+      // Now wait for "Add to backlog" element
+      await addToBacklog.waitForDisplayed({ timeout: 80000 });
+      await addToBacklog.waitForEnabled({ timeout: 80000 });
+      await expect(addToBacklog).toBeDisplayed();
+    } else {
+      // Wait until base page disappears
+      await basePage.waitForDisplayed({ timeout: 80000, reverse: true });
+      await expect(await basePage.isDisplayed()).toBe(false);
+    }
+  }
+
+
   /** Verify WO page visibility */
   async verifyWOPage(flag: 'Shown' | 'Hidden'): Promise<void> {
     const element = await $('//XCUIElementTypeStaticText[@name="Work"]');
