@@ -84,13 +84,15 @@ async waitAndClick(element: WebdriverIO.Element, timeout = 50000): Promise<void>
 get PAUSEButton(): ChainablePromiseElement {
     return $('//XCUIElementTypeButton[@name="Pause"]');
 }
-   
+  
 
     // Generic button clicker
- async clickButtonByName(name: string, timeout = 50000): Promise<void> {
+async clickButtonByName(name: string, timeout = 50000): Promise<void> {
     let xpath: string;
+    const upper = name.toUpperCase();
+    const lower = name.toLowerCase();
 
-    switch (name.toUpperCase()) {
+    switch (upper) {
         case 'START ICON':
             xpath = '//XCUIElementTypeButton[@name=""]';
             break;
@@ -187,6 +189,10 @@ get PAUSEButton(): ChainablePromiseElement {
             xpath = '//XCUIElementTypeButton[@name="Mark All As Read"]';
             break;
 
+            case 'HIDE COMPLETED TASKS':
+            xpath = '//XCUIElementTypeButton[@name="Hide Completed Tasks"]';
+            break;
+
           
             case 'WORK TAB':
             xpath = '//XCUIElementTypeStaticText[@name="Work"]';
@@ -269,7 +275,7 @@ get PAUSEButton(): ChainablePromiseElement {
             break;
 
             case 'RESERVE':
-            xpath = '(//XCUIElementTypeStaticText[@name=""])[1]';
+            xpath = '(//XCUIElementTypeButton[@name=""])[1]';
             break;
 
             case 'PLUS':
@@ -352,35 +358,21 @@ get PAUSEButton(): ChainablePromiseElement {
   }
 
   /** Click widget dynamically */
-  async clickWidget(widget: string): Promise<void> {
-    // normalize input for case-insensitivity
-    const normalizedWidget = widget.trim().toLowerCase();
+  async clickWidget(widgetName: string, timeout = 80000): Promise<void> {
+  // normalize input for case-insensitive matching
+  const normalizedName = widgetName.toLowerCase();
 
-    // mapping of widget names to XPaths
-    const widgetMap: Record<string, string> = {
-      timetracking: '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[6]',
-      material: '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[7]',
-      task: '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[5]',
-      locationediticon: '//XCUIElementTypeStaticText[@name=""]',
-      default: '(//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[4])'
-    };
+  // build case-insensitive XPath for text lookup only
+  const selector = `//*[translate(@name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')="${normalizedName}"]`;
 
-    // special case: add delay for material widget
-    if (normalizedWidget === 'material') {
-      await this.delay(10000); // ensure page is ready
-    }
+  // wait until element is displayed & enabled
+  const element = await $(selector);
+  await element.waitForDisplayed({ timeout });
+  await element.waitForEnabled({ timeout });
 
-    // resolve XPath (use default if not found)
-    const xpath = widgetMap[normalizedWidget] || widgetMap['default'];
-
-    // wait until element is displayed & enabled (iOS safe "clickable")
-    const element = await $(xpath);
-    await element.waitForDisplayed({ timeout: 80000 });
-    await element.waitForEnabled({ timeout: 80000 });
-
-    // perform the click
-    await element.click();
-  }
+  // perform the click
+  await element.click();
+}
 
   // Description field: XCUIElementTypeTextView
   get descriptionField() {
@@ -754,41 +746,49 @@ protected async findLastDisplayed(
         await element.click();
     }
 /**
-     * Selects an item from search results by index
-     * @param itemName text of the item (e.g., CLOTH)
-     * @param index which item (1-based index: 1=first, 2=second, etc.)
-     */
-    async selectItemByIndex(itemName: string, index: number): Promise<void> {
-        const itemXPath = `(//XCUIElementTypeStaticText[@name="${itemName}"])[${index}]`;
-        await this.tapElementByXPath(itemXPath);
+ * Select an item by its index in a dynamic table
+ * @param itemName Name of the item (e.g. "CLOTH")
+ * @param index 1-based index of the item in the list
+ */
+async selectItemByIndex(itemName: string, index: number): Promise<void> {
+  const itemXPath = `(//XCUIElementTypeStaticText[@name="${itemName}"])[${index}]`;
+
+  const element = await $(itemXPath);
+  await element.waitForDisplayed({ timeout: 50000 });
+
+  // Safe click (no waitForClickable in XCUITest)
+  await element.click();
+}
+
+/**
+ * Select Inventory material with available balance
+ * @param index 1-based index of material with positive balance (default = 1)
+ */
+async selectInventoryWithAvailableBalance(index: number = 1): Promise<void> {
+  const elements = await $$(
+    `//XCUIElementTypeStaticText[contains(@name,"Units Available: ")]`
+  );
+
+  const positiveBalanceElements = [];
+  for (const el of elements) {
+    const text = await el.getAttribute("name"); // e.g., "Units Available: 8"
+    const match = text?.match(/Units Available:\s*(\d+)/);
+
+    if (match && parseInt(match[1], 10) > 0) {
+      positiveBalanceElements.push(el);
     }
-    /**
-     * Select Inventory material with available balance
-     * @param index 1-based index of material with positive balance (default = 1)
-     */
-    async selectInventoryWithAvailableBalance(index: number = 1): Promise<void> {
-        // Find all elements with "Units Available: X"
-        const elements = await $$(`//XCUIElementTypeStaticText[contains(@name,"Units Available: ")]`);
+  }
 
-        // Filter elements with balance > 0
-        const positiveBalanceElements = [];
-        for (const el of elements) {
-            const text = await el.getAttribute("name"); // e.g., "Units Available: 8"
-            const match = text?.match(/Units Available:\s*(\d+)/);
+  if (positiveBalanceElements.length < index) {
+    throw new Error(
+      `❌ Only ${positiveBalanceElements.length} items with available balance found, cannot select index ${index}`
+    );
+  }
 
-            if (match && parseInt(match[1], 10) > 0) {
-                positiveBalanceElements.push(el);
-            }
-        }
-
-        if (positiveBalanceElements.length < index) {
-            throw new Error(`❌ Only ${positiveBalanceElements.length} items with available balance found, cannot select index ${index}`);
-        }
-
-        // Click the element at the requested index
-        await positiveBalanceElements[index - 1].click();
-    }
-
+  const target = positiveBalanceElements[index - 1];
+  await target.waitForDisplayed({ timeout: 30000 });
+  await target.click();
+}
 /**
  * Utility: find the first visible element from an array
  */

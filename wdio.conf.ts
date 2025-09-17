@@ -24,7 +24,7 @@ export const config: WebdriverIO.Config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: ["./features/longdescriptionisdisplayedonatask.feature"],
+    specs: ["./features/ftimeentry.feature"],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -182,6 +182,8 @@ export const config: WebdriverIO.Config = {
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
+
+    
 
 
     //

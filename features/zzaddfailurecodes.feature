@@ -22,7 +22,8 @@ Feature: Add Failure Codes
     Then The status of the work Order is in "In Progress"
     #Then WO page is "Shown"
     Then I navigate "Work" tab
-    Then "FAILURE INFORMATION" widget is clicked
+    When I press "FAILURE INFORMATION" widget
+   # Then "FAILURE INFORMATION" widget is clicked
     Then I click on "FAILURE CLASS" option
     Then I click on "171-SQR-022: HEATING & LIGHTING" button
     Then I click on "PROBLEM CLASS" option

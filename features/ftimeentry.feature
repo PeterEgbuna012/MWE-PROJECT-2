@@ -18,7 +18,7 @@ Feature: Add a Manual Time Entry
     When I click at "first" WO
     Then WO page is "Shown"
     Then I navigate "Work" tab
-    When I press "timetracking" widget
+    When I press "TIME ENTRIES" widget
     Then I click on "Add Manual Time Entry" button
     When I select "Start Time" date field
     Then I set date as "yesterdays" date

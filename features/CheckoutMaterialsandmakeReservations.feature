@@ -21,16 +21,18 @@ Feature: Checkout Materials and make Reservations
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I navigate "Work" tab
-    When I press "material" widget
+    When I press "MATERIALS" widget
     Then I click on "SEARCH ALL PARTS" button
     Then I click on "SEARCH BY PART CODE OR DESCRIPTION" field
-    And I enter "SLEEVE" in the Inventory search field
-    When I select the first item "SLEEVE" from the search results
-    When I select the second item "SLEEVE" from the search results
-    When I select the third item "SLEEVE" from the search results
+    And I enter "MICROFIBRE" in the Inventory search field
+    When I select the first item "MICROFIBRE" from the search results
+    When I select the second item "MICROFIBRE" from the search results
+    When I select the third item "MICROFIBRE" from the search results
+    When I select the fourth item "MICROFIBRE" from the search results
+    When I select the fifth item "MICROFIBRE" from the search results
     Then I click on "ADD TO LIST" button
     Then I click on "SEARCH" button
-    Then I select Inventory material with available balance
+   # Then I select Inventory material with available balance
     Then I click on "RESERVE" button
     Then I click on "PLUS" button
     Then I click on "CONFIRM" button

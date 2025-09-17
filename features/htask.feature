@@ -20,7 +20,7 @@ Feature: Processing assigned task
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I navigate "Work" tab
-    When I press "task" widget
+    When I press "TASKS" widget
     When I tap on task with number "10."
     Then "10" page appears
     And I set "comments" value field to "TEST"
