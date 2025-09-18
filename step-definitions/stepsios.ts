@@ -8,11 +8,13 @@ import WorkOrderPage from '../pageobjects/workOrder.page';
 import workOrderPage from '../pageobjects/workOrder.page';
 type FieldName = 'summary' | 'details';
 
+
 // Instantiate page objects
 const loginPage = new LoginPage();
 const basePage = new BasePage();
 const photoPage = new PhotoPage();
 const initPage = new InitPage();
+
 
 
 // -------------------- INIT PAGE --------------------
@@ -244,71 +246,22 @@ Then("I press the Hamburger icon", async () => {
 });
 
 // -------------------- DATE FIELDS --------------------
-let selectedDateField: 'Start' | 'End';
-
-When(/^I select "(Start|End)" date field$/, async (fieldName: 'Start' | 'End') => {
-  selectedDateField = fieldName;
-
-  const selector =
-    fieldName === 'Start'
-      ? '//XCUIElementTypeStaticText[@name="Start Time"]/following-sibling::XCUIElementTypeOther[1]'
-      : '//XCUIElementTypeStaticText[@name="End Time"]/following-sibling::XCUIElementTypeOther[1]';
-
-  const field = await $(selector);
-  await field.waitForDisplayed({ timeout: 20000 });
-  await field.click();
+When("I select {string} date field", async (fieldLabel: 'Start Time' | 'End Time') => {
+    if (fieldLabel === 'Start Time') {
+        await workOrderPage.selectStartTimeField();
+    } else {
+        await workOrderPage.selectEndTimeField();
+    }
 });
 
-Then(/^I set date as "(.+)" date$/, async (offsetText: string) => {
-  const targetDate = parseOffsetToDate(offsetText);
-  await selectDateFromCalendar(targetDate);
+Then("I set date as {string} date", async (offsetText: 'todays' | 'yesterdays') => {
+    if (offsetText === 'todays') {
+        await workOrderPage.setDateToToday();
+    } else {
+        await workOrderPage.setDateToYesterday();
+    }
+    await workOrderPage.clickDoneButton(); // confirm date selection
 });
-
-function parseOffsetToDate(offsetText: string): Date {
-  const now = new Date();
-
-  if (offsetText === 'todays') return now;
-  if (offsetText === 'yesterdays') return new Date(now.getTime() - 86400000);
-  if (offsetText === 'tomorrows') return new Date(now.getTime() + 86400000);
-
-  const daysAgoMatch = offsetText.match(/^(\d+)\s+days?\s+ago$/);
-  if (daysAgoMatch) {
-    const days = parseInt(daysAgoMatch[1], 10);
-    return new Date(now.getTime() - days * 86400000);
-  }
-
-  const daysFromNowMatch = offsetText.match(/^(\d+)\s+days?\s+from\s+now$/);
-  if (daysFromNowMatch) {
-    const days = parseInt(daysFromNowMatch[1], 10);
-    return new Date(now.getTime() + days * 86400000);
-  }
-
-  throw new Error(`❌ Unsupported date offset format: "${offsetText}"`);
-}
-
-async function selectDateFromCalendar(date: Date): Promise<void> {
-  const day = date.getDate();
-  const weekday = date.toLocaleDateString('en-GB', { weekday: 'long' });
-  const month = date.toLocaleDateString('en-GB', { month: 'long' });
-
-  const fullName = `${weekday} ${day} ${month}`;
-  const fullDateSelector = `//XCUIElementTypeButton[@name="${fullName}"]`;
-  const fallbackSelector = `//XCUIElementTypeStaticText[@name="${day}"]`;
-
-  let element; // Let TS infer the type from WebdriverIO
-
-  try {
-    element = $(fullDateSelector);
-    await element.waitForDisplayed({ timeout: 3000 });
-  } catch {
-    element = $(fallbackSelector);
-    await element.waitForDisplayed({ timeout: 3000 });
-  }
-
-  await element.click();
-  console.log(`📅 Selected UK date: ${fullName}`);
-}
-
 
 
 // -------------------- NAVIGATION --------------------
@@ -338,10 +291,9 @@ Then("I choose {string} button if WO is {string}", async (bottomcircle: string, 
 });
 
 // -------------------- TEXT ENTRY --------------------
-When(/^I set "(.*)" value field to "(.*)"$/, async (fieldName: string, value: string) => {
-  await WorkOrderPage.setValueInField(fieldName, value);
+When("I set {string} value field to {string}", async (fieldName: string, value: string) => {
+  await workOrderPage.setValueInField(fieldName, value);
 });
-
 // -------------------- LOCATION FIELD --------------------
 Then("I verify location field is populated", async () => {
   const field = await $('XCUIElementTypeTextField');
@@ -351,11 +303,6 @@ Then("I verify location field is populated", async () => {
 // -------------------- WIDGET CLICK --------------------
 Then("{string} widget is clicked", async (widget: string) => {
   await basePage.clickElement(`//XCUIElementTypeOther[@name="${widget}"]`);
-});
-
-// -------------------- MANUAL TIME ENTRY --------------------
-Then(/^I click on "Add Manual Time Entry" button$/, async () => {
-    await WorkOrderPage.clickAddManualTimeEntry();
 });
 
 // -------------------- BUTTON DISPLAYED --------------------
@@ -419,15 +366,9 @@ function readYamlFile(path: string): MaterialYaml {
 Then('I click on "Done" button', async () => {
     await WorkOrderPage.clickDoneButton();
 });
-// -------------------- ADD MANUAL TIME ENTRY BUTTON --------------------
-
-Then('I click on "ADD MANUAL TIME ENTRY" button', async () => {
-    await WorkOrderPage.clickAddManualTimeEntryBtn();
-});
-
 // -------------------- VALIDATE MANUAL TIME ENTRY --------------------
-Then('I compare the {string} values', async (expectedValue: string) => {
-    await WorkOrderPage.compareTimeLogValue(expectedValue);
+Then("I compare the time value {string}", async (expectedValue: string) => {
+    await workOrderPage.compareTimeLogValue(expectedValue);
 });
 
 // -------------------- COMMENT SECTION --------------------

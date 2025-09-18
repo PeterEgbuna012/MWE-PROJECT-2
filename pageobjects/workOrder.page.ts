@@ -29,6 +29,7 @@ class WorkOrderPage extends BasePage {
     public async clickAddManualTimeEntryBtn(): Promise<void> {
         await this.clickElement(this.addManualTimeEntryBtnAllCaps);
     }
+    
 
     /**
   /**
@@ -116,72 +117,118 @@ class WorkOrderPage extends BasePage {
         expect(actualStatus).toEqual(expectedStatus);
     }
 
-// Precise selectors
-    private readonly startTimeField: string = '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[2]/XCUIElementTypeOther';
-    private readonly endTimeField: string = '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[3]/XCUIElementTypeOther';
-    private readonly doneButton: string = '//XCUIElementTypeButton[@name="Done"]';
+ // 🔹 Precise selectors
+  public readonly StartTimeField: string =
+    '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[2]/XCUIElementTypeOther';
+  public readonly EndTimeField: string =
+    '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[3]/XCUIElementTypeOther';
+  public readonly DoneButton: string = '//XCUIElementTypeButton[@name="Done"]';
 
-    private readonly datePickerWheel = (index: number) => `//XCUIElementTypePickerWheel[${index}]`;
+  /**
+   * Clicks the Start Time date field.
+   */
+  public async selectStartTimeField(): Promise<void> {
+    const element = await $(this.StartTimeField);
+    await element.waitForDisplayed({ timeout: 30000 });
+    await element.click();
+  }
 
-    /**
-     * Clicks the Start Time date field.
-     */
-    public async selectStartTimeField(): Promise<void> {
-        await this.clickElement(this.startTimeField);
+  /**
+   * Clicks the End Time date field.
+   */
+  public async selectEndTimeField(): Promise<void> {
+    const element = await $(this.EndTimeField);
+    await element.waitForDisplayed({ timeout: 30000 });
+    await element.click();
+  }
+
+  /**
+   * Clicks the "Done" button after selecting a date.
+   */
+  public async clickDoneButton(): Promise<void> {
+    const element = await $(this.DoneButton);
+    await element.waitForDisplayed({ timeout: 30000 });
+    await element.click();
+  }
+
+  /**
+   * Utility: Get a date object offset from today
+   * @param offset -1 = yesterday, 0 = today, 1 = tomorrow
+   */
+  private getDateWithOffset(offset: number): Date {
+    const date = new Date();
+    date.setDate(date.getDate() + offset);
+    return date;
+  }
+
+  /**
+   * Utility: Break date into parts
+   */
+  private getDateParts(offset: number): { day: string; month: string; year: string } {
+    const date = this.getDateWithOffset(offset);
+
+    const day = date.getDate().toString(); // "18"
+    const month = date.toLocaleString('default', { month: 'long' }); // "September"
+    const year = date.getFullYear().toString(); // "2025"
+
+    return { day, month, year };
+  }
+
+  /**
+   * Dynamically select a date in iOS calendar
+   * Handles cross-month and cross-year boundaries
+   */
+  private async selectDate(offset: number): Promise<void> {
+    const { day, month, year } = this.getDateParts(offset);
+
+    // Try multiple possible formats (depends on iOS version / app UI)
+    const possibleSelectors = [
+      `//XCUIElementTypeStaticText[@name="${day}"]`,
+      `//XCUIElementTypeStaticText[@name="${month} ${day}"]`,
+      `//XCUIElementTypeStaticText[@name="${month} ${day}, ${year}"]`
+    ];
+
+    let elementFound = false;
+    for (const selector of possibleSelectors) {
+      const elements = await $$(selector);
+      if (await elements.length > 0) {
+        const element = elements[0];
+        await element.waitForDisplayed({ timeout: 30000 });
+        await element.click();
+        elementFound = true;
+        console.log(`📅 Selected date: ${month} ${day}, ${year} using selector: ${selector}`);
+        break;
+      }
     }
 
-    /**
-     * Clicks the End Time date field.
-     */
-    public async selectEndTimeField(): Promise<void> {
-        await this.clickElement(this.endTimeField);
+    if (!elementFound) {
+      throw new Error(`❌ Could not find date element for ${month} ${day}, ${year}`);
     }
+  }
 
-    /**
-     * Clicks the "Done" button after selecting a date.
-     */
-    public async clickDoneButton(): Promise<void> {
-        await this.clickElement(this.doneButton);
-    }
+  /**
+   * Public method: Set date to yesterday
+   */
+  public async setDateToYesterday(): Promise<void> {
+    await this.selectDate(-1);
+  }
 
-    /**
-     * Sets the date picker to yesterday's date.
-     */
-    public async setDateToYesterday(): Promise<void> {
-        const date = this.getFormattedDateOffset(-1);
-        await this.setDatePicker(date);
-    }
+  /**
+   * Public method: Set date to today
+   */
+  public async setDateToToday(): Promise<void> {
+    await this.selectDate(0);
+  }
 
-    /**
-     * Sets the date picker to today's date.
-     */
-    public async setDateToToday(): Promise<void> {
-        const date = this.getFormattedDateOffset(0);
-        await this.setDatePicker(date);
-    }
-
-    /**
-     * Sets the value on the native iOS date picker.
-     */
-    private async setDatePicker({ month, day, year }: { month: string; day: string; year: string }): Promise<void> {
-        const wheels = [1, 2, 3];
-
-        for (const i of wheels) {
-            const wheel = await $(this.datePickerWheel(i));
-            const value = await wheel.getAttribute('value');
-
-            if (value?.includes(month)) {
-                await wheel.setValue(month);
-            } else if (value?.includes(day)) {
-                await wheel.setValue(day);
-            } else if (value?.includes(year)) {
-                await wheel.setValue(year);
-            }
-        }
-    }
+  /**
+   * Public method: Set date to tomorrow
+   */
+  public async setDateToTomorrow(): Promise<void> {
+    await this.selectDate(1);
+  }
     
- /**
-   /**
+
+  /**
  * Selector to click on the comment (opens comment info).
  */
 private get commentClickElement() {
@@ -454,7 +501,6 @@ async selectFromDropdown(mainOption: string, subOption: string) {
      * @param timeValue string like "1d 0h" or "0h 55m"
      */
     private getTimeLogElement(timeValue: string) {
-        // Using XPath with predicate on name attribute
         return $(`//XCUIElementTypeStaticText[@name="${timeValue}"]`);
     }
 
@@ -464,9 +510,19 @@ async selectFromDropdown(mainOption: string, subOption: string) {
      */
     public async compareTimeLogValue(expectedValue: string): Promise<void> {
         const element = this.getTimeLogElement(expectedValue);
-        await element.waitForDisplayed({ timeout: 50000 });
+
+        await element.waitForDisplayed({
+            timeout: 50000,
+            timeoutMsg: `Time log "${expectedValue}" was not found on screen`,
+        });
+
         const actualText = await element.getText();
-        expect(actualText).toEqual(expectedValue);
+
+        if (actualText !== expectedValue) {
+            throw new Error(
+                `❌ Time log mismatch: expected "${expectedValue}", but found "${actualText}"`
+            );
+        }
     }
 
 }

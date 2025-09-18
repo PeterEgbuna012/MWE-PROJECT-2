@@ -31,7 +31,7 @@ Feature: Change Work Location
     Then I take a screenshot 
     Then I navigate to "back"
     Then The Worklist page is open
-    When I click at "first" WO
+  
 
 
     Examples:

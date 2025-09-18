@@ -1,9 +1,10 @@
 import { $ , $$ } from '@wdio/globals';
 import allure from '@wdio/allure-reporter';
 import type { ChainablePromiseElement } from 'webdriverio';
-import path from 'path/win32';
-import * as fs from 'fs';
+import path, { format, format as pathFormat } from 'path/win32';
+import { format as dateFormat } from 'date-fns';
 
+import * as fs from 'fs';
 
 
 export default class BasePage {
@@ -388,6 +389,35 @@ async clickButtonByName(name: string, timeout = 50000): Promise<void> {
     await field.addValue(text);     
 }
 
+ /**
+   * Convert offset text to Date object
+   */
+  getDate(offset: 'todays' | 'yesterdays'): Date {
+    const today = new Date();
+    if (offset === 'yesterdays') {
+      today.setDate(today.getDate() - 1);
+    }
+    return today;
+  }
+
+  async setDateInPicker(date: Date, timeout = 20000): Promise<void> {
+    const picker = await $('//XCUIElementTypePicker');
+
+    await picker.waitForDisplayed({
+      timeout: timeout,
+      reverse: false,
+      timeoutMsg: 'Picker not displayed within timeout'
+    });
+
+    await picker.waitForEnabled({
+      timeout: timeout,
+      reverse: false,
+      timeoutMsg: 'Picker not enabled within timeout'
+    });
+
+    const formattedDate = dateFormat(date, 'MM/dd/yyyy'); // use date-fns format
+    await picker.addValue(formattedDate);
+  }
 /**
  * Select a sort option from another sort option on iOS
  * @param mainOption Main option name (e.g. "Start Date")
@@ -882,6 +912,7 @@ async handleActionButton(actionButton: string): Promise<void> {
         const value = await element.getValue();
         return value.trim().length > 0;
     }
+    
 
   /** Verify Follow-On page visibility */
   async verifyFollowOnPage(flag: 'Shown' | 'Hidden'): Promise<void> {
