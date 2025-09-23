@@ -24,7 +24,7 @@ export const config: WebdriverIO.Config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: ["./features/ftimeentry.feature"],
+    specs: ["./features/MWE_RS_009-CreateFollowOnFromTask.feature"],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'

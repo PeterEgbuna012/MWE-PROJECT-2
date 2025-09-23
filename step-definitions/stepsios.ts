@@ -362,7 +362,6 @@ function readYamlFile(path: string): MaterialYaml {
 }
 
 // -------------------- DONE BUTTON --------------------
-
 Then('I click on "Done" button', async () => {
     await WorkOrderPage.clickDoneButton();
 });
@@ -408,7 +407,7 @@ When('I enter {string} in the location search field', async (locationName: strin
 });
 
 When('I select the location result with name {string}', async (locationName: string) => {
-  await workOrderPage.selectLocationFromResults(locationName);
+  await workOrderPage.selectLocationFromResult(locationName);
 });
 
 When('I select no {int} record from location table', async (index: number) => {
@@ -421,6 +420,16 @@ Then('I click on {string} field', async (fieldName: string) => {
 
 Then('I select {string} location', async function (locationName: string) {
   await workOrderPage.selectLocation(locationName);
+});
+
+Then('I enter {string} in the select location search field', async (locationName: string) => {
+  await basePage.clickField('select location');  
+  await workOrderPage.enterSelectLocation(locationName);
+});
+
+// Select a select location by name
+Then(/^I select "([^"]*)" location$/, async (locationName: string) => {
+  await WorkOrderPage.selectLocationResults(locationName);
 });
 
 
@@ -507,4 +516,10 @@ Then('I {string} {word} work order', async (action: string, positionWord: string
   } else {
     throw new Error(`❌ Unsupported action: "${action}"`);
   }
+});
+
+// -------------------- ASSET SWAP CONFIRM BUTTON --------------------
+// Generic step for asset swap buttons
+Then(/^I "([^"]*)" asset swap$/, async (buttonName: string) => {
+  await WorkOrderPage.clickAssetSwapButton(buttonName);
 });

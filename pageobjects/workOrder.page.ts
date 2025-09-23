@@ -290,8 +290,40 @@ async isAssetFieldPopulated(): Promise<boolean> {
         const value = await element.getValue();
         return value.trim().length > 0;
     }
-    
 
+  // ✅ Locators for asset swap buttons
+  private readonly confirmButton: string = '//XCUIElementTypeButton[@name="CONFIRM"]';
+  private readonly swapButton: string = '//XCUIElementTypeButton[@name=" Search All Parts"]';
+  private readonly confirmswapButton: string = '//XCUIElementTypeButton[@name=" Search All Parts"]';
+
+  /**
+   * Clicks an asset swap button by name
+   */
+  public async clickAssetSwapButton(buttonName: string): Promise<void> {
+    const normalizedName = buttonName.toUpperCase();
+
+    let selector = '';
+    switch (normalizedName) {
+      case 'CONFIRM':
+        selector = this.confirmButton;
+        break;
+        
+      case 'SWAP':
+        selector = this.swapButton;
+        break;
+
+      case 'CONFIRM SWAP':
+        selector = this.confirmswapButton;
+        break;
+
+      default:
+        throw new Error(`No button mapped for asset swap action: ${buttonName}`);
+    }
+
+    const button = await $(selector);
+    await button.waitForDisplayed({ timeout: 50000 });
+    await button.click();
+  }
     
 /**
  * Utility to get formatted date components for picker.
@@ -312,6 +344,11 @@ async isAssetFieldPopulated(): Promise<boolean> {
     return $('//XCUIElementTypeTextField[@value="Search Locations"]');
   }
 
+   // Locator for the location search text field
+  get selectLocationSearchField() {
+    return $('//XCUIElementTypeTextField[@value="Select Location"]');
+  }
+
   // Locator for the selected location label
   get selectedLocationLabel() {
     return $('//XCUIElementTypeStaticText[@name="SelectedLocationLabel"]');
@@ -324,8 +361,12 @@ async isAssetFieldPopulated(): Promise<boolean> {
 
   // Locator for location result by name (with  suffix)
   getLocationResultByName(name: string) {
-    const fullName = `${name}`;
-    return $(`//XCUIElementTypeOther[@name="${fullName}"]`);
+    return $(`//XCUIElementTypeOther[@name="${name}"]"`);
+  }
+
+ // Locator for location result by name 
+  getSelectLocationResultByName(name: string) {
+    return $(`//XCUIElementTypeOther[@name="${name}"]`);
   }
 
   // ✅ Enter location name into search field
@@ -334,8 +375,21 @@ async isAssetFieldPopulated(): Promise<boolean> {
     await this.locationSearchField.setValue(locationName);
   }
 
-  // ✅ Select location from result by name (with )
-  async selectLocationFromResults(locationName: string): Promise<void> {
+  // ✅ Enter location into "Select Location" field
+  async enterSelectLocation(locationName: string): Promise<void> {
+    await this.selectLocationSearchField.waitForDisplayed({ timeout: 50000 });
+    await this.selectLocationSearchField.setValue(locationName);
+  }
+
+  // ✅ Select location from result by name 
+  async selectLocationResults(locationName: string): Promise<void> {
+    const result = this.getSelectLocationResultByName(locationName);
+    await result.waitForDisplayed({ timeout: 50000 });
+    await result.click();
+}
+
+   // ✅ Select location from result by name (with )
+  async selectLocationFromResult(locationName: string): Promise<void> {
     const result = this.getLocationResultByName(locationName);
     await result.waitForDisplayed({ timeout: 50000 });
     await result.click();
@@ -375,6 +429,10 @@ async isAssetFieldPopulated(): Promise<boolean> {
       // ✅ Correct locator (matches your working getter)
       xpath = '//XCUIElementTypeTextField[@value="Search by Part Code or Description"]';
       break;
+
+    case 'SELECT LOCATION':
+  xpath = '//XCUIElementTypeTextField[@value="Select Location"]';
+  break;
 
     // Add other mappings as needed...
 

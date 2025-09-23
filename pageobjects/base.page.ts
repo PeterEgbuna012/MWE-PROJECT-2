@@ -299,6 +299,30 @@ async clickButtonByName(name: string, timeout = 50000): Promise<void> {
             xpath = '//XCUIElementTypeButton[@name=""]';
             break;
 
+            case 'GO TO ASSET SWAP':
+            xpath = '//XCUIElementTypeButton[@name="GO TO ASSET SWAP"]';
+            break;
+
+            case 'TAP TO SELECT OUTBOUND ASSET':
+            xpath = '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[8]';
+            break;
+
+            case 'SELECT ASSET':
+            xpath = '(//XCUIElementTypeStaticText[@name="Select"])[1]';
+            break;
+
+            case 'TAP TO SELECT INBOUND ASSET':
+            xpath = '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[11]';
+            break;
+
+            case 'SELECT':
+            xpath = '//XCUIElementTypeStaticText[@name="Select"]';
+            break;
+
+            case 'RETURN LOCATION SELECT':
+            xpath = '//XCUIElementTypeButton[@name="Select"]';
+            break;
+
             case '377 Air':
             xpath = '//XCUIElementTypeButton[@name="377 Air"]';
             break;
@@ -548,6 +572,16 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
             xpath = '//XCUIElementTypeButton[@name="Assign to me"]';
             break;
 
+            case 'OUT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeStaticText[@name="OUT"]`;
+                break;
+
+                case 'IN':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeStaticText[@name="IN"]`;
+                break;
+
             case '377: AUXILIARIES':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeOther[@value="377: AUXILIARIES"]`;
@@ -653,25 +687,33 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
 }
 
 async clickField(fieldName: string, timeout = 50000): Promise<void> {
-    let xpath: string;
+  let xpath: string;
 
-    switch (fieldName.toLowerCase()) {
-      case 'location search':
-        xpath = '//XCUIElementTypeTextField[@value="Search Locations"]';
-        break;
+  // normalize input so it's case-insensitive
+  const normalized = fieldName.trim().toLowerCase();
 
-        case 'search by part code or description':
-      // ✅ Correct locator (matches your working getter)
+  switch (normalized) {
+    case 'location search':
+      xpath = '//XCUIElementTypeTextField[@value="Search Locations"]';
+      break;
+
+    case 'search by part code or description':
       xpath = '//XCUIElementTypeTextField[@value="Search by Part Code or Description"]';
       break;
-      // Add more fields as needed
-      default:
-        throw new Error(`No matching field found for name: ${fieldName}`);
-    }
 
-    const element = await $(xpath);
-    await element.waitForDisplayed({ timeout });
-    await element.click();
+    case 'select location':
+      xpath = '//XCUIElementTypeTextField[@value="Select Location"]';
+      break;
+
+    // Add more fields as needed...
+
+    default:
+      throw new Error(`❌ No matching field found for name: ${fieldName}`);
+  }
+
+  const element = await $(xpath);
+  await element.waitForDisplayed({ timeout });
+  await element.click();
 }
 
 /**
