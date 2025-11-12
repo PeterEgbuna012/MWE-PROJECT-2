@@ -25,10 +25,12 @@ Feature: MWE_RS_025 - Teams View for active users on Work Order
     Then I take a screenshot
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I navigate to "back"
     Then The Worklist page is open
 
-    Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+      Examples:
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |

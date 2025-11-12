@@ -123,6 +123,10 @@ class WorkOrderPage extends BasePage {
   public readonly EndTimeField: string =
     '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[3]/XCUIElementTypeOther';
   public readonly DoneButton: string = '//XCUIElementTypeButton[@name="Done"]';
+  public readonly ReturnStartTimeField: string =
+    '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[18]/XCUIElementTypeOther';
+  public readonly ReturnEndTimeField: string =
+    '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[19]/XCUIElementTypeOther';
 
   /**
    * Clicks the Start Time date field.
@@ -132,12 +136,26 @@ class WorkOrderPage extends BasePage {
     await element.waitForDisplayed({ timeout: 30000 });
     await element.click();
   }
+/**
+   * Clicks the Return Start Time date field.
+   */
+  public async selectReturnStartTimeField(): Promise<void> {
+    const element = await $(this.ReturnStartTimeField);
+    await element.waitForDisplayed({ timeout: 30000 });
+    await element.click();
+  }
 
   /**
    * Clicks the End Time date field.
    */
   public async selectEndTimeField(): Promise<void> {
     const element = await $(this.EndTimeField);
+    await element.waitForDisplayed({ timeout: 30000 });
+    await element.click();
+  }
+
+  public async selectReturnEndTimeField(): Promise<void> {
+    const element = await $(this.ReturnEndTimeField);
     await element.waitForDisplayed({ timeout: 30000 });
     await element.click();
   }
@@ -394,21 +412,6 @@ async isAssetFieldPopulated(): Promise<boolean> {
     await result.waitForDisplayed({ timeout: 50000 });
     await result.click();
   }
-
-  // ✅ Select a result from the list by index (1-based)
-  async selectLocationByIndex(index: number): Promise<void> {
-    await driver.pause(50000); 
-    const results = await this.locationResults;
-
-    if (await results.length < index) {
-      throw new Error(`Only ${results.length} location results found. Cannot select index ${index}.`);
-    }
-
-    const result = results[index - 1];
-    await result.waitForDisplayed({ timeout: 50000 });
-    await result.click();
-  }
-
   // ✅ Get selected location text for verification
   async getSelectedLocationText(): Promise<string> {
     await this.selectedLocationLabel.waitForDisplayed({ timeout: 50000 });

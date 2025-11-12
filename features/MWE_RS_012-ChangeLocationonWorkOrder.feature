@@ -22,11 +22,13 @@ Feature: MWE_RS_012 - Change Location on Work Order
     Then The status of the work Order is in "In Progress"
     Then I click on "LOCATION EDIT" button
     Then I click on "LOCATION SEARCH" field
-    And I enter "RS" in the location search field
-    Then I select "RS" location
+    And I enter "MK2 BSO" in the location search field
+    Then I select "MK2 BSO" location
     Then I click on "CONFIRM" button
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I take a screenshot 
     Then I navigate to "back"
@@ -35,5 +37,5 @@ Feature: MWE_RS_012 - Change Location on Work Order
 
 
     Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |

@@ -23,6 +23,8 @@ Feature: MWE_RS_002 - Start and Pause Work Order
     Then The status of the work Order is in "In Progress"
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then The status of the work Order is in "On Hold"
     Then I take a screenshot
@@ -30,5 +32,5 @@ Feature: MWE_RS_002 - Start and Pause Work Order
     
 
     Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |

@@ -5,7 +5,7 @@ mkdir -p $RESULTS_DIR
 
 cat > $RESULTS_DIR/environment.properties <<EOL
 Platform=iOS
-PlatformVersion=18.3
+PlatformVersion=26.1
 Device=iPad 9th generation
 App=MWE
 Automation=XCUITest

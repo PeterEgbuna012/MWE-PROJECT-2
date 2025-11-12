@@ -24,23 +24,25 @@ Feature: MWE_RS_013 - Add Failure Information to the current Work Order
     Then I navigate "Work" tab
     When I press "FAILURE INFORMATION" widget
     Then I click on "FAILURE CLASS" option
-    Then I click on "171-SQR-022: HEATING & LIGHTING" button
+    Then I click on "BATTERY & CONTROL SYSTEMS" option
     Then I click on "PROBLEM CLASS" option
-    Then I click on "SQR 22(a) - Lighting - failed" button
+    Then I click on "EXAM" option
     Then I click on "CAUSE CLASS" option
-    Then I click on "Service Quality Fault Reported" button
+    Then I click on "DAMAGED" option
     Then I click on "REMEDY CLASS" option
-    Then I click on "Service Quality Fault Rectified" button
+    Then I click on "COMPONENT REPAIRED" option
     Then I click on "SAVE" button
     Then I take a screenshot
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I navigate to "back"
     Then The Worklist page is open
     When I click at "first" WO
     
 
-    Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+  Examples:
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |

@@ -24,7 +24,7 @@ export const config: WebdriverIO.Config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: ["./features/MWE_RS_009-CreateFollowOnFromTask.feature"],
+    specs: ["./features/MWE_RS_010-FailanassignedTask.feature"],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -58,7 +58,7 @@ export const config: WebdriverIO.Config = {
     capabilities: [({
     'appium:platformName': 'iOS',
     'appium:automationName': 'XCUITest',
-    'appium:platformVersion': "18.3",
+    'appium:platformVersion': "26.1",
     'appium:deviceName': 'iPad 9th generation',
     'appium:udid': '00008030-000621A90AD0202E',
     'appium:xcodeOrgId': 'D6FH4T6NCD',

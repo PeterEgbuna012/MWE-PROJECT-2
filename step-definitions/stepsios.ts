@@ -63,8 +63,8 @@ When('I enter username as {string}', async (username: string) => {
     if (nativeContext) await driver.switchContext(nativeContext);
 
     const usernameField = await initPage.inputUsername;
-    await usernameField.waitForDisplayed({ timeout: 20000 }); // Wait for visibility
-    await usernameField.scrollIntoView();                       // Scroll into view if offscreen
+    await usernameField.waitForDisplayed({ timeout: 20000 }); 
+    await usernameField.scrollIntoView();                       
     await usernameField.setValue(username);
 });
 
@@ -75,8 +75,8 @@ When('I enter password as {string}', async (password: string) => {
     if (nativeContext) await driver.switchContext(nativeContext);
 
     const passwordField = await initPage.inputPassword;
-    await passwordField.waitForDisplayed({ timeout: 20000 }); // Wait for visibility
-    await passwordField.scrollIntoView();                      // Scroll into view if offscreen
+    await passwordField.waitForDisplayed({ timeout: 20000 }); 
+    await passwordField.scrollIntoView();                      
     await passwordField.setValue(password);
 });
 
@@ -410,16 +410,8 @@ When('I select the location result with name {string}', async (locationName: str
   await workOrderPage.selectLocationFromResult(locationName);
 });
 
-When('I select no {int} record from location table', async (index: number) => {
-  await workOrderPage.selectLocationByIndex(index);
-});
-
 Then('I click on {string} field', async (fieldName: string) => {
   await workOrderPage.clickField(fieldName);
-});
-
-Then('I select {string} location', async function (locationName: string) {
-  await workOrderPage.selectLocation(locationName);
 });
 
 Then('I enter {string} in the select location search field', async (locationName: string) => {
@@ -428,8 +420,8 @@ Then('I enter {string} in the select location search field', async (locationName
 });
 
 // Select a select location by name
-Then(/^I select "([^"]*)" location$/, async (locationName: string) => {
-  await WorkOrderPage.selectLocationResults(locationName);
+Then('I select {string} location', async (locationName: string) => {
+  await basePage.selectLocationByName(locationName);
 });
 
 
@@ -523,3 +515,9 @@ Then('I {string} {word} work order', async (action: string, positionWord: string
 Then(/^I "([^"]*)" asset swap$/, async (buttonName: string) => {
   await WorkOrderPage.clickAssetSwapButton(buttonName);
 });
+
+// -------------------- WAIT FOR PAGE TO LOAD --------------------
+Then('I wait for page to load', async function () {
+  await basePage.waitForPageToLoad();
+});
+

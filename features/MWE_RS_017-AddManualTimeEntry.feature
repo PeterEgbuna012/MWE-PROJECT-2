@@ -27,17 +27,20 @@ Feature: MWE_RS_017 - Add Manual Time Entry
     Then I set date as "yesterdays" date
     Then I select "End Time" date field
     Then I set date as "todays" date
-    Then I click on "ADD MANUAL TIME ENTRY" button
+    Then I click on "CONFIRM" button
+   # Then I click on "ADD MANUAL TIME ENTRY" button
     Then I compare the time value "1d 0h 0m"
     Then I take a screenshot
     When I navigate to "back"
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     When I navigate to "back"
     Then The Worklist page is open
   
     
     Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |

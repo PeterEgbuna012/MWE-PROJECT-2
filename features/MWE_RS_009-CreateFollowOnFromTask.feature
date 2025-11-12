@@ -20,9 +20,9 @@ Feature: MWE_RS_009 - Create Follow On From Task
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I navigate "Work" tab
-    When I press "task" widget
+    When I press "TASKS" widget
     When I tap on task with number "10."
-    Then "10" page appears
+   # Then "10" page appears
     Then I click on "" button
     Then I click on "CREATE FOLLOW ON" button
     Then the Follow-On page should be "Shown"
@@ -30,22 +30,25 @@ Feature: MWE_RS_009 - Create Follow On From Task
     Then I verify location field is populated
     Then I verify asset field is populated
     Then I click on "SELECT A TEMPLATE " button 
-    Then I click on "377 Auxillaries" button
+    Then I click on "Fault reported during exam (Additional arising work)" button
    # And I set "Description" value field to "TESTING"
     Then I click on "NEXT" button
-   # Then I click on "377: AUXILIARIES" option
+    Then I click on "FAILURE CLASS" option
+    Then I click on "BATTERY & CONTROL SYSTEMS" option
     Then I click on "PROBLEM CLASS" option
-    Then I click on "ACTIVATED" option
+    Then I click on "EXAM" option
     Then I click on "CAUSE CLASS" option
-    Then I click on "BURNT" option
+    Then I click on "DAMAGED" option
     Then I click on "REMEDY CLASS" option
-    Then I click on "REPAIR CARRIED OUT" option
+    Then I click on "COMPONENT REPAIRED" option
     Then I click on "CREATE FOLLOW-ON" button
     Then I take a screenshot
     Then I navigate to "back"
     Then I navigate to "back"
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I click on "HISTORY TAB" button
     Then I take a screenshot
@@ -54,6 +57,6 @@ Feature: MWE_RS_009 - Create Follow On From Task
     Then The Worklist page is open
 
 
-    Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+  Examples:
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |

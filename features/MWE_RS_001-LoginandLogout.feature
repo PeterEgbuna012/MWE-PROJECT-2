@@ -19,8 +19,9 @@ Feature: MWE_RS_001 - Login and Logout from the Application
     Then I press the Hamburger icon
     Then I click on "Logout" button
     Then signIn option shows up
+    Then I take a screenshot
 
 
     Examples:
       | country | EnvCode        | username  | password   |
-      | Europe  | lucky-liger-8  | CBRUNS | cbruns |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |

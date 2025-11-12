@@ -15,26 +15,32 @@ Feature: MWE_RS_010 - Fail an assigned Task
     And I see allow button
     When I click on "Reject" button
     Then The Worklist page is open
+    Then The Worklist page is open
     When I click at "first" WO
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I navigate "Work" tab
-    When I press "task" widget
+    When I press "TASKS" widget
     When I tap on task with number "10."
-    Then "10" page appears
+   # Then "10" page appears
     And I set "comments" value field to "TEST"
     Then I click on "" button
     When I click on "FAIL TASK" button
+    Then I enter "TEST" in textfield "Comments"
+   # And I set "comments" value field to "TEST"
+    Then I click on "OK" button
     Then I take a screenshot
     When I navigate to "back"
     When I navigate to "back" 
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then The status of the work Order is in "On Hold"
     Then I take a screenshot
 
     Examples:
-      | country | EnvCode  | username  | password   |
-      | Europe  | lucky-liger-8 | CBRUNS | cbruns |
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | JAMES.BOTTOMLEY@NTSGLOBAL.UK | ntsmaximo |

@@ -114,6 +114,10 @@ async clickButtonByName(name: string, timeout = 50000): Promise<void> {
             xpath = '//XCUIElementTypeButton[@name="Done"]';
             break;
 
+            case 'ON HOLD':
+            xpath = '//XCUIElementTypeButton[@name="On Hold"]';
+            break;
+
           case 'PAUSE':
             xpath = '//XCUIElementTypeButton[@name="Pause"]';
             break; 
@@ -582,7 +586,12 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
                 xpath = `//XCUIElementTypeStaticText[@name="IN"]`;
                 break;
 
-            case '377: AUXILIARIES':
+                case 'SELECT OUTCOME':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeOther[@value="Select outcome..."]`;
+                break;
+
+                case '377: AUXILIARIES':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeOther[@value="377: AUXILIARIES"]`;
                 break;
@@ -590,6 +599,76 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
               case 'CRACKED':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeButton[@name="CRACKED"]`;
+                break;
+
+                case 'DOORS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="DOORS"]`;
+                break;
+
+                case 'End of Day (to be fixed within 1 day)':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="End of Day (to be fixed within 1 day)"]`;
+                break;
+
+                case 'Out of Service (to be fixed immediately)':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Out of Service (to be fixed immediately)"]`;
+                break;
+
+                case 'COMPONENT REPAIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="COMPONENT REPAIRED"]`;
+                break;
+
+                case 'ADJUSTED OR RESET':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="ADJUSTED OR RESET"]`;
+                break;
+
+                case 'DAMAGED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="DAMAGED"]`;
+                break;
+
+                case 'Defect Investigation':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Defect Investigation"]`;
+                break;
+
+                case 'CAPACITORS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CAPACITORS"]`;
+                break;
+
+                case 'EXAM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="EXAM"]`;
+                break;
+
+                case 'AIR BRAKE DEFECT (TOPS)':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="AIR BRAKE DEFECT (TOPS)"]`;
+                break;
+
+                case 'CALIPERS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="EXAM"]`;
+                break;
+
+                case 'BLOCK/PADS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="BLOCK/PADS"]`;
+                break;
+
+                case 'BRAKES - AIR/VACUUM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="BRAKES - AIR/VACUUM"]`;
+                break;
+
+                case 'BATTERY & CONTROL SYSTEMS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="BATTERY & CONTROL SYSTEMS"]`;
                 break;
 
                 case '171-SQR-022: HEATING & LIGHTING':
@@ -716,6 +795,53 @@ async clickField(fieldName: string, timeout = 50000): Promise<void> {
   await element.click();
 }
 
+/**
+   * Get location element by name.
+   * Tries both StaticText and Other element types.
+   */
+  private async getLocationElementByName(name: string) {
+    const staticText = await $(`//XCUIElementTypeStaticText[@name="${name}"]`);
+    if (await staticText.isExisting()) {
+      return staticText;
+    }
+
+    const otherElement = await $(`//XCUIElementTypeOther[@name="${name}"]`);
+    if (await otherElement.isExisting()) {
+      return otherElement;
+    }
+
+    throw new Error(`❌ No location element found for name: ${name}`);
+  }
+
+  /**
+   * Selects a location record by its displayed name.
+   * Works across different element types.
+   */
+  public async selectLocationByName(name: string): Promise<void> {
+    const element = await this.getLocationElementByName(name);
+
+    await element.waitForDisplayed({ timeout: 50000 });
+    await element.waitForEnabled({ timeout: 50000 });
+
+    await element.click();
+  }
+
+   // 🔹 Precise selectors
+  public readonly StartTimeField: string =
+    '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[18]/XCUIElementTypeOther';
+  public readonly EndTimeField: string =
+    '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeOther[19]/XCUIElementTypeOther';
+  public readonly DoneButton: string =
+    '//XCUIElementTypeButton[@name="Done"]';
+
+  /**
+   * Clicks the Start Time date field.
+   */
+  public async selectStartTimeField(): Promise<void> {
+    const element = await $(this.StartTimeField);
+    await element.waitForDisplayed({ timeout: 30000 });
+    await element.click();
+  }
 /**
  * Selects an option from the outcome dropdown by visible text.
  * Example optionText: "Assign to me"
@@ -954,6 +1080,15 @@ async handleActionButton(actionButton: string): Promise<void> {
         const value = await element.getValue();
         return value.trim().length > 0;
     }
+
+    /**
+   * Wait for the page to fully load
+   * (simulates a 50-second maximum wait)
+   */
+  async waitForPageToLoad(): Promise<void> {
+    // Just wait for 50 seconds or until your app logic is ready
+    await new Promise((resolve) => setTimeout(resolve, 25000));
+  }
     
 
   /** Verify Follow-On page visibility */

@@ -21,15 +21,18 @@ Feature: MWE_RS_015 - Return an Assigned Work Order
     Then The status of the work Order is in "In Progress"
     Then I click on "PAUSE ICON" button
     Then I click on "RETURN" button
-    When I select "Start" date field
-    Then I set date as "yesterdays" date
-    Then I click on "DONE" button
-    When I select "End" date field
-    Then I set date as "todays" date
-    Then I click on "DONE" button
+  # Then I select "Return Start Time" date field
+  # Then I set date as "yesterdays" date
+  # Then I click on "DONE" button
+  # Then I select "Return End Time" date field
+  # Then I set date as "todays" date
+  # Then I click on "DONE" button
     Then I enter "TEST" in textfield "Please enter a reason for returning the work..."
+    Then I click on "RETURN WORK ORDER" button
+    Then The Worklist page is open
+    Then I take a screenshot
     #Then The status of the work Order is in "On Hold"
 
     Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |

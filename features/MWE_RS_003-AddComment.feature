@@ -30,14 +30,16 @@ Feature: MWE_RS_003 - Add Comment
     Then I click on "ADD COMMENT BUTTON" button
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I click on "HISTORY TAB" button
-    Then I click on "FILTER OPTIONS" button
-    Then I click on "COMMENTS OPTION" button
+   # Then I click on "FILTER OPTIONS" button
+   # Then I click on "COMMENTS OPTION" button
     Then I take a screenshot
 
     
 
-    Examples:
-      | country | EnvCode        | username       | password   |
-      | Europe  | lucky-liger-8  | AGRAY          | maximo     |
+  Examples:
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |

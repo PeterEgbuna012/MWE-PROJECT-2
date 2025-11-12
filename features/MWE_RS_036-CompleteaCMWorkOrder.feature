@@ -23,30 +23,31 @@ Feature: MWE_RS_036 - Complete a CM Work Order
     Then I navigate "Work" tab
     When I press "FAILURE INFORMATION" widget
     Then I click on "FAILURE CLASS" option
-    Then I click on "171-SQR-022: HEATING & LIGHTING" button
+    Then I click on "BATTERY & CONTROL SYSTEMS" option
     Then I click on "PROBLEM CLASS" option
-    Then I click on "SQR 22(a) - Lighting - failed" button
+    Then I click on "EXAM" option
     Then I click on "CAUSE CLASS" option
-    Then I click on "Service Quality Fault Reported" button
+    Then I click on "DAMAGED" option
     Then I click on "REMEDY CLASS" option
-    Then I click on "Service Quality Fault Rectified" button
+    Then I click on "COMPONENT REPAIRED" option
     Then I click on "SAVE" button
     Then I click on "MORE ACTION ICON" button
     Then I click on "ADD COMMENT" button
     Then I click on "TYPE FIELD" button
-    Then I click on "UPDATE" button
+    Then I click on "CLIENTNOTE" button
     And I set "Summary" value field to "TEST"
     And I set "Details" value field to "TEST"
     Then I click on "ADD COMMENT BUTTON" button
     Then I click on "PAUSE ICON" button
     When I click on "Complete" button
-   # When I click at "Select outcome..." option
-  #  Then I click on "Permanent Fix" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "PERMANENT FIX" button
     Then I click on "COMPLETE WORK ORDER" button
+    Then I wait for page to load
     Then I take a screenshot
     Then I navigate to "back"
     
 
     Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |

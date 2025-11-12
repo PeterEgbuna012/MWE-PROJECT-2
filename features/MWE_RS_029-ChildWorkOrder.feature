@@ -20,12 +20,15 @@ Feature: MWE_RS_029 - Child Work Order
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
     Then The status of the work Order is in "On Hold"
+    Then I take a screenshot
     Then I navigate "Work" tab
-    Then I click on "timetracking" widget
+    Then I click on "TIME ENTRIES" widget
+    Then I wait for page to load
     Then I take a screenshot
     Then I navigate to "back"
     Then I navigate to "back"
@@ -34,5 +37,5 @@ Feature: MWE_RS_029 - Child Work Order
     
 
     Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+    | country | EnvCode        | username  | password   |
+    | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |

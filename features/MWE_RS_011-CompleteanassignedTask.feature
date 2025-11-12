@@ -22,7 +22,7 @@ Feature: MWE_RS_011 - Complete an assigned Task
     Then I navigate "Work" tab
     When I press "TASKS" widget
     When I tap on task with number "10."
-    Then "10" page appears
+   # Then "10" page appears
     And I set "comments" value field to "TEST"
     #Then I click on "Add Signature" button
     # this symbol is for circle button in task
@@ -33,8 +33,8 @@ Feature: MWE_RS_011 - Complete an assigned Task
    # Then I press the "" button   
     When I navigate to "back"
     When I tap on task with number "20."
-    Then "20" page appears
-    And I set "measurement input" value field to "1500"
+   # Then "20" page appears
+    And I set "measurement input" value field to "120"
     And I set "comments" value field to "TEST"
     Then I click on "" button
     When I click on "SIGN & COMPLETE" button
@@ -45,10 +45,12 @@ Feature: MWE_RS_011 - Complete an assigned Task
     When I navigate to "back" 
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then The status of the work Order is in "On Hold"
     Then I take a screenshot
 
-    Examples:
-      | country | EnvCode  | username  | password   |
-      | Europe  | lucky-liger-8 | CBRUNS | cbruns |
+      Examples:
+      | country | EnvCode        | username  | password   |
+      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |

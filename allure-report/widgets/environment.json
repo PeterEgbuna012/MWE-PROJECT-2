@@ -1,1 +1,1 @@
-[{"values":["iOS"],"name":"Platform"},{"values":["18.3"],"name":"PlatformVersion"},{"values":["iPad 9th generation"],"name":"Device"},{"values":["MWE"],"name":"App"},{"values":["XCUITest"],"name":"Automation"},{"values":["00008030-000621A90AD0202E"],"name":"UDID"}]
+[{"values":["iOS"],"name":"Platform"},{"values":["26.1"],"name":"PlatformVersion"},{"values":["iPad 9th generation"],"name":"Device"},{"values":["MWE"],"name":"App"},{"values":["XCUITest"],"name":"Automation"},{"values":["00008030-000621A90AD0202E"],"name":"UDID"}]
