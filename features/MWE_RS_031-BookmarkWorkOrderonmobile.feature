@@ -38,8 +38,5 @@ Feature: MWE_RS_031 - Bookmark Work Order on mobile
 
 
     Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |
-    
-
-    
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

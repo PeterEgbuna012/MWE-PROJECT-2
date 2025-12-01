@@ -16,47 +16,48 @@ Feature: MWE_RS_009 - Create Follow On From Task
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I navigate "Work" tab
     When I press "TASKS" widget
-    When I tap on task with number "10."
-   # Then "10" page appears
+    When I tap on task with number "20."
     Then I click on "" button
     Then I click on "CREATE FOLLOW ON" button
-    Then the Follow-On page should be "Shown"
+    Then I wait for page to load
     Then I click on "Add to backlog" outcome and select "Add to backlog"
-    Then I verify location field is populated
-    Then I verify asset field is populated
     Then I click on "SELECT A TEMPLATE " button 
-    Then I click on "Fault reported during exam (Additional arising work)" button
-   # And I set "Description" value field to "TESTING"
+    Then I click on "Assign To Me Work Priority 1 - Unit Withdrawn from Service" button
+    Then I take a screenshot
     Then I click on "NEXT" button
+    Then I wait for page to load
     Then I click on "FAILURE CLASS" option
-    Then I click on "BATTERY & CONTROL SYSTEMS" option
+    Then I click on "171-SQR-022: HEATING & LIGHTING" option
     Then I click on "PROBLEM CLASS" option
-    Then I click on "EXAM" option
+    Then I click on "SQR LIGHTING FAILED" option
     Then I click on "CAUSE CLASS" option
-    Then I click on "DAMAGED" option
+    Then I click on "SERVICE QUALITY FAULT REPORTED" option
     Then I click on "REMEDY CLASS" option
-    Then I click on "COMPONENT REPAIRED" option
+    Then I click on "SERVICE QUALITY FAULT RECTIFIED" option
+    Then I wait for page to load
+    Then I click on "" button
     Then I click on "CREATE FOLLOW-ON" button
     Then I take a screenshot
     Then I navigate to "back"
     Then I navigate to "back"
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
-    Then I click on "SELECT OUTCOME" option
-    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I click on "HISTORY TAB" button
+    Then I wait for page to load
     Then I take a screenshot
     Then I click on "DETAILS TAB" button
     Then I navigate to "back"
     Then The Worklist page is open
 
 
-  Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |
+    Examples:
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

@@ -42,5 +42,5 @@ Feature: MWE_RS_010 - Fail an assigned Task
     Then I take a screenshot
 
     Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | JAMES.BOTTOMLEY@NTSGLOBAL.UK | ntsmaximo |
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

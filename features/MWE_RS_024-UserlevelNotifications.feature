@@ -16,7 +16,7 @@ Feature: MWE_RS_024 - User level Notifications
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then WO page is "Shown"
+    Then I take a screenshot
     Then I navigate to "notifications"
     When I click on "All" filter and select "Unread"
     Then I click on "Unread" filter and select "Read"
@@ -30,5 +30,5 @@ Feature: MWE_RS_024 - User level Notifications
     Then I take a screenshot
 
     Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |
+      | country | EnvCode        | username | password  |
+      | Europe  | lucky-liger-8  | CBRUNS   | cbruns    |

@@ -17,6 +17,7 @@ Feature: MWE_RS_029 - Child Work Order
     Then The Worklist page is open
     When I click at "first" WO
     Then WO page is "Shown"
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
@@ -37,5 +38,5 @@ Feature: MWE_RS_029 - Child Work Order
     
 
     Examples:
-    | country | EnvCode        | username  | password   |
-    | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

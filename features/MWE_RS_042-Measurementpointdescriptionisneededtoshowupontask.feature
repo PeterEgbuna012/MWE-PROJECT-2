@@ -16,9 +16,11 @@ Feature: MWE_RS_042 - Measurement point description is needed to show up on task
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I navigate "Work" tab
     When I press "TASKS" widget
     When I tap on task with number "20."
@@ -30,12 +32,10 @@ Feature: MWE_RS_042 - Measurement point description is needed to show up on task
     When I navigate to "back" 
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
-    Then I click on "SELECT OUTCOME" option
-    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then The status of the work Order is in "On Hold"
     Then I take a screenshot
 
-      Examples:
-    | country | EnvCode        | username  | password   |
-    | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |
+    Examples:
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

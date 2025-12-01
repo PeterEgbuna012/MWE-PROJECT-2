@@ -16,19 +16,21 @@ Feature: MWE_RS_032 - Complete a CM Work Order with Task Assigned
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I navigate "Work" tab
     Then "FAILURE INFORMATION" widget is clicked
-    Then I click on "FAILURE CLASS" option
-    Then I click on "171-SQR-022: HEATING & LIGHTING" button
+  #  Then I click on "FAILURE CLASS" option
+  #  Then I click on "171-SQR-022: HEATING & LIGHTING" button
     Then I click on "PROBLEM CLASS" option
-    Then I click on "SQR 22(a) - Lighting - failed" button
+    Then I click on "CRACKED" button
     Then I click on "CAUSE CLASS" option
-    Then I click on "Service Quality Fault Reported" button
+    Then I click on "BURNT" button
     Then I click on "REMEDY CLASS" option
-    Then I click on "Service Quality Fault Rectified" button
+    Then I click on "REPAIR CARRIED OUT" button
     Then I click on "SAVE" button
     Then I click on "MORE ACTION ICON" button
     Then I click on "ADD COMMENT" button
@@ -39,14 +41,12 @@ Feature: MWE_RS_032 - Complete a CM Work Order with Task Assigned
     Then I click on "ADD COMMENT BUTTON" button
     When I press "TASKS" widget
     When I tap on task with number "10."
-    Then "10" page appears
     And I set "comments" value field to "TEST"
     Then I click on "" button
     When I click on "SIGN & COMPLETE" button
     Then I take a screenshot
     When I navigate to "back"
     When I tap on task with number "20."
-    Then "20" page appears
     And I set "measurement input" value field to "1500"
     And I set "comments" value field to "TEST"
     Then I click on "" button
@@ -56,13 +56,14 @@ Feature: MWE_RS_032 - Complete a CM Work Order with Task Assigned
     When I navigate to "back" 
     Then I click on "PAUSE ICON" button
     When I click on "Complete" button
-   # Then I click on "Select outcome..." option
+  # Then I click on "Select outcome..." option
   #  Then I click on "PERMANENT FIX" button
     Then I click on "COMPLETE WORK ORDER" button
+    Then I wait for page to load
     Then I take a screenshot
     Then I navigate to "back"
   
 
     Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+      | country | EnvCode        | username  | password |
+      | Europe  | lucky-liger-8  | CBRUNS    | cbruns   |

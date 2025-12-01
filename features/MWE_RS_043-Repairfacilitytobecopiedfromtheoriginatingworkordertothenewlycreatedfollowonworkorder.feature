@@ -42,14 +42,13 @@ Scenario Outline: Repair facility to be copied from the originating work order t
     Then I take a screenshot
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
-    Then I click on "SELECT OUTCOME" option
-    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I click on "HISTORY TAB" button
     Then I wait for page to load
     Then I take a screenshot
     
 
+    
     Examples:
-    | country | EnvCode        | username  | password   |
-    | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

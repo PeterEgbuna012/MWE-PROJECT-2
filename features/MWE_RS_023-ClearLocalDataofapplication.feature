@@ -15,18 +15,20 @@ Feature: MWE_RS_023 - Clear Local Data of application
     And I see allow button
     When I click on "Reject" button
     Then The Worklist page is open
+    Then I take a screenshot
     Then I press the Hamburger icon
     Then I click on "Clear Local Data" button
+    Then I wait for page to load
+    Then I take a screenshot
     Then I click on "OK" button
     When I switch to the web view context
-    Then I enter username as "<username>"
-    And I enter password as "<password>"
-    And I click on "Sign In" button
-    And I see allow button
-    When I click on "Reject" button
-    Then The Worklist page is open
+    Then I wait for page to load
+    Then I take a screenshot
+    Then signIn option shows up
+    Then I wait for page to load
+    Then I take a screenshot
     
     
-  Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |
+    Examples:
+      | country | EnvCode        | username | password  |
+      | Europe  | lucky-liger-8  | CBRUNS   | cbruns    |

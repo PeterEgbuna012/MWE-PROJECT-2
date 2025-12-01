@@ -24,7 +24,7 @@ export const config: WebdriverIO.Config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: ["./features/MWE_RS_010-FailanassignedTask.feature"],
+    specs: ["./features/MWE_RS_050-Afterrefreshingenvironmentsyncronizationscreenappears.feature"],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -63,7 +63,7 @@ export const config: WebdriverIO.Config = {
     'appium:udid': '00008030-000621A90AD0202E',
     'appium:xcodeOrgId': 'D6FH4T6NCD',
     'appium:xcodeSigningId': 'Apple Development',
-    'appium:app': '/Users/MWE-PROJECT/mobile-work-execution.ipa',
+    "appium:app":"/Users/MWE-PROJECT/mobile-work-execution.ipa",
     'appium:appname': 'MWE', 
     'appium:safariAllowPopups': true,
     'appium:unexpectedAlertBehaviour': 'accept',

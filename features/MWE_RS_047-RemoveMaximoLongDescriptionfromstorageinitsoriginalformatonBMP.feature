@@ -28,13 +28,12 @@ Scenario Outline: Remove Maximo Long Description from storage in its original fo
     Then I take a screenshot
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
-    Then I click on "SELECT OUTCOME" option
-    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then The status of the work Order is in "On Hold"
     Then I take a screenshot 
     
 
+
     Examples:
-    | country | EnvCode        | username  | password   |
-    | Europe  | rude-eagle-57  | JAMES.BOTTOMLEY@NTSGLOBAL.UK | ntsmaximo |
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

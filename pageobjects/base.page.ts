@@ -576,6 +576,31 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
             xpath = '//XCUIElementTypeButton[@name="Assign to me"]';
             break;
 
+            case 'REPLACED (LIKE FOR LIKE)':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="REPLACED (LIKE FOR LIKE)"]`;
+                break;
+
+                case 'LEAKING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="LEAKING"]`;
+                break;
+
+                case 'Assign To Me Work Priority 1 - Unit Withdrawn from Service':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name=[@name="Assign To Me Work Priority 1 - Unit Withdrawn from Service"]`;
+                break;
+
+                case 'LIFE EXPIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="LIFE EXPIRED"]`;
+                break;
+
+                case 'WATER LEAK':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="WATER LEAK"]`;
+                break;
+        
             case 'OUT':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeStaticText[@name="OUT"]`;
@@ -599,6 +624,11 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
               case 'CRACKED':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeButton[@name="CRACKED"]`;
+                break;
+
+                case 'BURNT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="BURNT"]`;
                 break;
 
                 case 'DOORS':

@@ -33,6 +33,6 @@ Feature: MWE_RS_014 - Complete a PM Work Order
     Then I navigate to "back"
     #Then WO page is "Not Shown"
 
-  Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |
+    Examples:
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

@@ -16,21 +16,21 @@ Scenario Outline: Complete a PM Work Order With Tasks
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then WO page is "Shown"
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I navigate "Work" tab
     When I press "TASKS" widget
+    Then I take a screenshot
     When I tap on task with number "10."
-   # Then "10" page appears
     And I set "comments" value field to "TEST"
     Then I click on "" button
     When I click on "SIGN & COMPLETE" button
     Then I take a screenshot
     When I navigate to "back"
     When I tap on task with number "20."
-   # Then "20" page appears
     And I set "measurement input" value field to "1500"
     And I set "comments" value field to "TEST"
     Then I click on "" button
@@ -38,23 +38,16 @@ Scenario Outline: Complete a PM Work Order With Tasks
     Then I take a screenshot
     When I navigate to "back"
     When I navigate to "back" 
-    Then I click on "MORE ACTION ICON" button
-    Then I click on "ADD COMMENT" button
-    Then I click on "TYPE FIELD" button
-    Then I click on "CLIENTNOTE" button
-    And I set "Summary" value field to "TEST"
-    And I set "Details" value field to "TEST"
-    Then I click on "ADD COMMENT BUTTON" button
     Then I click on "PAUSE ICON" button
     When I click on "Complete" button
     Then I click on "COMPLETE WORK ORDER" button
     Then I navigate "History" tab
-    Then I wait for page to load
     Then I take a screenshot
     Then I navigate to "back"
     Then The Worklist page is open
 
 
+
     Examples:
-    | country | EnvCode        | username  | password   |
-    | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

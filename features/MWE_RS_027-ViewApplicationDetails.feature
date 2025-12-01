@@ -18,13 +18,18 @@ Feature: MWE_RS_027- View Application Details
     Then The Worklist page is open
     Then I press the Hamburger icon
     Then I click on "About" button
+    Then I wait for page to load
     Then I take a screenshot
     Then "Version" text is displayed
+    Then I wait for page to load
+    Then I take a screenshot
     Then "Environment" text is displayed
     When I click on "Licenses" button
+    Then I wait for page to load
     Then I take a screenshot
     Then "MIT" text is displayed
+    Then I take a screenshot
 
     Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |
+      | country | EnvCode        | username  | password |
+      | Europe  | lucky-liger-8  | CBRUNS    | cbruns   |

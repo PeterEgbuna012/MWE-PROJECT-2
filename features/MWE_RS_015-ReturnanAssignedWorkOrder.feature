@@ -16,9 +16,12 @@ Feature: MWE_RS_015 - Return an Assigned Work Order
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
+    Then WO page is "Shown"
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I click on "PAUSE ICON" button
     Then I click on "RETURN" button
   # Then I select "Return Start Time" date field
@@ -34,5 +37,5 @@ Feature: MWE_RS_015 - Return an Assigned Work Order
     #Then The status of the work Order is in "On Hold"
 
     Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

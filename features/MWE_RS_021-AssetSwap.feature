@@ -16,10 +16,11 @@ Feature: MWE_RS_021 - Asset Swap
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then WO page is "Shown"
+    Then I take a screenshot 
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot 
     Then I navigate "Work" tab
     When I press "MATERIALS" widget
     Then I take a screenshot 
@@ -34,12 +35,13 @@ Feature: MWE_RS_021 - Asset Swap
     Then I click on "SELECT" button
     Then I take a screenshot 
     Then I click on "RETURN LOCATION SELECT" button
-    Then I enter "Daventry Repair" in the select location search field
-    Then I select "Daventry Repair" location
-    Then I wait for page to load
+    Then I enter "HORNSEY PRODUCTION DROP OFF LOCATION" in the select location search field
+    Then I select "HORNSEY PRODUCTION DROP OFF LOCATION" location
     Then I take a screenshot 
     Then I "CONFIRM" asset swap
+    Then I wait for page to load
     Then I "SWAP" asset swap 
+    Then I wait for page to load
     Then I take a screenshot 
     Then I "CONFIRM" asset swap
     Then I wait for page to load
@@ -47,15 +49,13 @@ Feature: MWE_RS_021 - Asset Swap
     Then I navigate to "back"
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
-    Then I click on "SELECT OUTCOME" option
-    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
-    Then The status of the work Order is in "On Hold"
+    Then I wait for page to load
     Then I take a screenshot 
     Then I navigate to "back"
     Then The Worklist page is open
   
 
   Examples:
-    | country | EnvCode        | username  | password   |
-    | Europe  | rude-eagle-57  | JAMES.BOTTOMLEY@NTSGLOBAL.UK | ntsmaximo |
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

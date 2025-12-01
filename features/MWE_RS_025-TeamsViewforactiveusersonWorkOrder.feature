@@ -17,20 +17,20 @@ Feature: MWE_RS_025 - Teams View for active users on Work Order
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then WO page is "Shown"
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I click on "TEAM VIEW ICON" button
+    Then I wait for page to load
     Then I take a screenshot
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
-    Then I click on "SELECT OUTCOME" option
-    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I navigate to "back"
     Then The Worklist page is open
 
-      Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |
+    Examples:
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

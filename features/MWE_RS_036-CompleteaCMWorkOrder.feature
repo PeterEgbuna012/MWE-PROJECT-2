@@ -34,7 +34,7 @@ Feature: MWE_RS_036 - Complete a CM Work Order
     Then I click on "MORE ACTION ICON" button
     Then I click on "ADD COMMENT" button
     Then I click on "TYPE FIELD" button
-    Then I click on "CLIENTNOTE" button
+    Then I click on "UPDATE" button
     And I set "Summary" value field to "TEST"
     And I set "Details" value field to "TEST"
     Then I click on "ADD COMMENT BUTTON" button
@@ -49,5 +49,5 @@ Feature: MWE_RS_036 - Complete a CM Work Order
     
 
     Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

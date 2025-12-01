@@ -32,6 +32,7 @@ Feature: MWE_RS_038 - Route Stop WO Descriptions are displayed alongside Route S
     Then I take a screenshot
 
 
+  
     Examples:
-    | country | EnvCode        | username  | password   |
-    | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

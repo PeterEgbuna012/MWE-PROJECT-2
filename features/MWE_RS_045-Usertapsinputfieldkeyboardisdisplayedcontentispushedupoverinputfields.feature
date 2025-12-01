@@ -17,15 +17,16 @@ Scenario Outline: User taps input field keyboard is displayed, content is pushed
     Then The Worklist page is open
     When I click at "first" WO
     Then WO page is "Shown"
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I click on "MORE ACTION ICON" button
     Then I click on "ADD COMMENT" button
     Then I click on "TYPE FIELD" button
-    Then I click on "CLIENTNOTE" button
+    Then I click on "UPDATE" button
     And I set "Summary" value field to "TEST"
-    Then I take a screenshot
     And I set "Details" value field to "TEST"
     Then I take a screenshot
     Then I click on "ADD COMMENT BUTTON" button
@@ -39,6 +40,7 @@ Scenario Outline: User taps input field keyboard is displayed, content is pushed
     # this symbol is for circle button in task
     Then I click on "" button
     When I click on "SIGN & COMPLETE" button
+    Then I take a screenshot
     #it means close button
    # Then I press the "" button   
     When I navigate to "back"
@@ -47,13 +49,11 @@ Scenario Outline: User taps input field keyboard is displayed, content is pushed
     When I navigate to "back" 
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
-    Then I click on "SELECT OUTCOME" option
-    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then The status of the work Order is in "On Hold"
     Then I take a screenshot
 
 
     Examples:
-    | country | EnvCode        | username  | password   |
-    | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |
+    | country | EnvCode        | username | password |
+    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

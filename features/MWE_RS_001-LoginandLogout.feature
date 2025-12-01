@@ -14,8 +14,10 @@ Feature: MWE_RS_001 - Login and Logout from the Application
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I take a screenshot
     When I click on "Reject" button
     Then The Worklist page is open
+    Then I take a screenshot
     Then I press the Hamburger icon
     Then I click on "Logout" button
     Then signIn option shows up
@@ -23,5 +25,5 @@ Feature: MWE_RS_001 - Login and Logout from the Application
 
 
     Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | ntsmaximo |
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |

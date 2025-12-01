@@ -15,6 +15,7 @@ Feature: MWE_RS_026 - Sort By Filter in My Work List
     And I see allow button
     When I click on "Reject" button
     Then The Worklist page is open
+    Then I take a screenshot
     Then I click on "Start Date" sort by option and select "Compliance Date"
     Then I take a screenshot
     Then I click on "Compliance Date" sort by option and select "Status"
@@ -29,6 +30,5 @@ Feature: MWE_RS_026 - Sort By Filter in My Work List
 
 
     Examples:
-      | country | EnvCode        | username  | password   |
-      | Europe  | rude-eagle-57  | Ian.nuttall@NTSGLOBAL.UK | mwe2025 |
-    
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
