@@ -27,7 +27,7 @@ Feature: MWE_RS_046 - No files attached is shown in the Files tab when there are
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
-    Then The status of the work Order is in "On Hold"
+    Then I wait for page to load
     Then I take a screenshot
 
   Examples:

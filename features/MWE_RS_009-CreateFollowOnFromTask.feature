@@ -23,7 +23,7 @@ Feature: MWE_RS_009 - Create Follow On From Task
     Then I take a screenshot
     Then I navigate "Work" tab
     When I press "TASKS" widget
-    When I tap on task with number "20."
+    When I tap on task with number "10."
     Then I click on "" button
     Then I click on "CREATE FOLLOW ON" button
     Then I wait for page to load

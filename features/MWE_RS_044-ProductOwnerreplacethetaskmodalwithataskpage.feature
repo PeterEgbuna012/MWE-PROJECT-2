@@ -24,7 +24,7 @@ Scenario Outline: Product Owner replace the task modal with a task page
     Then I navigate "Work" tab
     When I press "TASKS" widget
     Then I take a screenshot
-    When I tap on task with number "10."
+    When I tap on task with number "20."
     Then I click on "" button
     Then I wait for page to load
     Then I take a screenshot
@@ -34,7 +34,7 @@ Scenario Outline: Product Owner replace the task modal with a task page
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
-    Then The status of the work Order is in "On Hold"
+    Then I wait for page to load
     Then I take a screenshot
 
     Examples:

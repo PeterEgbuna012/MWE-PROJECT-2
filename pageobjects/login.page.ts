@@ -66,9 +66,14 @@ export default class LoginPage extends BasePage {
         get allowButton() {
         return $('.//XCUIElementTypeButton[@name="Allow"]');
         }
-   get Europe() {
+
+        get Europe() {
         return $('//XCUIElementTypeButton[@name="Europe"]');
         } 
+        get US() {
+        return $('//XCUIElementTypeButton[@name="US"]');
+        } 
+    
         get rejectButton() {
         return $('.//XCUIElementTypeButton[@name="Reject"]');
             

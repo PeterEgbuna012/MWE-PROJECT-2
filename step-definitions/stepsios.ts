@@ -260,7 +260,7 @@ Then("I set date as {string} date", async (offsetText: 'todays' | 'yesterdays') 
     } else {
         await workOrderPage.setDateToYesterday();
     }
-    await workOrderPage.clickDoneButton(); // confirm date selection
+    await workOrderPage.clickDoneButton(); 
 });
 
 

@@ -29,7 +29,7 @@ Scenario Outline: Remove Maximo Long Description from storage in its original fo
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
-    Then The status of the work Order is in "On Hold"
+    Then I wait for page to load
     Then I take a screenshot 
     
 

@@ -4,7 +4,7 @@ import type { ChainablePromiseElement } from 'webdriverio';
 
 export default class PhotoPage extends BasePage {
     static photo_visible(photo_visible: any) {
-      throw new Error("Method not implemented.");
+    throw new Error("Method not implemented.");
     }
     get photoVisible(): ChainablePromiseElement {
         return $('//XCUIElementTypeImage');

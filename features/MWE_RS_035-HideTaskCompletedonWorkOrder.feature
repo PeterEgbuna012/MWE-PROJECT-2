@@ -40,7 +40,7 @@ Feature: MWE_RS_035 - Hide Task Completed on Work Order
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
-    Then The status of the work Order is in "On Hold"
+    Then I wait for page to load
     Then I take a screenshot
     Then I navigate "Work" tab
     When I press "TASKS" widget

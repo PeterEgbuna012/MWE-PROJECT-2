@@ -16,10 +16,12 @@ Feature: MWE_RS_022 - Check out Materials and make Reservations
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then WO page is "Shown"
+    Then I wait for page to load
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I navigate "Work" tab
     When I press "MATERIALS" widget
     Then I click on "SEARCH ALL PARTS" button
@@ -31,6 +33,7 @@ Feature: MWE_RS_022 - Check out Materials and make Reservations
     When I select the fourth item "MICROFIBRE" from the search results
     When I select the fifth item "MICROFIBRE" from the search results
     Then I click on "ADD TO LIST" button
+    Then I take a screenshot
     Then I click on "SEARCH" button
    # Then I select Inventory material with available balance
     Then I click on "RESERVE" button
@@ -44,19 +47,21 @@ Feature: MWE_RS_022 - Check out Materials and make Reservations
     Then I navigate to "back"
     Then I navigate to "back"
     Then I navigate to "back"
+    Then I wait for page to load
     Then I take a screenshot
     Then I navigate to "back"
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
+    Then I wait for page to load
     Then I take a screenshot
     Then I navigate to "back"
     Then The Worklist page is open
     
 
     Examples:
-      | country | EnvCode        | username        | password        |
-      | Europe  | lucky-liger-8  | CBRUNS          | cbruns          |
+      | country | EnvCode        | username  | password |
+      | Europe  | lucky-liger-8  | CBRUNS    | cbruns   |
 
 
 

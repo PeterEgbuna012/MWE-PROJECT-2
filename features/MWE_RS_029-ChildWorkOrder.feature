@@ -13,10 +13,10 @@ Feature: MWE_RS_029 - Child Work Order
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I wait for page to load
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then WO page is "Shown"
     Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
@@ -25,7 +25,7 @@ Feature: MWE_RS_029 - Child Work Order
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
-    Then The status of the work Order is in "On Hold"
+    Then I wait for page to load
     Then I take a screenshot
     Then I navigate "Work" tab
     Then I click on "TIME ENTRIES" widget

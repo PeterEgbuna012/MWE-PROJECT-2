@@ -37,6 +37,8 @@ Feature: MWE_RS_017 - Add Manual Time Entry
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
     Then I click on "PAUSE WORK ORDER" button
+    Then I wait for page to load
+    Then I take a screenshot
     When I navigate to "back"
     Then The Worklist page is open
   

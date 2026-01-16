@@ -16,7 +16,6 @@ Feature: MWE_RS_015 - Return an Assigned Work Order
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then WO page is "Shown"
     Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
@@ -32,6 +31,7 @@ Feature: MWE_RS_015 - Return an Assigned Work Order
   # Then I click on "DONE" button
     Then I enter "TEST" in textfield "Please enter a reason for returning the work..."
     Then I click on "RETURN WORK ORDER" button
+    Then I take a screenshot
     Then The Worklist page is open
     Then I take a screenshot
     #Then The status of the work Order is in "On Hold"

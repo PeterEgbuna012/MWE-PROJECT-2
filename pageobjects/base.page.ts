@@ -1081,7 +1081,7 @@ async handleActionButton(actionButton: string): Promise<void> {
      */
     async takeScreenshot(filename?: string): Promise<void> {
     // Set your screenshot folder
-    const screenshotDir = "/Users/MWE-PROJECT/screenshots";
+    const screenshotDir = "MWE-PROJECT";
 
     // Ensure the folder exists
     if (!fs.existsSync(screenshotDir)) {

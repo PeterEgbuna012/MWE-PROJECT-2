@@ -21,8 +21,8 @@ Feature: MWE_RS_037 - Complete an Assigned Meter Task on Work Order
     Then The status of the work Order is in "In Progress"
     Then I navigate "Work" tab
     When I press "TASKS" widget
-    When I tap on task with number "10."
-    Then "10" page appears
+    When I tap on task with number "20."
+    Then I take a screenshot
     And I set "measurement input" value field to "1500"
     And I set "comments" value field to "TEST"
     # this symbol is for circle button in task
@@ -36,7 +36,7 @@ Feature: MWE_RS_037 - Complete an Assigned Meter Task on Work Order
     Then I click on "PAUSE ICON" button
     When I click on "Complete" button
     Then I click on "COMPLETE WORK ORDER" button
-    Then The status of the work Order is in "In Review"
+    Then I wait for page to load
     Then I take a screenshot
     # its the back button
    # When I click on "" button

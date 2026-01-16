@@ -27,17 +27,19 @@ Scenario Outline: Repair facility to be copied from the originating work order t
     Then I verify location field is populated
    # Then I verify asset field is populated
     Then I click on "SELECT A TEMPLATE " button 
-    Then I click on "Fault reported during exam (Additional arising work)" button
+    Then I click on "Assign To Me Work Priority 1 - Unit Withdrawn from Service" button
+    Then I take a screenshot
    # And I set "Description" value field to "TESTING"
     Then I click on "NEXT" button
     Then I click on "FAILURE CLASS" option
-    Then I click on "BATTERY & CONTROL SYSTEMS" option
+    Then I click on "171-SQR-022: HEATING & LIGHTING" button
     Then I click on "PROBLEM CLASS" option
-    Then I click on "EXAM" option
+    Then I click on "SQR 22(a) - Lighting - failed" button
     Then I click on "CAUSE CLASS" option
-    Then I click on "DAMAGED" option
+    Then I click on "Service Quality Fault Reported" button
     Then I click on "REMEDY CLASS" option
-    Then I click on "COMPONENT REPAIRED" option
+    Then I click on "Service Quality Fault Rectified" button
+    Then I click on "" button
     Then I click on "CREATE FOLLOW-ON" button
     Then I take a screenshot
     Then I click on "PAUSE ICON" button

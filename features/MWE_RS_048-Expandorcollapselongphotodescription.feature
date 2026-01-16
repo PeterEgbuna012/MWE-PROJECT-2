@@ -21,7 +21,7 @@ Scenario Outline: Expand or collapse long photo description
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I take a screenshot
-    Then I navigate "Details" tab
+    Then I navigate "Files" tab
     Then I click on "SEE MORE" button
     Then I wait for page to load
     Then I take a screenshot
