@@ -15,25 +15,46 @@ Feature: MWE_RS_030 - Application Navigation Test
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I wait for page to load
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then WO page is "Shown"
+    Then I wait for page to load
+    Then I take a screenshot
     Then I navigate to "notifications"
+    Then I wait for page to load
+    Then I take a screenshot
     Then I navigate to "back"
     Then I navigate "Work" tab
+    Then I wait for page to load
+    Then I take a screenshot
     Then I navigate "Files" tab
-    Then I navigate "History" tab
+    Then I take a screenshot
+    Then I click on "All Files" sort by option and select "Photographs"
+    Then I take a screenshot
+    Then I click on "Photographs" sort by option and select "Videos"
+    Then I take a screenshot
+    Then I click on "Videos" sort by option and select "Documents"
+    Then I take a screenshot
+    Then I click on "Documents" sort by option and select "Links"
+    Then I take a screenshot
     Then I navigate "Details" tab
-    #Then I navigate "Files" tab
-    #Then Photo is Visible
+    Then I take a screenshot
+    Then I navigate "History" tab
+    Then I take a screenshot
+    Then I click on "All Updates" sort by option and select "Comments"
+    Then I take a screenshot
+    Then I click on "Comments" sort by option and select "Follow-Ons"
+    Then I take a screenshot
+    Then I click on "Follow-Ons" sort by option and select "Workflow"
+    Then I take a screenshot
     Then I navigate to "back"
     #Then I navigate to "back"
     Then The Worklist page is open
     Then I press the Hamburger icon
     Then I click on "Logout" button
-    Then signIn option shows up
+    
 
     Examples:
-      | country | EnvCode   | username  | password    |
-      | Europe  | lucky-liger-8 | CBRUNS | cbruns |
+    | country | EnvCode   | username  | password  |
+    | Europe  | lucky-liger-8 | CBRUNS | cbruns |

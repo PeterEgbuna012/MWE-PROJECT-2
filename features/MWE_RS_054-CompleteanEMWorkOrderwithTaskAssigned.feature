@@ -56,12 +56,12 @@ Scenario Outline: Complete an EM Work Order with Task Assigned
     When I navigate to "back" 
     Then I click on "PAUSE ICON" button
     When I click on "Complete" button
-    Then I click on "Select outcome..." option
+    Then I click on "SELECT OUTCOME" option
     Then I click on "PERMANENT FIX" button
     Then I click on "COMPLETE WORK ORDER" button
     Then I wait for page to load
     Then I take a screenshot
-    Then I navigate to "back"
+    
   
 
     Examples:

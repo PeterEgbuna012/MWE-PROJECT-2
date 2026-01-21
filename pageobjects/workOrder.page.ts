@@ -556,7 +556,26 @@ async selectFromDropdown(mainOption: string, subOption: string) {
   await subElement.waitForDisplayed({ timeout: 100000 });
   await subElement.click();
 }
-  
+
+// =====================
+  // Sort By Selectors
+  // =====================
+get allUpdatesSortOption() {
+    return $('//XCUIElementTypeOther[@value="All Updates"]');
+  }
+
+  get commentsSortOption() {
+    return $('//XCUIElementTypeButton[@name="Comments"]');
+  }
+
+  get followOnsSortOption() {
+    return $('//XCUIElementTypeButton[@name="Follow-Ons"]');
+  }
+
+  get workflowSortOption() {
+    return $('//XCUIElementTypeButton[@name="Workflow"]');
+  }
+
     /**
      * Returns the selector for a time log static text element matching the exact time string.
      * @param timeValue string like "1d 0h" or "0h 55m"

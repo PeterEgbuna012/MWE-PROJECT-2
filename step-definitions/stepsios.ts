@@ -6,6 +6,7 @@ import PhotoPage from '../pageobjects/photo.page';
 import InitPage from '../pageobjects/init.page';
 import WorkOrderPage from '../pageobjects/workOrder.page';
 import workOrderPage from '../pageobjects/workOrder.page';
+
 type FieldName = 'summary' | 'details';
 
 

@@ -13,7 +13,6 @@ Feature: MWE_RS_053 - Complete an EM Work Order
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
-    And I see allow button
     Then I wait for page to load
     When I click on "Reject" button
     Then The Worklist page is open
@@ -42,12 +41,12 @@ Feature: MWE_RS_053 - Complete an EM Work Order
     Then I click on "ADD COMMENT BUTTON" button
     Then I click on "PAUSE ICON" button
     When I click on "Complete" button
-    Then I click on "Select outcome..." option
+    Then I click on "SELECT OUTCOME" option
     Then I click on "PERMANENT FIX" button
     Then I click on "COMPLETE WORK ORDER" button
     Then I wait for page to load
     Then I take a screenshot
-    Then I navigate to "back"
+    
     
 
     Examples:

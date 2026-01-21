@@ -182,6 +182,10 @@ async clickButtonByName(name: string, timeout = 50000): Promise<void> {
             xpath = '//XCUIElementTypeButton[@name="FAIL TASK"]';
             break;
 
+            case 'ATTACHMENTS TAB':
+            xpath = '//XCUIElementTypeButton[@name="Attachments"]';
+            break; 
+
               case 'CREATE FOLLOW-ON':
             xpath = '//XCUIElementTypeButton[@name="CREATE FOLLOW-ON"]';
             break;
@@ -458,6 +462,15 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
     'Status': '//XCUIElementTypeOther[@value="Status"]',
     'Location': '//XCUIElementTypeOther[@value="Location"]',
     'Priority': '//XCUIElementTypeOther[@value="Priority"]',
+    'All Files': '//XCUIElementTypeOther[@value="All Files"]',
+    'Photographs': '//XCUIElementTypeOther[@value="Photographs"]',
+    'Videos': '//XCUIElementTypeOther[@value="Videos"]',
+    'Documents': '//XCUIElementTypeOther[@value="Documents"]',
+    'Links': '//XCUIElementTypeOther[@value="Links"]',
+    "All Updates": '//XCUIElementTypeOther[@value="All Updates"]',
+    "Comments": '//XCUIElementTypeOther[@value="Comments"]',
+    "Follow-Ons": '//XCUIElementTypeOther[@value="Follow-Ons"]',
+    "Workflow": '//XCUIElementTypeOther[@value="Workflow"]',
   };
 
   const subSelectors: Record<string, string> = {
@@ -466,6 +479,15 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
     'Status': '//XCUIElementTypeButton[@name="Status"]',
     'Location': '//XCUIElementTypeButton[@name="Location"]',
     'Priority': '//XCUIElementTypeButton[@name="Priority"]',
+    'All Files': '//XCUIElementTypeOther[@value="All Files"]',
+    'Photographs': '//XCUIElementTypeButton[@name="Photographs"]',
+    'Videos': '//XCUIElementTypeButton[@name="Videos"]',
+    'Documents': '//XCUIElementTypeButton[@name="Documents"]',
+    'Links': '//XCUIElementTypeButton[@name="Links"]',
+    "All Updates": '//XCUIElementTypeButton[@name="All Updates"]',
+    "Comments": '//XCUIElementTypeButton[@name="Comments"]',
+    "Follow-Ons": '//XCUIElementTypeButton[@name="Follow-Ons"]',
+    "Workflow": '//XCUIElementTypeButton[@name="Workflow"]',
   };
 
   const mainSelector = mainSelectors[mainOption];
@@ -1079,7 +1101,7 @@ async handleActionButton(actionButton: string): Promise<void> {
      * Takes a screenshot and saves it to the ./screenshots folder.
      * Automatically generates a timestamped filename unless one is provided.
      */
-    async takeScreenshot(filename?: string): Promise<void> {
+    async takeScreenshot(screenshots?: string): Promise<void> {
     // Set your screenshot folder
     const screenshotDir = "MWE-PROJECT";
 
@@ -1090,7 +1112,7 @@ async handleActionButton(actionButton: string): Promise<void> {
 
     // Generate filename with timestamp if not provided
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-    const finalFilename = filename || `screenshot-${timestamp}.png`;
+    const finalFilename = screenshots || `screenshot-${timestamp}.png`;
 
     // Full path for the screenshot
     const fullPath = path.join(screenshotDir, finalFilename);

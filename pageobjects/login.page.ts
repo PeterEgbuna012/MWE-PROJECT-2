@@ -105,11 +105,11 @@ export default class LoginPage extends BasePage {
         }
     
         get work() {
-        return $('~Work');
+        return $('//XCUIElementTypeOther[@name="Mobile Work Execution"]');
         }
-    
+
         get WOPage() {
-        return $('.//XCUIElementTypeStaticText[@name="Work"]');
+        return $('//XCUIElementTypeOther[@name="Mobile Work Execution"]');
         }
     
         get startWorkButton() {
