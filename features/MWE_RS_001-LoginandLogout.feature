@@ -14,6 +14,7 @@ Feature: MWE_RS_001 - Login and Logout from the Application
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I wait for page to load
     Then I take a screenshot
     When I click on "Reject" button
     Then The Worklist page is open
@@ -25,5 +26,5 @@ Feature: MWE_RS_001 - Login and Logout from the Application
 
 
     Examples:
-      | country | EnvCode        | username | password |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    | country | EnvCode        | username | password |
+    | Europe  | helpless-pig-37  | yinka.oludipe@keolisameydlr.co.uk   | yo2026@@   |

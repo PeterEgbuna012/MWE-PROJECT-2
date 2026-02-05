@@ -13,9 +13,12 @@ Feature: MWE_RS_013 - Add Failure Information to the current Work Order
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I wait for page to load
+    Then I take a screenshot
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
+    Then WO page is "Shown"
     Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
@@ -25,19 +28,21 @@ Feature: MWE_RS_013 - Add Failure Information to the current Work Order
     When I press "FAILURE INFORMATION" widget
     Then I wait for page to load
     Then I take a screenshot
-    Then I click on "FAILURE CLASS" option
-    Then I click on "171-SQR-022: HEATING & LIGHTING" button
+   # Then I click on "FAILURE CLASS" option
+  #  Then I click on "171-SQR-022: HEATING & LIGHTING" button
     Then I click on "PROBLEM CLASS" option
-    Then I click on "SQR 22(a) - Lighting - failed" button
+    Then I click on "CFR001 - Coin Gate Not Opening" button
     Then I click on "CAUSE CLASS" option
-    Then I click on "Service Quality Fault Reported" button
+    Then I click on "Coin Stuck In Slot" button
     Then I click on "REMEDY CLASS" option
-    Then I click on "Service Quality Fault Rectified" button
+    Then I click on "Replaced" button
     Then I click on "SAVE" button
     Then I wait for page to load
     Then I take a screenshot
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I wait for page to load
     Then I take a screenshot
@@ -45,5 +50,5 @@ Feature: MWE_RS_013 - Add Failure Information to the current Work Order
     
 
     Examples:
-      | country | EnvCode        | username | password  |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns    |
+    | country | EnvCode | username | password |
+    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |

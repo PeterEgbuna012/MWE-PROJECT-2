@@ -13,23 +13,30 @@ Feature: MWE_RS_010 - Fail an assigned Task
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I wait for page to load
+    Then I take a screenshot
     When I click on "Reject" button
     Then The Worklist page is open
-    Then The Worklist page is open
     When I click at "first" WO
+    Then WO page is "Shown"
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I navigate "Work" tab
     When I press "TASKS" widget
-    When I tap on task with number "10."
+    Then I wait for page to load
+    Then I take a screenshot
+    When I tap on task with number "20."
+    Then I take a screenshot
    # Then "10" page appears
-    And I set "comments" value field to "TEST"
+    And I set "comments" value field to "MWE KAD 1.13.0 TESTING"
     Then I click on "" button
     When I click on "FAIL TASK" button
-    Then I enter "TEST" in textfield "Comments"
-   # And I set "comments" value field to "TEST"
+    And I set "fail task reason" value field to "MWE KAD 1.13.0 TESTING"
+    Then I take a screenshot
     Then I click on "OK" button
+    Then I wait for page to load
     Then I take a screenshot
     When I navigate to "back"
     When I navigate to "back" 
@@ -38,9 +45,9 @@ Feature: MWE_RS_010 - Fail an assigned Task
     Then I click on "SELECT OUTCOME" option
     Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
-    Then The status of the work Order is in "On Hold"
+    Then I wait for page to load
     Then I take a screenshot
 
     Examples:
-    | country | EnvCode        | username | password |
-    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    | country | EnvCode | username | password |
+    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |

@@ -13,9 +13,12 @@ Feature: MWE_RS_015 - Return an Assigned Work Order
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I wait for page to load
+    Then I take a screenshot
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
+    Then WO page is "Shown"
     Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
@@ -29,7 +32,7 @@ Feature: MWE_RS_015 - Return an Assigned Work Order
   # Then I select "Return End Time" date field
   # Then I set date as "todays" date
   # Then I click on "DONE" button
-    Then I enter "TEST" in textfield "Please enter a reason for returning the work..."
+    Then I enter "MWE 1.13.0 TESTING" in textfield "Please enter a reason for returning the work..."
     Then I click on "RETURN WORK ORDER" button
     Then I take a screenshot
     Then The Worklist page is open
@@ -37,5 +40,5 @@ Feature: MWE_RS_015 - Return an Assigned Work Order
     #Then The status of the work Order is in "On Hold"
 
     Examples:
-      | country | EnvCode        | username | password |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    | country | EnvCode | username | password |
+    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |

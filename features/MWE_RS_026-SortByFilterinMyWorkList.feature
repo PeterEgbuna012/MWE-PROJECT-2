@@ -13,6 +13,7 @@ Feature: MWE_RS_026 - Sort By Filter in My Work List
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I wait for page to load
     When I click on "Reject" button
     Then The Worklist page is open
     Then I take a screenshot
@@ -30,5 +31,5 @@ Feature: MWE_RS_026 - Sort By Filter in My Work List
 
 
     Examples:
-      | country | EnvCode        | username | password |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    | country | EnvCode | username | password |
+    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |

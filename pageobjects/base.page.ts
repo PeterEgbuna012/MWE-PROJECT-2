@@ -150,6 +150,74 @@ async clickButtonByName(name: string, timeout = 50000): Promise<void> {
             xpath = '//XCUIElementTypeButton[@name=""]';
             break;
 
+            case 'TEAM VIEW FILES ICON':
+            xpath = '//XCUIElementTypeStaticText[@name=""]';
+            break;
+
+            case 'CLOSE FILE':
+            xpath = '//XCUIElementTypeButton[@name="QLOverlayDoneButtonAccessibilityIdentifier"]';
+            break;
+
+            case 'SELECT USERS':
+            xpath = '//XCUIElementTypeButton[@name="SELECT USERS"]';
+            break; 
+
+            case 'USER 1':
+            xpath = '(//XCUIElementTypeStaticText[@name="Select"])[1]';
+            break; 
+
+            case 'USER 2':
+            xpath = '(//XCUIElementTypeStaticText[@name="Select"])[2]';
+            break; 
+
+            case 'USER 3':
+            xpath = '(//XCUIElementTypeStaticText[@name="Select"])[3]';
+            break; 
+
+            case 'USER 4':
+            xpath = '(//XCUIElementTypeStaticText[@name="Select"])[4]';
+            break;  
+
+            case 'USER 5':
+            xpath = '(//XCUIElementTypeStaticText[@name="Select"])[5]';
+            break; 
+ 
+            case 'ADD USERS':
+            xpath = '//XCUIElementTypeButton[@name="Add Users "]';
+            break; 
+
+            case 'ADD USER 1':
+            xpath = '(//XCUIElementTypeStaticText[@name="Add"])[1]';
+            break; 
+
+            case 'ADD USER 2':
+            xpath = '(//XCUIElementTypeStaticText[@name="Add"])[2]';
+            break; 
+
+            case 'ADD USER 3':
+            xpath = '(//XCUIElementTypeStaticText[@name="Add"])[3]';
+            break; 
+
+            case 'ADD USER 4':
+            xpath = '(//XCUIElementTypeStaticText[@name="Add"])[4]';
+            break; 
+
+            case 'ADD USER 5':
+            xpath = '(//XCUIElementTypeStaticText[@name="Add"])[5]';
+            break; 
+
+            case 'ADD SELECTED USERS':
+            xpath = '//XCUIElementTypeButton[@name="Add Selected Users"]';
+            break; 
+
+            case 'LOAD MORE USERS':
+            xpath = '//XCUIElementTypeButton[@name="Load More Users"]';
+            break; 
+
+            case 'ENTIRE TEAM':
+            xpath = '//XCUIElementTypeButton[@name="ENTIRE TEAM"]';
+            break; 
+
             case 'CONFIRM':
             xpath = '//XCUIElementTypeButton[@name="CONFIRM"]';
             break;
@@ -327,8 +395,28 @@ async clickButtonByName(name: string, timeout = 50000): Promise<void> {
             xpath = '//XCUIElementTypeStaticText[@name="Select"]';
             break;
 
+            case 'ATTACHMENTS TAB':
+            xpath = '//XCUIElementTypeStaticText[@name="Attachments"]';
+            break;
+
+            case 'REST APPLICATION':
+            xpath = '//XCUIElementTypeButton[@name="Reset Application"]';
+            break;
+
+            case 'OK':
+            xpath = '//XCUIElementTypeButton[@name="OK"]';
+            break;
+
             case 'RETURN LOCATION SELECT':
             xpath = '//XCUIElementTypeButton[@name="Select"]';
+            break;
+
+            case 'YES':
+            xpath = '//XCUIElementTypeButton[@name="Yes"]';
+            break;
+
+            case 'NO':
+            xpath = '//XCUIElementTypeButton[@name="No"]';
             break;
 
             case '377 Air':
@@ -793,11 +881,707 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
                 xpath = `//XCUIElementTypeButton[@name="BURNT"]`;
                 break; 
 
+                case 'ASSIGN TO BACKLOG':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Assign to Backlog"]`;
+                break;
+
+              case 'FIRE SYSTEM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Fire System"]`;
+                break;  
+
+                case 'TRACK':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Track"]`;
+                break; 
+
+                case 'CONDUCTOR RAIL COMPONENTS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Conductor Rail Components"]`;
+                break; 
+
+                case 'DFW':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="DFW"]`;
+                break; 
+
+                case 'EXPANSION SWITCHES':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Expansion Switches"]`;
+                break; 
+
+                case 'RUNNING RAIL':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Running Rail"]`;
+                break; 
+
+                case 'SWITCHES AND CROSSINGS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Switches & Crossings"]`;
+                break; 
+
+                case 'BATTERED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Battered"]`;
+                break; 
+
+                case 'DFW':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="DFW"]`;
+                break;
+
+                case 'BENT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Bent"]`;
+                break;
+
+                case 'BROKEN':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Broken"]`;
+                break;
+
+                case 'BURNT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Burnt"]`;
+                break;
+
+                case 'CHIPPED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Chipped"]`;
+                break;
+
+                case 'CORROSION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Corrosion"]`;
+                break;
+
+                case 'CRACKED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Cracked"]`;
+                break; 
+
+                case 'DAMAGED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Damaged"]`;
+                break; 
+
+                case 'DE LAMINATED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="De-Laminated"]`;
+                break; 
+
+                case 'DEFECTIVE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Defective"]`;
+                break; 
+
+                case 'DIPPED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Dipped"]`;
+                break; 
+
+                case 'EXCESSIVE WEAR':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Excessive Wear"]`;
+                break; 
+
+                case 'FAILED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Failed"]`;
+                break; 
+
+                case 'FAILS DLR STANDARDS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Fails DLR Standards"]`;
+                break; 
+
+                case 'MISALIGNED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Misaligned"]`;
+                break; 
+
+
+                case 'NOISE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Noise"]`;
+                break; 
+
+                case 'OUT OF GAUGE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Out of Gauge"]`;
+                break; 
+
+                case 'VOIDING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Voiding"]`;
+                break; 
+
+
+                case 'COMPONENT FAILURE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Component Failure"]`;
+                break; 
+
+                case 'IMPACT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Impact"]`;
+                break; 
+
+                case 'INCORRECT COMPONENT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Incorrect Component"]`;
+                break; 
+
+                case 'INCORRECT DESIGN':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Incorrect Design"]`;
+                break; 
+
+                case 'INCORRECT INSTALLATION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Incorrect Installation"]`;
+                break; 
+
+                case 'INSUFFICIENT MAINTENANCE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Insufficient Maintenance"]`;
+                break; 
+
+                case 'MOVEMENT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Movement"]`;
+                break; 
+
+                case 'THIRD PARTY INTERVENTION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Third Party Intervention"]`;
+                break; 
+
+                case 'TRAIN STRIKE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Train Strike"]`;
+                break; 
+
+                case 'VEGETATION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Vegetation"]`;
+                break; 
+
+                case 'WEAR AND TEAR':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Wear and Tear"]`;
+                break; 
+
+                case 'FLOODING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Flooding"]`;
+                break; 
+
+                case 'WATER INGRESS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Water Ingress"]`;
+                break; 
+
+                case 'SETTLEMENT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Settlement"]`;
+                break; 
+
+                case 'SUBSIDENCE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Subsidence"]`;
+                break; 
+
+                case 'FAILPROBLEM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="FAILPROBLEM"]`;
+                break; 
+
+                case 'FAILCAUSE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="FAILCAUSE"]`;
+                break; 
+
+                case 'FAILREMEDY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="FAILREMEDY"]`;
+                break; 
+
+                case 'ARC DAMAGE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Arc Damage"]`;
+                break; 
+
+                case 'LIPPING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Lipping"]`;
+                break; 
+
+                case 'NEW PROBLEM CODE REQUIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="NEW PROBLEM CODE REQUIRED"]`;
+                break; 
+
+                case 'INSPECTED NO FAULT FOUND':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Inspected (No Fault Found)"]`;
+                break; 
+
+                case 'INSPECTED VERIFIED COMPLETE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Inspected (Verified Complete)"]`;
+                break; 
+
+                case 'IMPOSE TEMPORARY LOAD LIMIT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Impose Temporary Load Limit"]`;
+                break; 
+
+                case 'NEW REMEDY CODE REQUIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="NEW REMEDY CODE REQUIRED"]`;
+                break; 
+
+                case 'OPERATIONAL RESTRICTION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Operational Restriction"]`;
+                break; 
+
+                case 'REMOVE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Remove"]`;
+                break; 
+
+                case 'REPAIR':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Repair"]`;
+                break; 
+
+                case 'REPLACE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Replace"]`;
+                break; 
+
+                case 'SECURE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Secure"]`;
+                break; 
+
+                case 'SUPPORT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Support"]`;
+                break; 
+
+                case 'TSR TEMPORARY SPEED RESTRICTION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="TSR (Temporary Speed Restriction)"]`;
+                break; 
+
+                case 'WELD':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Weld"]`;
+                break; 
+
+                case 'NO ACTION REQUIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="No Action Required"]`;
+                break; 
+
+                case 'PACK':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Pack"]`;
+                break; 
+
+                case 'SHIM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Shim"]`;
+                break; 
+
+                case 'TAMP':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Tamp"]`;
+                break; 
+
+                case 'EARTH FAULT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Earth Fault"]`;
+                break; 
+
+                case 'OVERLOADING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Overloading"]`;
+                break; 
+
+                case 'NOT KNOWN':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Not Known"]`;
+                break; 
+
+                case 'STRIKE OTHER THAN TRAIN':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Strike (Other than Train)"]`;
+                break; 
+
+                case 'VANDALISM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Vandalism"]`;
+                break; 
+
+                case 'DE BONDED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="De-bonded"]`;
+                break; 
+
+                case 'DEFICIENT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Deficient"]`;
+                break; 
+
+                case 'DIRTY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Dirty"]`;
+                break; 
+
+                case 'OBJECT TRACKSIDE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Object Trackside"]`;
+                break; 
+
+                case 'MISSING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Missing"]`;
+                break; 
+
+                case 'ROTTEN':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Rotten"]`;
+                break; 
+
+                case 'SEIZED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Seized"]`;
+                break; 
+
+                case 'EXPOSE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Expose"]`;
+                break; 
+
+                case 'GRIND':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Grind"]`;
+                break; 
+
+                case 'MONITOR':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Monitor"]`;
+                break; 
+
+                case 'TRACKSIDE GRAFFITI':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Trackside Graffiti"]`;
+                break;
+
+                case 'THIRD PARTY RECTIFY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Third Party Rectify"]`;
+                break; 
+
+                case 'BATTERIES MAIN CONTROL PANEL WIRELESS REPEATER':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Batteries: Main Control Panel, Wireless, Repeater."]`;
+                break;
+
+                case 'BEACONS SOUNDERS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Beacons / Sounders"]`;
+                break;
+
+                case 'CALL POINT WIRED PHP':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Call Points: Wired / PHP"]`;
+                break;
+
+                case 'CONTROL PANEL DAMPER HSSD SMOKE BEAM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Control Panel: Damper, HSSD,Smoke Beam"]`;
+                break;
+
+                case 'DAMPERS DOOR WALL MOTORS DRIVEN':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Damper: Door / Wall / Motors / Motor driven"]`;
+                break;
+
+                case 'DETECTOR HEAT MULTISENSOR SMOKE BEAM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Detectors: Heat / MultiSensor / Smoke / Smoke Beam"]`;
+                break;
+
+                case 'EDNE PLUNGERS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="EDNE Plungers"]`;
+                break;
+
+                case 'FIRE BLANKETS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Fire Blankets"]`;
+                break;
+
+                case 'FIRE ENGINEER REQUIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Fire Engineer Required"]`;
+                break;
+
+                case 'SYSTEM FAULT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="System Fault"]`;
+                break;
+
+                case 'MAINTENANCE CHECK':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Maintenance check"]`;
+                break;
+
+                case 'BATTERY DATE EXPIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Battery Date Expired"]`;
+                break;
+
+                case 'BATTERY FAILED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Battery Failed"]`;
+                break;
+
+                case 'NO FAULT FOUND':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="No Fault Found"]`;
+                break;
+
+                case 'ANOTHER MAINTAINER REQUIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Another Maintainer Required"]`;
+                break;
+
+                case 'ANOTHER VISIT REQUIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Another Visit Required"]`;
+                break;
+
+                case 'DUPLICATE FAULT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Duplicate Fault"]`;
+                break;
+
+                case 'ESCALATED TO MANAGER':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Escalated to Manager"]`;
+                break;
+
+                case 'JOINT VISIT REQUIRED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Joint Visit Required"]`;
+                break;
+                
+                case 'REPLACED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Replaced"]`;
+                break; 
+
+                case 'CFR001 COIN GATE NOT OPENING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CFR001 - Coin Gate Not Opening"]`;
+                break; 
+
+                case 'COIN PAYMENT UNAVAILABLE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CFR001 - Coin Payment Unavailable"]`;
+                break; 
+
+                case 'CFR001 FAULT COIN REJECT BUTTON':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CFR001 - Faulty Coin Reject Button"]`;
+                break; 
+
+                case 'CFR001 GIVING IOU TICKET':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CFR001 - Giving IOU Ticket"]`;
+                break; 
+
+                case 'CFR001 INCORRECT CHANGE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CFR001 - Incorrect Change"]`;
+                break; 
+
+                case 'CFR001 NOT GIVING CHANGE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CFR001 - Not Giving Change"]`;
+                break; 
+
+                case 'CFR001 REJECTING COINS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CFR001 - Rejecting Coins"]`;
+                break; 
+
+                case 'COS CARD ONLY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="COS - Card Only"]`;
+                break; 
+
+                case 'COIN STUCK IN SLOT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Coin Stuck In Slot"]`;
+                break; 
+
+                case 'FAULTY COIN GATE LOOM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Faulty Coin Gate/ Loom"]`;
+                break; 
+
+                case 'FOREIGN OBJECT IN SLOT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Foreign Object In Slot"]`;
+                break; 
+
+                case 'MISALIGNMENT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Misalignment"]`;
+                break; 
+
+                case 'VANDALISM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Vandalism"]`;
+                break; 
+
+                case 'BELT STUCK':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Belt Stuck"]`;
+                break; 
+
+                case 'EMPTY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Empty"]`;
+                break; 
+
+                case 'FAULTY DRIVE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Faulty Drive"]`;
+                break; 
+
+                case 'FAULTY WORN COMPONENT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Faulty/Worn Component"]`;
+                break; 
+
+                case 'FAULTY WORN MANIFOLD':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Faulty/Worn Manifold"]`;
+                break; 
+
+                case 'SOFTWARE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Software"]`;
+                break; 
+
+                case 'WIRING LOOM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Wiring Loom"]`;
+                break; 
+
+                case 'FAULTY ELECTRICS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Faulty Electrics"]`;
+                break; 
+
+                case 'FAULTY MECHANISM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Faulty Mechanism"]`;
+                break; 
+
+                case 'FAULTY MICRO SWITCHES':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Faulty Micro Switches"]`;
+                break; 
+
+                case 'JAMMED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Jammed"]`;
+                break; 
+
+                case 'MISALIGNED ESCROW':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Misaligned Escrow"]`;
+                break; 
+
+                case 'OUT OF CALIBRATION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Out Of Calibration"]`;
+                break; 
+
+                case 'BROKEN LATCH':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Broken Latch"]`;
+                break; 
+
+                case 'BLOCKAGE JAM CLEARED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Blockage/Jam Cleared"]`;
+                break; 
+
+                case 'DUMPED AND RESET':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Dumped And Reset"]`;
+                break; 
+
+                case 'FLOATED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Floated"]`;
+                break; 
+
+                case 'FULL AUDIT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Full Audit"]`;
+                break; 
+
+                case 'CLEANED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Cleaned"]`;
+                break; 
+
+                case 'DEVICE FAULTY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Device Faulty"]`;
+                break; 
+
+                case 'MECHANICAL FAILURE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Mechanical Failure"]`;
+                break; 
+
+                case 'FIXED ELECTRICAL CONNECTION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Fixed Electrical Connection"]`;
+                break; 
+
+                case 'RELEASED & CLEANED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Released & Cleaned"]`;
+                break;
+
+                case 'RESET':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Reset"]`;
+                break; 
+
+                case 'UPDATED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Updated"]`;
+                break; 
+
                 case 'REPAIR CARRIED OUT':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeButton[@name="REPAIR CARRIED OUT"]`;
                 break;
-
 
             default:
                 // default to common option types (Other, StaticText, Button)
@@ -1171,7 +1955,7 @@ async handleActionButton(actionButton: string): Promise<void> {
 
   /** Verify WO page visibility */
   async verifyWOPage(flag: 'Shown' | 'Hidden'): Promise<void> {
-    const element = await $('//XCUIElementTypeStaticText[@name="Work"]');
+    const element = await $('//XCUIElementTypeOther[@name="Mobile Work Execution"]');
     if (flag === 'Shown') await expect(element).toBeDisplayed();
     else await expect(await element.isDisplayed()).toBe(false);
   }

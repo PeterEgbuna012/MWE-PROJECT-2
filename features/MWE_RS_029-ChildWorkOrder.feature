@@ -17,6 +17,7 @@ Feature: MWE_RS_029 - Child Work Order
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
+    Then WO page is "Shown"
     Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
@@ -38,5 +39,5 @@ Feature: MWE_RS_029 - Child Work Order
     
 
     Examples:
-    | country | EnvCode        | username | password |
-    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    | country | EnvCode | username | password |
+    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |

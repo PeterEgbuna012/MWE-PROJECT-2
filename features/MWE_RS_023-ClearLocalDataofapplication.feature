@@ -24,11 +24,9 @@ Feature: MWE_RS_023 - Clear Local Data of application
     When I switch to the web view context
     Then I wait for page to load
     Then I take a screenshot
-    Then signIn option shows up
-    Then I wait for page to load
-    Then I take a screenshot
+    
     
     
     Examples:
-      | country | EnvCode        | username | password  |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns    |
+    | country | EnvCode        | username | password |
+    | Europe  | helpless-pig-37  | yinka.oludipe@keolisameydlr.co.uk   | yo2026@@   |

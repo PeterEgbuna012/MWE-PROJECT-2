@@ -13,13 +13,16 @@ Feature: MWE_RS_038 - Route Stop WO Descriptions are displayed alongside Route S
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I wait for page to load
     When I click on "Reject" button
     Then The Worklist page is open
-    Then The Worklist page is open
     When I click at "first" WO
+    Then WO page is "Shown"
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
+    Then I take a screenshot
     Then I navigate "Work" tab
     When I press "TASKS" widget
     Then I wait for page to load
@@ -27,6 +30,8 @@ Feature: MWE_RS_038 - Route Stop WO Descriptions are displayed alongside Route S
     When I navigate to "back" 
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I wait for page to load
     Then I take a screenshot
@@ -34,5 +39,5 @@ Feature: MWE_RS_038 - Route Stop WO Descriptions are displayed alongside Route S
 
   
     Examples:
-    | country | EnvCode        | username | password |
-    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    | country | EnvCode | username | password |
+    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |

@@ -13,10 +13,12 @@ Feature: MWE_RS_021 - Asset Swap
     And I click on "Sign In" button
     And I switch to native view context
     And I see allow button
+    Then I wait for page to load
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
-    Then I take a screenshot 
+    Then WO page is "Shown"
+    Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
@@ -35,8 +37,8 @@ Feature: MWE_RS_021 - Asset Swap
     Then I click on "SELECT" button
     Then I take a screenshot 
     Then I click on "RETURN LOCATION SELECT" button
-    Then I enter "HORNSEY PRODUCTION DROP OFF LOCATION" in the select location search field
-    Then I select "HORNSEY PRODUCTION DROP OFF LOCATION" location
+    Then I enter "BED WORKSHOP" in the select location search field
+    Then I select "BED WORKSHOP" location
     Then I take a screenshot 
     Then I "CONFIRM" asset swap
     Then I wait for page to load
@@ -44,11 +46,14 @@ Feature: MWE_RS_021 - Asset Swap
     Then I wait for page to load
     Then I take a screenshot 
     Then I "CONFIRM" asset swap
+    Then I click on "YES" button
     Then I wait for page to load
     Then I take a screenshot 
     Then I navigate to "back"
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I wait for page to load
     Then I take a screenshot 
@@ -57,5 +62,5 @@ Feature: MWE_RS_021 - Asset Swap
   
 
   Examples:
-      | country | EnvCode        | username | password |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    | country | EnvCode | username | password |
+    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |

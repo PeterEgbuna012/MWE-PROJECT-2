@@ -31,5 +31,5 @@ Feature: MWE_RS_027- View Application Details
     Then I take a screenshot
 
     Examples:
-      | country | EnvCode        | username  | password |
-      | Europe  | lucky-liger-8  | CBRUNS    | cbruns   |
+    | country | EnvCode        | username | password |
+    | Europe  | helpless-pig-37  | yinka.oludipe@keolisameydlr.co.uk   | yo2026@@   |

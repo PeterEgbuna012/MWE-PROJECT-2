@@ -21,5 +21,5 @@ Scenario Outline: After refreshing environment synchronization screen appears
     
 
     Examples:
-    | country | EnvCode        | username | password |
-    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    | country | EnvCode | username | password |
+    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |

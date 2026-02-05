@@ -73,6 +73,8 @@ class WorkOrderPage extends BasePage {
         return '//XCUIElementTypeTextView[@value="Enter summary..."]';
       case 'details':
         return '//XCUIElementTypeTextView[@value="Enter details..."]';
+        case 'fail task reason':
+        return '//XCUIElementTypeOther[@name="Mobile Work Execution"]/XCUIElementTypeTextView[2]';
         case 'measurement input':
         return '//XCUIElementTypeTextField';
       case 'comment':
