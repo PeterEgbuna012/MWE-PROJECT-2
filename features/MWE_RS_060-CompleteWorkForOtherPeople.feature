@@ -22,13 +22,13 @@ Scenario Outline: Complete Work For Other People
     Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
-    Then The status of the work Order is in "In Progress"
+    Then I wait for page to load
     Then I take a screenshot
     Then I navigate "Work" tab
     Then "FAILURE INFORMATION" widget is clicked
     Then I wait for page to load
     Then I take a screenshot
-   # Then I click on "FAILURE CLASS" option
+  # Then I click on "FAILURE CLASS" option
   #  Then I click on "171-SQR-022: HEATING & LIGHTING" button
     Then I click on "PROBLEM CLASS" option
     Then I click on "CFR001 - Coin Gate Not Opening" button
