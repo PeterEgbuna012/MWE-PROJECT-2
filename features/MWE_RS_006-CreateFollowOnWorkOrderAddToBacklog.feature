@@ -36,11 +36,11 @@ Feature: MWE_RS_006 - Create Follow On Work Order Add To Backlog
    # Then I click on "FAILURE CLASS" option
    # Then I click on "RUNNING RAIL" option
     Then I click on "PROBLEM CLASS" option
-    Then I click on "DEVICE FAULTY" option
+    Then I click on "CFR001 - Coin Gate Not Opening" button
     Then I click on "CAUSE CLASS" option
-    Then I click on "MECHANICAL FAILURE" option
+    Then I click on "Coin Stuck In Slot" button
     Then I click on "REMEDY CLASS" option
-    Then I click on "REPLACED" option
+    Then I click on "Replaced" button
     Then I click on "" button
     Then I click on "CREATE FOLLOW-ON" button
     Then I take a screenshot
@@ -60,6 +60,6 @@ Feature: MWE_RS_006 - Create Follow On Work Order Add To Backlog
     Then I navigate to "back"
     Then The Worklist page is open
 
-  Examples:
+Examples:
     | country | EnvCode | username | password |
-    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |
+    | Europe  | polite-lion-52 | yinka.oludipe@keolisameydlr.co.uk | yo2026!! |

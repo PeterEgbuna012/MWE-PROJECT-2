@@ -327,6 +327,10 @@ async clickButtonByName(name: string, timeout = 50000): Promise<void> {
             xpath = '//XCUIElementTypeButton[@name="UPDATE"]';
             break;
 
+            case 'TASK LOCATION':
+            xpath = '//XCUIElementTypeStaticText[@name=""]';
+            break;
+
             case 'ADD TO LIST':
             xpath = '//XCUIElementTypeButton[@name="ADD TO LIST"]';
             break;
@@ -1386,6 +1390,188 @@ public async selectSortByOption(mainOption: string, subOption: string): Promise<
                 case 'REPLACED':
                 // example special case if needed (otherwise fall through)
                 xpath = `//XCUIElementTypeButton[@name="Replaced"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter"]`;
+                break; 
+
+
+                case 'CM LOCAL AREA NETWORK':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="CM Local Area Network"]`;
+                break; 
+
+
+                case 'APC PROJECT WORKS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="APC Project Works"]`;
+                break; 
+
+                case 'PASSENGER ALARMS ALMS':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Passenger Alarms (ALM)"]`;
+                break; 
+
+                case 'APC HARDWARE SOFTWARE UPGRADE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="APC Hardware Software Upgrade"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER ALARM':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - Alarm"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER COMMUNICATION FAULT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - Communication fault"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER DATE/TIME INCORRECT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - Date/time incorrect"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER DIRTY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - Dirty"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER FIXING LOOSE MISSING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - Fixing loose / missing"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER HIGH COUNT DATA':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - High count Data"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER LOW COUNT DATA':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - Low count data"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER NO COUNT DATA':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - No count data"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER NOT ALARMING':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - Not alarming"]`;
+                break; 
+
+                case 'AUTOMATIC PASSENGER COUNTER NOT SWITCHED ON':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Automatic Passenger Counter - Not switched on"]`;
+                break; 
+
+                case '3RD PARTY SUPPLY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="3rd Party Supply"]`;
+                break; 
+
+                case 'BATTERY DEAD':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Battery Dead"]`;
+                break; 
+
+                case 'BREAKER TRIPPED':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Breaker Tripped"]`;
+                break; 
+
+                case 'CONFIGURATION ERROR':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Configuration Error"]`;
+                break; 
+
+                case 'DAMAGED CABLE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Damaged Cable"]`;
+                break; 
+
+                case 'DUST BUILD UP':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Dirt / Dust Build Up"]`;
+                break; 
+
+                case 'INCORRECT OPERATION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Incorrect Operation"]`;
+                break; 
+
+                case 'LOSE CABLE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Loose Cable"]`;
+                break; 
+
+                case 'POWER SUPPLY FAILURE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Power Supply Failure"]`;
+                break; 
+
+                case 'POWER SUPPLY FAULT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Power Supply Fault"]`;
+                break; 
+
+                case 'SOFTWARE ERROR':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Software Error"]`;
+                break; 
+
+                case 'UNIT FAULTY':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Unit Faulty"]`;
+                break; 
+
+                case 'ADJUST':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Adjust"]`;
+                break; 
+
+                case 'CHANGE CONFIGURATION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Change Configuration"]`;
+                break; 
+
+                case 'CLEAN':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Clean"]`;
+                break; 
+
+                case 'ESCALATE':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Escalate"]`;
+                break; 
+
+                case 'NO FURTHER ACTION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="No Further Action"]`;
+                break; 
+
+                case 'RE-CONNECT':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Re-Connect"]`;
+                break; 
+
+                case 'REBOOT / RESET':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Reboot / Reset"]`;
+                break; 
+
+                case 'RELOAD CONFIGURATION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Reload Configuration"]`;
+                break; 
+
+                case 'CHANGE CONFIGURATION':
+                // example special case if needed (otherwise fall through)
+                xpath = `//XCUIElementTypeButton[@name="Change Configuration"]`;
                 break; 
 
                 case 'CFR001 COIN GATE NOT OPENING':

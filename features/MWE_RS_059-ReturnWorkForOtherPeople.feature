@@ -33,7 +33,9 @@ Scenario Outline: Return Work For Other People
   # Then I set date as "todays" date
   # Then I click on "DONE" button
     Then I enter "MWE 1.13.0 TESTING" in textfield "Please enter a reason for returning the work..."
+    Then I take a screenshot
     Then I click on "RETURN WORK ORDER" button
+    Then I wait for page to load
     Then I take a screenshot
     Then The Worklist page is open
     Then I take a screenshot
@@ -41,4 +43,4 @@ Scenario Outline: Return Work For Other People
 
     Examples:
     | country | EnvCode | username | password |
-    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |
+    | Europe  | polite-lion-52 | yinka.oludipe@keolisameydlr.co.uk | yo2026!! |

@@ -38,5 +38,5 @@ Feature: MWE_RS_031 - Bookmark Work Order on mobile
 
 
     Examples:
-    | country | EnvCode        | username | password |
-    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    | country | EnvCode | username | password |
+    | Europe  | polite-lion-52 | yinka.oludipe@keolisameydlr.co.uk | yo2026!! |

@@ -26,5 +26,5 @@ Feature: MWE_RS_001 - Login and Logout from the Application
 
 
     Examples:
-    | country | EnvCode        | username | password |
-    | Europe  | helpless-pig-37  | yinka.oludipe@keolisameydlr.co.uk   | yo2026@@   |
+    | country | EnvCode | username | password |
+    | Europe  | polite-lion-52 | yinka.oludipe@keolisameydlr.co.uk | yo2026!! |

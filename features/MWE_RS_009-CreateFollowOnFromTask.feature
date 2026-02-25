@@ -16,12 +16,14 @@ Feature: MWE_RS_009 - Create Follow On From Task
     When I click on "Reject" button
     Then The Worklist page is open
     When I click at "first" WO
+    Then WO page is "Shown"
     Then I take a screenshot
     Then I click on "START ICON" button
     Then I click on "START WORK" button
     Then The status of the work Order is in "In Progress"
     Then I take a screenshot
     Then I navigate "Work" tab
+    Then I take a screenshot
     When I press "TASKS" widget
     When I tap on task with number "10."
     Then I click on "" button
@@ -29,18 +31,19 @@ Feature: MWE_RS_009 - Create Follow On From Task
     Then I wait for page to load
     Then I click on "Add to backlog" outcome and select "Add to backlog"
     Then I click on "SELECT A TEMPLATE " button 
-    Then I click on "Assign To Me Work Priority 1 - Unit Withdrawn from Service" button
+    Then I click on "CFR001 - Coin Gate Not Opening" button
     Then I take a screenshot
+    #And I set "Description" value field to "TESTING"
     Then I click on "NEXT" button
     Then I wait for page to load
-    Then I click on "FAILURE CLASS" option
-    Then I click on "171-SQR-022: HEATING & LIGHTING" option
+    # Then I click on "FAILURE CLASS" option
+   # Then I click on "171-SQR-022: HEATING & LIGHTING" option
     Then I click on "PROBLEM CLASS" option
-    Then I click on "SQR LIGHTING FAILED" option
+    Then I click on "CFR001 - Coin Gate Not Opening" button
     Then I click on "CAUSE CLASS" option
-    Then I click on "SERVICE QUALITY FAULT REPORTED" option
+    Then I click on "Coin Stuck In Slot" button
     Then I click on "REMEDY CLASS" option
-    Then I click on "SERVICE QUALITY FAULT RECTIFIED" option
+    Then I click on "Replaced" button
     Then I wait for page to load
     Then I click on "" button
     Then I click on "CREATE FOLLOW-ON" button
@@ -49,15 +52,20 @@ Feature: MWE_RS_009 - Create Follow On From Task
     Then I navigate to "back"
     Then I click on "PAUSE ICON" button
     Then I click on "PAUSE" button
+    Then I click on "SELECT OUTCOME" option
+    Then I click on "ON HOLD" button
     Then I click on "PAUSE WORK ORDER" button
     Then I click on "HISTORY TAB" button
     Then I wait for page to load
     Then I take a screenshot
-    Then I click on "DETAILS TAB" button
+    Then I click on "All Updates" sort by option and select "Follow-Ons"
+    Then I wait for page to load
+    Then I take a screenshot
     Then I navigate to "back"
     Then The Worklist page is open
 
 
-    Examples:
-      | country | EnvCode        | username | password |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+    
+Examples:
+    | country | EnvCode | username | password |
+    | Europe  | polite-lion-52 | yinka.oludipe@keolisameydlr.co.uk | yo2026!! |

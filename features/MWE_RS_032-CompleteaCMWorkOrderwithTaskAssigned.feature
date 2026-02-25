@@ -69,6 +69,6 @@ Feature: MWE_RS_032 - Complete a CM Work Order with Task Assigned
     Then I navigate to "back"
   
 
-    Examples:
+  Examples:
     | country | EnvCode | username | password |
-    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |
+    | Europe  | polite-lion-52 | yinka.oludipe@keolisameydlr.co.uk | yo2026!! |

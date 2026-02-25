@@ -1,6 +1,6 @@
-Feature: MWE_RS_061 - Complete a CMP work Order from MWE
+Feature: MWE_RS_061 - Complete a CMP Work Order From MWE
 
-  Scenario Outline: Complete a CMP work Order from MWE
+  Scenario Outline: Complete a CMP Work Order From MWE
     Given I am on the Init page
     When I set Region select field
     When I set Region as "<country>"
@@ -28,14 +28,16 @@ Feature: MWE_RS_061 - Complete a CMP work Order from MWE
     Then "FAILURE INFORMATION" widget is clicked
     Then I wait for page to load
     Then I take a screenshot
-   # Then I click on "FAILURE CLASS" option
-  #  Then I click on "171-SQR-022: HEATING & LIGHTING" button
+    Then I click on "FAILURE CLASS" option
+    Then I click on "Automatic Passenger Counter" button
     Then I click on "PROBLEM CLASS" option
-    Then I click on "CFR001 - Coin Gate Not Opening" button
+    Then I click on "Automatic Passenger Counter - Alarm" button
     Then I click on "CAUSE CLASS" option
-    Then I click on "Coin Stuck In Slot" button
+    Then I click on "Damaged" button
     Then I click on "REMEDY CLASS" option
-    Then I click on "Replaced" button
+    Then I click on "Repair" button
+    Then I wait for page to load
+    Then I take a screenshot
     Then I click on "SAVE" button
     Then I click on "MORE ACTION ICON" button
     Then I click on "ADD COMMENT" button
@@ -61,8 +63,8 @@ Feature: MWE_RS_061 - Complete a CMP work Order from MWE
     When I navigate to "back" 
     Then I click on "PAUSE ICON" button
     When I click on "Complete" button
-    Then I click on "SELECT OUTCOME" option
-    Then I click on "PERMANENT FIX" button
+   # Then I click on "SELECT OUTCOME" option
+   # Then I click on "PERMANENT FIX" button
     Then I click on "COMPLETE WORK ORDER" button
     Then I wait for page to load
     Then I take a screenshot
@@ -71,4 +73,4 @@ Feature: MWE_RS_061 - Complete a CMP work Order from MWE
 
     Examples:
     | country | EnvCode | username | password |
-    | Europe  | helpless-pig-37 | yinka.oludipe@keolisameydlr.co.uk | yo2026@@ |
+    | Europe  | polite-lion-52 | yinka.oludipe@keolisameydlr.co.uk | yo2026!! |

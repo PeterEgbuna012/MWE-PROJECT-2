@@ -24,7 +24,7 @@ export const config: WebdriverIO.Config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: ["./features/MWE_RS_034-CompleteaPMWorkOrderWithTasks.feature"],
+    specs: ["./features/MWE_RS_056-AttachaDocumenttoassignedWorkOrder.feature"],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
