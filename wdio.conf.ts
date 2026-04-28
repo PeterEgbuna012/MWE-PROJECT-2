@@ -24,7 +24,7 @@ export const config: WebdriverIO.Config = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: ["./features/MWE_RS_056-AttachaDocumenttoassignedWorkOrder.feature"],
+    specs: ["./features/MWE_RS_001-LoginandLogout.feature"],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -58,10 +58,10 @@ export const config: WebdriverIO.Config = {
     capabilities: [({
     'appium:platformName': 'iOS',
     'appium:automationName': 'XCUITest',
-    'appium:platformVersion': "26.1",
-    'appium:deviceName': 'iPad 9th generation',
-    'appium:udid': '00008030-000621A90AD0202E',
-    'appium:xcodeOrgId': 'D6FH4T6NCD',
+    'appium:platformVersion': "26.3",
+    'appium:deviceName': 'Arcadis-iPad-GGQY3K0VC9',
+    'appium:udid': '00008142-001C51601198401C',
+    'appium:xcodeOrgId': 'GGQY3K0VC9',
     'appium:xcodeSigningId': 'Apple Development',
     "appium:app":"/Users/MWE-PROJECT/mobile-work-execution.ipa",
     'appium:appname': 'MWE', 

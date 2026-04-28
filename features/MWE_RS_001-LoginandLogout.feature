@@ -25,6 +25,6 @@ Feature: MWE_RS_001 - Login and Logout from the Application
     Then I take a screenshot
 
 
-    Examples:
+Examples:
     | country | EnvCode | username | password |
     | Europe  | polite-lion-52 | yinka.oludipe@keolisameydlr.co.uk | yo2026!! |

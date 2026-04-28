@@ -9,7 +9,7 @@ cat > $RESULTS_DIR/executor.json <<EOL
   "type": "local",
   "url": "",
   "buildOrder": 1,
-  "buildName": "iOS 26.1 - iPad 9th generation",
+  "buildName": "iOS 26.4.2 - Pro 11-inch (M5)",
   "buildUrl": "",
   "reportUrl": "",
   "reportName": "Allure Report"
