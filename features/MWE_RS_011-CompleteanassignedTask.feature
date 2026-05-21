@@ -54,5 +54,5 @@ Feature: MWE_RS_011 - Complete an assigned Task
     Then I take a screenshot
 
     Examples:
-      | country | EnvCode  | username  | password   |
-      | Europe  | lucky-liger-8 | CBRUNS | cbruns |
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | ian.scott@gtrailway.com | maximo  |

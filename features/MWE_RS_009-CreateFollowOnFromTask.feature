@@ -60,4 +60,4 @@ Feature: MWE_RS_009 - Create Follow On From Task
 
     Examples:
       | country | EnvCode        | username | password |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+      | Europe  | lucky-liger-8  | ian.scott@gtrailway.com | maximo  |

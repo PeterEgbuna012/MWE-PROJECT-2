@@ -44,5 +44,5 @@ Feature: MWE_RS_017 - Add Manual Time Entry
   
     
     Examples:
-      | country | EnvCode        | username | password  |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns    |
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | ian.scott@gtrailway.com | maximo  |

@@ -26,4 +26,4 @@ Feature: MWE_RS_001 - Login and Logout from the Application
 
     Examples:
       | country | EnvCode        | username | password |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+      | Europe  | lucky-liger-8  | ian.scott@gtrailway.com | maximo  |

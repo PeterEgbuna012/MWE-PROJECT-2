@@ -34,5 +34,5 @@ Feature: MWE_RS_014 - Complete a PM Work Order
     #Then WO page is "Not Shown"
 
     Examples:
-    | country | EnvCode        | username | password |
-    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | ian.scott@gtrailway.com | maximo  |

@@ -56,5 +56,5 @@ Feature: MWE_RS_008 - Create Follow On Work Order Assign to me
     Then The Worklist page is open
 
 Examples:
-    | country | EnvCode        | username | password |
-    | Europe  | lucky-liger-8  | CBRUNS   | cbruns   |
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | ian.scott@gtrailway.com | maximo  |

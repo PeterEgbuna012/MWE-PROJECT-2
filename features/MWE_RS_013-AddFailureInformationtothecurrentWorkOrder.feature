@@ -45,5 +45,5 @@ Feature: MWE_RS_013 - Add Failure Information to the current Work Order
     
 
     Examples:
-      | country | EnvCode        | username | password  |
-      | Europe  | lucky-liger-8  | CBRUNS   | cbruns    |
+      | country | EnvCode        | username | password |
+      | Europe  | lucky-liger-8  | ian.scott@gtrailway.com | maximo  |
